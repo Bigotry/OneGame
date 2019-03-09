@@ -1,0 +1,84 @@
+<style type='text/css'>
+
+#browser_ie {
+	background-color: #f6f6b4; display: none; height: 85px; color: #000; font-size: 15px
+}
+#browser_ie .brower_info {
+	margin: 0px auto; width: 800px; padding-top: 17px
+}
+#browser_ie .brower_info .notice_info {
+	position: relative; margin-top: 5px; float: left
+}
+#browser_ie .brower_info .notice_info p {
+	text-align: left; line-height: 25px; width: 360px; display: inline-block
+}
+#browser_ie .browser_list {
+	position: relative; float: left
+}
+#browser_ie .browser_list img {
+	width: 40px; height: 40px
+}
+#browser_ie .browser_list span {
+	text-align: center; width: 80px; display: inline-block
+}
+
+</style>
+
+<div style="display: none" id=browser_ie>
+    <div class=brower_info>
+        <div class=notice_info>
+            <p>您的浏览器版本过低，可能导致网站不能正常访问！<br>为了您能正常使用网站功能，请使用这些浏览器。</p></div>
+            <div class=browser_list>
+            <span>
+            <a href='https://www.baidu.com/s?wd=chrome&rsv_spt=1&rsv_iqid=0xcee432550000fb47&issp=1&f=3&rsv_bp=0&rsv_idx=2&ie=utf-8&tn=monline_3_dg&rsv_enter=1&rsv_sug3=1&rsv_sug1=1&rsv_sug7=001&rsv_sug2=1&rsp=1&rsv_sug9=es_2_1&rsv_sug4=2540&rsv_sug=5' target=_blank>
+                <img src="__STATIC__/module/index/platform/images/browser/chrome.png"><br>chrome
+            </a>
+            </span>
+            <span><a href="https://www.baidu.com/s?wd=firefox&rsv_spt=1&rsv_iqid=0xe70dea53000144f8&issp=1&f=3&rsv_bp=1&rsv_idx=2&ie=utf-8&rqlang=cn&tn=monline_3_dg&rsv_enter=0&oq=firefox&rsv_t=a50ccaorRVVo0OER2PGTCa9eE2fEbsSOgYtdzXULOT2lDhmS25ShAsXNdZWARGF3LgyE&rsv_pq=f50c823300012304&prefixsug=firefox&rsp=0" target=_blank><img
+            src="__STATIC__/module/index/platform/images/browser/firefox.png"><br>firefox
+            </a></span>
+            <span><a href="https://www.baidu.com/s?wd=safari&rsv_spt=1&rsv_iqid=0xe70dea53000144f8&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&rqlang=cn&tn=monline_3_dg&rsv_enter=0&oq=safarifirefox&rsv_t=1c65%2BgozWdDbYsqC0Vfk7C1Du6JL8wLZK6LNFoiVwd%2BJpKU5puDjtAH9U4sPliLpzp3a&rsv_pq=d734ad2700011af5&inputT=433&rsv_sug3=9&rsv_sug1=7&rsv_sug7=100&rsv_n=2&rsv_sug2=0&rsv_sug4=500&rsv_sug=1" target=_blank><img
+            src="__STATIC__/module/index/platform/images/browser/safari.png"><br>safari
+            </a></span>
+            <span><a
+            href="https://www.baidu.com/s?wd=ie&rsv_spt=1&rsv_iqid=0xe70dea53000144f8&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&rqlang=cn&tn=monline_3_dg&rsv_enter=0&oq=safari&rsv_t=7573MyGFGaMkkI%2FjRSTWpfwPZ9SwX0OJo7sLxdX2qMkNcJkvGLCCgDeR6WTh%2BM4eocnh&rsv_pq=ba1dbaad00012291&inputT=601&rsv_sug3=12&rsv_sug1=10&rsv_sug7=100&rsv_sug2=0&rsv_sug4=1265"
+            target=_blank><img
+            src="__STATIC__/module/index/platform/images/browser/ie.png"><br>ie9及以上
+            </a></span>
+            </div>
+    </div>
+</div>
+
+<script>
+
+function isIe() {
+    
+    return !!window.ActiveXObject || "ActiveXObject" in window;
+}
+
+function myBrowser()
+{
+    var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+    
+    if (userAgent.indexOf("Firefox") > -1) {
+        return "Firefox";
+    } //判断是否Firefox浏览器
+    if (userAgent.indexOf("Chrome") > -1){
+        return "Chrome";
+    }
+    if (userAgent.indexOf("Safari") > -1) {
+        return "Safari";
+    } //判断是否Safari浏览器
+    
+    if (isIe())
+    {
+        return "IE";
+    }
+    
+}
+    var my_browser = myBrowser();
+    
+    if(my_browser != 'Firefox' && my_browser != 'Chrome' && my_browser != 'Safari' && !(my_browser == 'IE' && !(!-[1,]))){
+        $("#browser_ie").show();
+    }
+</script>

@@ -1,0 +1,68 @@
+<form action="{:url()}" method="post" class="form_single">
+    <div class="box">
+      <div class="box-body">
+        <div class="row">
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>选择公会</label>
+                <select name="conference_id" class="form-control" onchange="selectConference(this)">
+                    <option value="0">—请选择公会—</option>
+                    {volist name='conference_list' id='vo'}
+                        <option value="{$vo.id}">{$vo.conference_name}</option>
+                    {/volist}
+                </select>
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>选择员工</label>
+                <select name="member_id" class="form-control member_select">
+                    <option value="0">—请选择员工—</option>
+                </select>
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>选择游戏</label>
+                <select name="game_id" class="form-control">
+                    {volist name='game_list' id='vo'}
+                        <option value="{$vo.id}">{$vo.game_name}</option>
+                    {/volist}
+                </select>
+            </div>
+          </div>
+          
+          </div>
+          
+        </div>
+        
+      <div class="box-footer">
+          
+            {include file="layout/edit_btn_group"/}
+      </div>
+        
+      </div>
+
+</form>
+
+<script>
+    
+    function selectConference(obj)
+    {
+        
+        var conference_id = $(obj).val();
+        
+        if (0 != conference_id) 
+        {
+            $.post("{:url('getEmployeeOptions')}",{conference_id:conference_id}, function(data){
+
+                $(".member_select").html(data.content);
+            },"json");
+        }
+        
+    }
+    
+</script>

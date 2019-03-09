@@ -1,0 +1,83 @@
+<form action="{:url()}" method="post" class="form_single">
+    <div class="box">
+      <div class="box-body">
+        <div class="row">
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>游戏</label>
+                <select name="game_id" class="form-control">
+                    {volist name='game_list' id='vo'}
+                        <option value="{$vo['id']}" {notempty name="info['game_id']"}{if condition="$info['game_id'] eq $vo['id']"} selected="selected" {/if}{/notempty} >{$vo['game_name']}</option>
+                    {/volist}
+                </select>
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>区服名称</label>
+              <input class="form-control" name="server_name" placeholder="请输入区服名称" value="{$info['server_name']|default=''}" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>服务器ID</label>
+              <input class="form-control" name="cp_server_id" placeholder="请输入服务器ID" value="{$info['cp_server_id']|default=''}" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>开服时间</label>
+                <span>（除测试人员外，开服时间之前不可进入游戏）</span>
+                <input class="form-control date" name="start_time" placeholder="请选择开服时间" value="{$info['start_time']|default=''}" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>维护结束时间</label>
+                <span>（除测试人员外，维护结束时间之前不可进入游戏）</span>
+                <input class="form-control date" name="maintain_end_time" placeholder="请选择维护结束时间" value="{$info['maintain_end_time']|default=''}" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>数据状态</label>
+                <select name="status" class="form-control">
+                    <option value="1">启用</option>
+                    <option value="0">禁用</option>
+                </select>
+            </div>
+          </div>
+            
+          </div>
+        </div>
+        
+      <div class="box-footer">
+          
+        <input type="hidden" name="id" value="{$info['id']|default='0'}"/>
+        
+        {include file="layout/edit_btn_group"/}
+      </div>
+        
+      </div>
+
+</form>
+
+<script type="text/javascript">
+    
+    ob.setValue("status", {$info['status']|default=1});
+        
+    $(function(){
+        $('.date').datetimepicker({
+            format: 'yyyy-mm-dd hh:ii',
+            language:"zh-CN",
+            minView:0,
+            autoclose:true
+        });
+    });
+</script>

@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="__STATIC__/widget/admin/editor/kindeditor/default/default.css" />
+<script type="text/javascript">
+
+    $(function(){
+        
+    var editor_{$widget_data.name};
+        editor_{$widget_data.name} = KindEditor.create('textarea[name="{$widget_data.name}"]', {
+                allowFileManager : false,
+                themesPath: KindEditor.basePath,
+                width: '100%',
+                height: '{$widget_config.editor_height}',
+                resizeType: {eq name="widget_config.editor_resize_type" value="1"}1 {else /} 0 {/eq},
+                pasteType : 2,
+                urlType : 'absolute',
+                fileManagerJson : '{:url('fileManagerJson')}',
+                uploadJson : "{:url('file/editorPictureUpload')}",
+                items : [
+                'source', 'undo', 'redo', 'cut', 'copy','paste', 'plainpaste', 'wordpaste','selectall',
+                'justifyleft','justifycenter','justifyright','justifyfull','insertorderedlist','indent',
+                'outdent','subscript','superscript','fontname','fontsize','forecolor','hilitecolor','bold',
+                'italic','underline','strikethrough','removeformat','image','table',
+                'link','unlink','fullscreen'
+                ],
+                extraFileUploadParams: { session_id : '{:session_id()}'}
+            });
+        
+        //ajax提交之前同步
+        $('button[type="submit"],#submit,.ajax-post,#autoSave').click(function(){
+                editor_{$widget_data.name}.sync();
+        });
+    });
+</script>

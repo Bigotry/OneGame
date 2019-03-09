@@ -1,0 +1,37 @@
+.g_top_log{
+    
+    width:200px !important;
+}
+
+.foot{
+    
+    color:#626161 !important;
+}
+
+.f_links a{
+    
+    color:#626161 !important;
+}
+
+#wx_pay_qrcode_id{
+    width: 130px;
+    margin:0 auto;
+}
+
+.start_game_p{
+    margin-top: 12px !important;
+}
+
+.top_not_login_li {
+    
+    width: 100px !important;
+}
+
+.newsnav {
+    min-height: 600px;
+}
+
+.logo img {
+    
+    max-height: 90px;
+}

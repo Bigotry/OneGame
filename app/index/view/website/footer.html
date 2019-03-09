@@ -1,0 +1,35 @@
+<div class="footer_box">
+  <div class="footer">
+    <div class="footer_logo"><img src="{:get_picture_url(config('web_site_logo'))}" width="136" height="37"></div>
+    <div class="footer_content">
+      <ul class="about1 clearfix">
+        <li><a href="{:url('article/details', array('id' => config('single_article')['about']))}">关于我们</a></li>
+        <li><a href="{:url('article/details', array('id' => config('single_article')['contact']))}">联系我们</a></li>
+        <li><a href="{:url('article/details', array('id' => config('single_article')['recruit']))}">诚聘英才</a></li>
+        <li><a href="{:url('article/details', array('id' => config('single_article')['cooperation']))}">商务合作</a></li>
+        <li><a href="{:url('article/details', array('id' => config('single_article')['tutelage']))}">家长监护</a></li>
+      </ul>
+      <p>抵制不良游戏  拒绝盗版游戏  注意自我保护  谨防受骗上当  适度游戏益脑  沉迷游戏伤身  合理安排时间  享受健康生活</p>
+      <p>
+        网络文化经营许可证：{:config('site_culture')} &nbsp; |  &nbsp; 增值电信业务许可证：{:config('site_telecom')} &nbsp; |  &nbsp; 网站备案号：{:config('site_icp')}
+      </p>
+    </div>
+    <div class="footer_safe">
+        <a  target="_blank" href="{:get_picture_url(config('site_licence'))}">
+            <img src="__STATIC__/module/index/website/images/safe_3.png"/>
+        </a>
+        <a  target="_blank" href="http://www.hbdjbh.net/">
+            <img src="__STATIC__/module/index/website/images/safe_1.png"/>
+        </a>
+        <a  target="_blank" href="http://www.cyberpolice.cn/wfjb/html/index.shtml">
+            <img src="__STATIC__/module/index/website/images/safe_2.png"/>
+        </a>
+        <a  target="_blank" href="http://www.12377.cn">
+            <img src="__STATIC__/module/index/website/images/safe_5.png"/>
+        </a>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

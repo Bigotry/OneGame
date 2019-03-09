@@ -1,0 +1,32 @@
+<!-- 游戏礼包 -->
+<div class="gift">
+    <div class="til"> 游戏礼包 <a href="{:url('gift/index')}">更多 ></a> </div>
+    <div class="game_more">
+        <ul style="width: 880px;">
+            {volist name="data['gift_list']" id="v"}
+                <li>
+                    <a class="g_pic" href="{:url('gift/details', array('id' => $v['id']))}">
+                        <img alt="{$v.gift_name}" src="{$v.game_head|get_picture_url}" />
+                        <i></i>
+                    </a>
+                    <div class="g_dec g_dec1">
+                        <a href="{:url('gift/details', array('id' => $v['id']))}">{$v.gift_name}</a>
+                        
+                        
+        {empty name="v['number']"}
+            <span>剩余：0个</span>
+        
+        {else /}
+            <span>剩余：{$v.number}个</span>
+        
+        {/empty}
+                        
+                        
+                        
+                        <p> <a href="{:url('gift/details', array('id' => $v['id']))}">领取</a> </p>
+                    </div>
+                </li>
+            {/volist}
+        </ul>
+    </div>
+</div>

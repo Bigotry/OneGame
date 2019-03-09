@@ -1,0 +1,42 @@
+<form action="{:url()}" method="post" class="form_single">
+    <div class="box">
+      <div class="box-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>名称</label>
+              <span>（文章分类名称）</span>
+              <input class="form-control" name="name" placeholder="请输入文章分类名称" value="{$info['name']|default=''}" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>图标</label>
+              <span>（文章分类图标）</span>
+                {assign name="icon" value="$info.icon|default=''" /}
+                {:widget('icon/index', ['name' => 'icon', 'value' => $icon])}
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>描述</label>
+                <span>（文章分类描述）</span>
+                <textarea class="form-control" name="describe" rows="3" placeholder="请输入文章分类描述">{$info['describe']|default=''}</textarea>
+            </div>
+          </div>
+          </div>
+        </div>
+        
+      <div class="box-footer">
+          
+        <input type="hidden" name="id" value="{$info['id']|default='0'}"/>
+        
+        {include file="layout/edit_btn_group"/}
+        
+      </div>
+        
+      </div>
+
+</form>

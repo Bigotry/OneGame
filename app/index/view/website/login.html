@@ -1,0 +1,88 @@
+<script src="__STATIC__/module/index/platform/js/ext.js"></script>
+<link href="__STATIC__/module/common/toastr/toastr.min.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="__STATIC__/module/common/toastr/toastr.min.js"></script>
+
+
+    <div class="loginbox">
+        <div class="l_btn_mod clearfix"> 
+            <a  href="{$data['game_info']['client_url']}" class="l_btn_wd"></a>
+            <a target="_blank" href="{:url('play/index', array('game_code' => $data['game_info']['game_code']))}" class="l_btn_start"></a> 
+        </div>
+      <div class="login_box">
+          
+{empty name=":is_login()"}
+        <!-- 登录-->
+        <div class="login_bb clearfix" id="relogin">
+          <form action="{:url('login/loginHandle')}" method="post" class="login-form loform">
+            <p class="form_item">
+              <input class="dib" id="username" placeholder="用户名" name="username">
+            </p>
+            <p class="form_item">
+              <input class="dib" id="password" placeholder="密  码"  name="password" type="password">
+            </p>
+            <input value="登录" class="login_btn login-form-sub">
+            
+            <div class="from_links clearfix">
+              <p class="fl">
+                  快捷登录
+                  &nbsp;
+                  <a class="other_login_icos" title="QQ" onclick="toLogin()" rel="nofollow"><img src="__STATIC__/module/index/website/images/qq.png"></a> 
+              </p>
+              <p class="fr"> 
+                  <a href="{:url('login/register')}">注册账号</a> 
+                  <a href="{:url('safety/retrievePassword')}"> | 忘记密码？</a>
+              </p>
+            </div>
+            
+          </form>
+        </div>
+        
+{else /}
+        <!-- 登录后 -->
+        <div class="logined">
+          <p> 欢迎您~ {$data['login_member']['nickname']}</p>
+          <a href="{:url('center/index')}">个人中心</a>
+          <!--<a href="#">身份认证</a>-->
+          <a href="{:url('center/pay')}">游戏充值</a>
+          <a class="exit" href="{:url('login/logout')}">退出登录</a> 
+        </div>
+{/empty}
+      </div>
+      <div class="usercenter clearfix"> 
+          <!--<a href="#"> 新手卡领</a>--> 
+          <a href="{:url('center/pay')}">游戏充值</a> 
+          <a href="{:url('center/index')}">用户中心</a> </div>
+
+      
+    </div>
+
+
+<script>
+    
+    //登录
+    $(".login-form-sub").click(function(){
+
+            var self = $('.login-form');
+            $.post(self.attr("action"), self.serialize(), success, "json");
+            return false;
+
+            function success(data){
+
+                obalert(data);
+            }
+    });
+    
+    function toLogin()
+    {
+       location.href="/loginapi/QQAPI/oauth/index.php";
+    }
+ 
+    //回车
+    $("input").keyup(function(e){
+        if(e.keyCode === 13){
+            $(".login-form-sub").click();
+            return false;
+        }
+    });
+ 
+</script>

@@ -1,0 +1,53 @@
+<div class="box">
+  <div class="box-header">
+    
+    <ob_link><a class="btn" href="{:url('serverEdit')}"><i class="fa fa-plus"></i> 新 增</a></ob_link>
+    
+  </div>
+    
+  <div class="box-body table-responsive">
+    <table  class="table table-bordered table-hover">
+      <thead>
+        <tr>
+            <th>游戏</th>
+            <th>区服</th>
+            <th>服务器ID</th>
+            <th>开服时间</th>
+            <th>维护结束时间</th>
+            <th>数据状态</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </tr>
+      </thead>
+      
+      {notempty name='list'}
+        <tbody>
+            {volist name='list' id='vo'}
+                <tr>
+                  <td>{$vo.game_name}</td>
+                  <td>{$vo.server_name}</td>
+                  <td>{$vo.cp_server_id}</td>
+                  <td>{$vo.start_time|format_time='Y-m-d H:i'}</td>
+                  <td>{$vo.maintain_end_time|format_time='Y-m-d H:i'}</td>
+                  <td>{$vo.status_text}</td>
+                  <td>{$vo.create_time}</td>
+                  <td class="col-md-2 text-center">
+                      
+                      <a href="{:url('serverEdit', array('id' => $vo['id']))}" class="btn"><i class="fa fa-edit"></i> 编 辑</a>
+                      &nbsp;
+                      <a class="btn confirm ajax-get"  href="{:url('serverDel', array('id' => $vo['id']))}"><i class="fa fa-trash-o"></i> 删 除</a>
+                  </td>
+                </tr>
+            {/volist}
+        </tbody>
+        {else/}
+        <tbody><tr class="odd"><td colspan="8" class="text-center" valign="top">{:config('empty_list_describe')}</td></tr></tbody>
+      {/notempty}
+    </table>
+  </div>
+
+  <div class="box-footer clearfix text-center">
+      {$list->render()}
+  </div>
+
+</div>

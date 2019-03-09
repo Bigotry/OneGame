@@ -1,0 +1,96 @@
+<form action="{:url()}" method="post" class="form_single">
+    <div class="box">
+      <div class="box-body">
+        <div class="row">
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>公会名称</label>
+              <input class="form-control" name="conference_name" placeholder="请输入公会名称" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>公会联系人</label>
+              <input class="form-control" name="contact_name" placeholder="请输入公会联系人" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>联系电话</label>
+              <input class="form-control" name="contact_mobile" placeholder="请输入联系电话" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>联系QQ</label>
+              <input class="form-control" name="qq" placeholder="请输入联系QQ" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>银行账户</label>
+              <input class="form-control" name="bank_account" placeholder="请输入银行账户" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>开户人</label>
+              <input class="form-control" name="account_holder" placeholder="请输入开户人" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>开户行</label>
+              <input class="form-control" name="opening_bank" placeholder="请输入开户行" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>登录账号</label>
+              <input class="form-control" name="username" placeholder="请输入登录账号" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>登录密码</label>
+              <input class="form-control" name="password" placeholder="请输入登录密码" type="password">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>确认密码</label>
+              <input class="form-control" name="password_confirm" placeholder="请输入确认密码" type="password">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>分成比例</label>
+              <span>（1为1%，50为50%，取值区间0-100）</span>
+              <input class="form-control" name="ratio" placeholder="请输入分成比例" type="text" value="0">
+            </div>
+          </div>
+            
+          </div>
+          
+          
+        </div>
+        
+      <div class="box-footer">
+          
+            {include file="layout/edit_btn_group"/}
+      </div>
+        
+      </div>
+
+</form>

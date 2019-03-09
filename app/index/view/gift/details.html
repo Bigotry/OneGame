@@ -1,0 +1,127 @@
+    <!-- 首页样式 -->
+    <link href="__STATIC__/module/index/platform/css/welcome.css" type="text/css" rel="stylesheet">
+
+    <!-- 游戏中心样式 -->
+    <link href="__STATIC__/module/index/platform/css/gamecenter.css" type="text/css" rel="stylesheet">
+    
+    <!-- 礼包中心样式 -->
+    <link href="__STATIC__/module/index/platform/css/gift.css" type="text/css" rel="stylesheet">
+    
+    <!--内容开始-->
+    <div class="wrap">
+      <div class="container">
+        <div class="card_l">
+          <div class="card_list">
+            <div class="card-one">
+              <div class="pic">
+                  <img src="{$data['game_info']['game_head']|get_picture_url}">
+              </div>
+              <div class="mn">
+                <div class="title">
+                  <h3>{$data['gift_info']['gift_name']}</h3>
+                  <span class="type"></span></div>
+                <p style="padding-top:10px;">礼包库存：<strong>{$data['gift_info']['percent']}%</strong></p>
+                <div class="progress progress-sm">
+                  <div style="width:{$data['gift_info']['percent']}%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-success"></div>
+                </div>
+                <div class="a-bar">
+                    <a href="/g/{$data['game_info']['game_code']}" target="_blank">官网</a>
+                    <a href="{:url('center/pay')}">充值</a>
+              </div>
+              <div class="card_input">
+                <label> 礼包卡号 </label>
+                <input name="key" id='key' type="text" readonly="true" placeholder="点击右侧领取礼包，此处显示卡号">
+              </div>
+              <div class="fr">
+                  
+                    {eq name="data['gift_info']['inventory_number']" value="0"}
+                        <a class="noactive" href="javascript:;">礼包已领完</a>
+                        {else/}
+                        
+                        {if condition="is_login()"}
+                            <a href="javascript:;" onclick="getGift({$data['gift_info']['id']})">领取礼包</a>
+                            {else /}
+                            <a href="{:url('login/login')}">领取礼包</a>
+                        {/if}
+                    {/eq}
+                  
+                    <p class="remain">剩余:<em id='inventory_number'>{$data['gift_info']['inventory_number']}</em></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card_spec">
+          <div class="context"> <strong><span>{$data['gift_info']['gift_name']}</span> </strong></div>
+          <div class="hr"></div>
+          <div class="context">
+            {$data['gift_info']['gift_describe']}
+          </div>
+        </div>
+      </div>
+      <div class="gift">
+            <div class="til" style="font-size:24px; height:auto"> {$data['game_info']['game_name']}其他礼包 </div>
+            <div class="game_more">
+                {empty name="data['other_gift']"}
+                    <div style="text-align: center; font-size: 20px; padding-top: 50px;">
+                        aOh! 暂时还没有数据~
+                    </div>
+                {else /}
+                    <ul>
+                        {volist name="data['other_gift']" id="v"}
+                            <li>
+                                <a class="g_pic" href="{:url('gift/details', array('id' => $v['id']))}"> 
+                                    <img alt="{$v.gift_name}" src="{$v.game_head|get_picture_url}" />
+                                    <i></i>
+                                </a>
+                                
+                                <div class="g_dec">
+                                    <a href="{:url('gift/details', array('id' => $v['id']))}">{$v.gift_name}</a>
+                                    <span>剩余：{$v.inventory_number}个</span>
+                                    <p> <a href="{:url('gift/details', array('id' => $v['id']))}">领取</a> </p>
+                                </div>
+                                <div class="clear"></div>
+                            </li>
+                        {/volist}
+                    </ul>
+                {/empty}
+            <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <!--内容结束-->
+    <script type="text/javascript">
+    
+        function getGift(id)
+        {
+            
+            $('.fakeloader').show();
+            
+            $.post("{:url('getGift')}", {id:id}, success, "json");
+            return false;
+
+            function success(data){
+
+                setTimeout(function(){ $('.fakeloader').hide(); }, 500);
+                
+                if (!data.code) {
+                    
+                    toast.error(data.msg);
+                    return;
+                } else {
+                    
+                    toast.success('领取成功，左侧为卡号');
+                    
+                    $('#key').val(data.msg);
+                    
+                    var inventory_number = parseInt($('#inventory_number').text());
+                    
+                    if (inventory_number > 0) {
+                        
+                        $('#inventory_number').text(inventory_number - 1);
+                    }
+                }
+            }
+        }
+    
+    </script>

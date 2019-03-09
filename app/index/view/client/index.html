@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html><!--<![endif]-->
+<head>
+    <title>{$game_info['game_name']}-登录</title>
+    <meta name="description" content="" />
+    <meta content=""  name="keywords" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="http://s7.yx-s.com/!6fa1cf77/style.css" rel="stylesheet" type="text/css" />
+    <link href="__STATIC__/module/common/toastr/toastr.min.css" rel="stylesheet" type="text/css"/>
+    <script src="http://s0.qhimg.com/default/;jquery.min/jquery_1_11_3.js"></script>
+    <script type="text/javascript" src="__STATIC__/module/common/toastr/toastr.min.js"></script>
+    <script src="__STATIC__/module/index/platform/js/ext.js"></script>
+</head>
+<body>
+  <!--new tpl-->
+    <div id="content" class="main2">
+        <div id="unameWrap"  class="login">
+            <div class="login-pop">
+                
+                <p class="errer" id="errmsg"></p>
+                
+                <ul class="clearfix">
+                    <li class="mod1">
+                        <span class="name">用户名：</span>
+                        <input class="input" type="text" name="username" id="userName">
+                    </li>
+                    <li class="mod1">
+                        <span class="name">密码：</span>
+                        <input class="input" type="password" name="password" id="pwd">
+                    </li>
+                </ul>
+                
+                <div class="mod3">
+                    <label for="isKeepAlive">
+                        <input  id="isKeepAlive" type="checkbox" checked="true">
+                        <span>记住我的账号</span>
+                    </label>
+                </div>
+                <a style="cursor: pointer;" class="btn_log"  id="loginbtn">登录</a>
+                <div class="btn_reg">
+                    <a href="{:url('login/register')}" target="_blank" class="btn_reg2">注册账号</a>
+                    <!--<a href="{:url('index/index')}" target="_blank" class="btn_reg1">找回密码</a>-->
+                    <!--<a href="/loginapi/QQAPI/oauth/index.php" class="btn_reg1">QQ登录</a>-->
+                    <a href="{:url('index/login/clientLogin', array('game_code' => $game_info['game_code']))}" class="btn_reg1">QQ登录</a>
+                </div>
+            </div>
+            <div id="third_wrapper" style="text-align:center;"></div>
+        </div>
+        <div class="activity news">
+            <a class = "more" href="{:url('article/index')}">更多..</a>
+            <ul>
+                {volist name="game_article_list" id='vo'}
+                <li>
+                    <a href="{:url('article/details', array('id' => $vo.id))}" target="_blank">
+                    <span class="title">{$vo.name}</span></a>
+                </li>
+              {/volist}
+            </ul>
+        </div>
+            <div class="autoImg js_autoImg">
+            <div id="player">
+                <ul class="Limg">
+                    <img src="{$game_info.client_cover|get_picture_url}"/>
+                </ul>
+            </div>
+         </div>
+    </div>
+
+    <script type="text/javascript">
+
+        //登录
+        $("#loginbtn").click(function(){
+            
+                var self = $('.login-form');
+                var url = "{:url('client/loginHandle')}";
+                var username = $("#userName").val();
+                var password = $("#pwd").val();
+                var game_code = "{$game_info['game_code']}";
+                $.post(url, {username:username,password:password,game_code:game_code}, success, "json");
+                return false;
+
+                function success(data){
+
+                    if (data.code) {
+
+                        location.href = data.url;
+                    } else {
+
+                        if(typeof data.msg == "string"){
+
+                            $('#errmsg').html(data.msg);
+                        }else{
+
+                            var err_msg = '';
+
+                            for(var item in data.msg){ err_msg += " Θ " + data.msg[item]; }
+
+                            $('#errmsg').html(err_msg);
+                        }
+                    }
+
+//                    if(!data.code){
+//                        
+//                        $('#errmsg').html(data.msg);
+//                    }
+//
+//                    if(data.url){
+//
+//                        setTimeout(function(){
+//
+//                            location.href = data.url;
+//                        },1500);
+//                    }
+//
+//                    if(data.code && !data.url){
+//
+//                        setTimeout(function(){
+//
+//                            location.reload();
+//                        },1500);
+//                    }
+                }
+        });
+    //回车
+    $("input").keyup(function(e){
+        if(e.keyCode === 13){
+            $(".login-form-sub").click();
+            return false;
+        }
+    });
+    </script>
+</body>
+</html>

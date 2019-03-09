@@ -1,0 +1,72 @@
+*{ margin:0; padding: 0;font-family:"微软雅黑";}   
+body{background:#f8f8f8;color:#666;font-size:12px}
+a{ text-decoration:none; color: #666;}
+li{ list-style-type:none;}
+.loginbox{ background:#fff; width:1000px; margin: 0px auto; box-shadow: 0 0 5px rgba(0,0,0,0.1)}
+.inputli{  padding:20px;}
+.form-group label{width:150px; color:#333; font-weight: bold; font-size: 16px; text-align: right; line-height: 36px; display: block; float:left;}
+.form-group .form-control{float:left;width:306px;height:36px;line-height:36px;padding:0 0 0 5px;margin:0 8px;font-size:14px;float:left;border:1px solid #ddd}
+.form-group select.form-control{width:313px}
+.form-group  input[type=checkbox]{width:auto; height: auto; position: relative; top:4px;}
+.form-group  span{ display:block; float: left; line-height:36px; font-size:12px;}
+.clearfloat:after{display:block;clear:both;content:"";visibility:hidden;height:0} 
+.clearfloat{zoom:1} 
+.inputli li{ clear: both; padding:10px 0;zoom:1; height:36px; line-height:36px;}
+.inputli li:after{display:block;clear:both;content:"";visibility:hidden;height:0} 
+.form-group .yzm{ float:left; border: 1px solid #ddd; margin-right: 8px;}
+.form-group .yzm img{ display:block}
+.btn{ line-height:54px; border-radius:2px; font-size: 30px; color: #fff; background: #ff5d13; display: inline-block; width: 308px; text-align: center; margin: 20px 0 20px 160px;}
+.getyzm{ float:left;line-height:36px; border-radius:2px; font-size:14px; color: #fff; background: #ff5d13; display: inline-block; width:136px; text-align: center; margin:0 10px ;}
+
+/***/
+.loginbox .tabstit{}
+.loginbox .tabstit li{ float:left; width:50%;}
+.loginbox .tabstit li a{ background:#ddd; display:block; line-height:60px; font-size:24px; text-align:center; color:#666; border-top:2px solid #ddd;}
+.loginbox .tabstit li.active a{ background:#fff; display:block; line-height:60px; text-align:center; color:#f26522; border-top:2px solid #f26522;}
+
+
+/***/
+.top{width:1000px;margin:0 auto;height:90px;position:relative;background-color:#f8f8f8}
+.logo{height:90px;float:left;}
+.logo .rLogo{margin:0;height:60px;float:left; position:relative; top:15px;}
+.logo .rLogo img{}
+.top .logo span{color:#3a4766;font-size:23px;font-family:"Microsoft Yahei";margin:28px 0 0 16px;float:left; padding:5px 20px; border-left:1px solid #ddd;}
+.swf{height:90px;position:relative;float:right;width:490px;}
+.swf .topBar{top:30px;width:360px;height:20px;position:absolute;right:5px}
+.swf .topBar h3{height:20px;line-height:20px}
+.swf .topBar h3 em{text-indent:-999em;float:left}
+.swf .topBar h3 span{height:20px;line-height:20px;margin:0;padding-left:20px;font-weight:100;color:#666;float:right}
+.swf .topBar h3 span a{color:#fff;display:inline-block;height:20px;line-height:20px;background-color:#ff5d13;margin-left:5px;padding:0 6px;text-align:center}
+
+.from p em,.from div em{ margin:6px 0 0;}
+.phoneReg .from p #sp_idcard{ width:auto;}
+/****/
+.float-menu{display: none;}
+.normal-header{overflow:hidden;padding:10px 0}
+.normal-header .txt{height:42px;line-height:42px;margin:10px 0 0 24px;font-size:24px;padding-left:24px;border-left:1px solid #c5c5c5;float:left}
+.g-container{height:600px;padding: 0;background:url(../images/user/loginbg.jpg) top center no-repeat; background-size:cover;}
+.login-main{height:600px;overflow: hidden;position:relative}
+.mod-login-wp{width:234px;padding:16px 34px;background:#D8DBEA;background:rgba(255,255,255,.9);position:absolute;top:50%;right:80px;margin-top: -169px;}
+.login-tab{width:100%;overflow:hidden}
+.login-tab-1 li{width: 100%;}
+.login-tab-2 li{width: 50%;}
+.login-tab li{height:37px;line-height:37px;cursor:pointer;border-bottom:1px solid #fff;text-align:center;color:#595757;font-size:16px;float:left;  font-weight:bold;}
+.login-tab .active{border-bottom-color:#d70023}
+.login-tab-con{}
+.login-account{margin-top:32px}
+.login-account .w-item{height:38px;margin-top:12px;position:relative;}
+.login-account .w-item label{width:34px;height:38px;position:absolute;top:0;left:0}
+.login-account .w-item input{width:200px;height:14px;padding:12px 0 12px 34px;font-size:14px;color:#000;border:0 none;-webkit-border-radius:5px;border-radius:5px;background:#fff;border:1px solid #ddd;}
+.login-account .btn-tologin{display:block;width:100%;height:40px;color:#fff; transition:all 0.5s;font-size:16px;border:0 none;-webkit-border-radius:4px;border-radius:4px;cursor:pointer;background:#f26522;font-family:'microsoft yahei'}
+.login-account .btn-tologin:hover {background: #ff7318;}
+.login-account .user-opt{height:14px;line-height:14px;margin:10px 0 18px;-moz-user-select:none; -webkit-user-select:none; -ms-user-select:none; -khtml-user-select:none; user-select:none;}
+.icon-cb{display:inline-block;vertical-align:top;width:13px;height:13px;margin-right: 6px;}
+.login-account .tips{height:12px;line-height:12px;color:#ff5d13;margin:10px 0}
+.login-account .user-third{height:24px;margin:10px 0}
+.login-account .freereg {color:#ff5d13;float: right;}
+.login-account .freereg:hover { text-decoration: underline; }
+
+.third-login-wx{background-position:-27px 0}
+.third-login-wb{background-position:-53px 0}.login-account .icon-user{background-position:2px 6px}.login-account .icon-lock{background-position:-38px 6px}.icon-cb{background-position:0px -40px}.icon-cbed{background-position:-23px -40px}.login-account .icon-user,.login-account .icon-lock,.icon-cb,.icon-cbed{background-image: url(../images/user/login_z.png?201708251703);background-repeat: no-repeat;}
+
+.login-save input{ position:relative; top:2px;}

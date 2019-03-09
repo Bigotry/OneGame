@@ -1,0 +1,30 @@
+<form action="{:url()}" method="post" class="form_single">
+    <div class="box">
+      <div class="box-body">
+        <div class="row">
+            
+        <div class="col-md-6">
+          <div class="form-group">
+              <label>礼包KEY导入文件</label>
+              
+              <span>（<a href="/upload/template/gift_key_import.xlsx" target="_blank">下载礼包KEY样例导入模板</a>）</span>
+              
+                {:widget('file/index', ['name' => 'key_file', 'value' => 0, 'type' => 'file'])}
+          </div>
+        </div>
+            
+          </div>
+          
+          
+        </div>
+        
+      <div class="box-footer">
+          
+            <input type="hidden" name="gift_id" value="{:input('gift_id')}"/>
+          
+            {include file="layout/edit_btn_group"/}
+      </div>
+        
+      </div>
+
+</form>

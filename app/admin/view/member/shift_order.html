@@ -1,0 +1,127 @@
+<form action="{:url()}" method="post" class="form_single">
+    <div class="box">
+      <div class="box-body">
+        <div class="row">
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>选择公会</label>
+                <select name="conference_id" class="form-control" onchange="selectConference(this)">
+                    <option value="0">—请选择公会—</option>
+                    {volist name='conference_list' id='vo'}
+                        <option value="{$vo.id}">{$vo.conference_name}</option>
+                    {/volist}
+                </select>
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>选择员工</label>
+                <select name="employee_id" class="form-control member_select">
+                    <option value="0">—请选择员工—</option>
+                </select>
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>选择游戏</label>
+                <span>（不限游戏则会转移所有游戏的订单数据）</span>
+                <select name="game_id" class="form-control" onchange="selectGame(this)">
+                    <option value="0">不限游戏</option>
+                    {volist name='game_list' id='vo'}
+                        <option value="{$vo.id}">{$vo.game_name}</option>
+                    {/volist}
+                </select>
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>选择区服</label>
+                <span>（不限区服则会转移所有区服的订单数据）</span>
+                <select name="server_id" class="form-control server_select">
+                    <option value="0">不限区服</option>
+                </select>
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>开始下单时间</label>
+                <span>（开始至结束下单时间之间的订单将会被转移）</span>
+                <input class="form-control date" name="start_time" placeholder="请选择开始下单时间" type="text">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>结束下单时间</label>
+                <span>（开始至结束下单时间之间的订单将会被转移）</span>
+                <input class="form-control date" name="end_time" placeholder="请选择结束下单时间" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>是否转移玩家</label>
+                <span>（若选择转移玩家则玩家将会转移至目标员工下）</span>
+                <select name="is_shift" class="form-control">
+                    <option value="0">不转移玩家</option>
+                    <option value="1">转移玩家</option>
+                </select>
+            </div>
+          </div>
+            
+        </div>
+      </div>
+      <div class="box-footer">
+        
+        <input type="hidden" name="id" value="{:input('id')}"/>
+          
+        {include file="layout/edit_btn_group"/}
+        
+      </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+    
+    $(function(){
+        $('.date').datetimepicker({
+            format: 'yyyy-mm-dd hh:ii',
+            language:"zh-CN",
+            minView:0,
+            autoclose:true
+        });
+    });
+    
+    function selectConference(obj)
+    {
+        
+        var conference_id = $(obj).val();
+        
+        if (0 != conference_id) 
+        {
+            $.post("{:url('conference/getEmployeeOptions')}",{conference_id:conference_id}, function(data){
+
+                $(".member_select").html(data.content);
+            },"json");
+        }
+    }
+    
+    function selectGame(obj)
+    {
+        
+        var game_id = $(obj).val();
+        
+        if (0 != game_id) 
+        {
+            $.post("{:url('analyze/getServerOptions')}",{game_id:game_id}, function(data){
+
+                $(".server_select").html(data.content);
+            },"json");
+        }
+        
+    }
+</script>

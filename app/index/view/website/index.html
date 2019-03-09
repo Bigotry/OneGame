@@ -1,0 +1,202 @@
+{include file="website/top" /}
+
+
+{include file="website/header" /}
+
+<div class="mainbox clearfix">
+  <div class="cont01">
+    <div class="banner01 tabs02">
+        
+        
+      <ul class="bannerdot">
+          {volist name="data['game_info']['website_intro_imgs']" id='vo'}
+            <li><a href="#tab-{$key-1}">{$key}</a></li>
+          {/volist}
+      </ul>
+        
+          {volist name="data['game_info']['website_intro_imgs']" id='vo'}
+           <div class="piclist" id="tab-{$key-1}"><img src="{$vo}"></div>
+          {/volist}
+    </div>
+    <div class="newsbox"> 
+      
+      <!------>
+      
+      <div class="index_server_zone tabs">
+        <ul class="tab">
+          <li class="active"><a href="#tab-1">推荐服务器</a></li>
+          <li><a href="#tab-2">服务器列表 </a></li>
+        </ul>
+        <div id="tab-1" class="index_sercon">
+          <ul>
+              
+          {volist name="data['recommend_server_list']" id='vo'}
+                <li><a target="_blank" href="{:url('play/index', array('game_code' => $data['game_info']['game_code'], 'sid' => $vo['cp_server_id']))}">{$vo.server_name}</a></li>
+          {/volist}
+              
+          </ul>
+        </div>
+          <div id="tab-2" class="index_sercon">
+          <ul style="overflow-y:scroll;">
+            {volist name="data['all_server_list']" id='vo'}
+                  <li><a target="_blank" href="{:url('play/index', array('game_code' => $data['game_info']['game_code'], 'sid' => $vo['cp_server_id']))}">{$vo.server_name}</a></li>
+            {/volist}
+          </ul>
+        </div>
+      </div>
+      
+      <div class="news_box tabs1">
+        <ul>
+            <li><a href="#tab1-0">综合</a></li>
+            <li><a href="#tab1-1">公告</a></li>
+            <li><a href="#tab1-2">资讯</a></li>
+            <li><a href="#tab1-3">攻略</a></li>
+            <li><a href="#tab1-4">合区</a></li>
+        </ul>
+          
+        <div id="tab1-0" class="news_txt">
+          <br/>
+          <ul class="txt">
+
+              {notempty name="article_data['synthesize']"}
+                {volist name="article_data['synthesize']" id='vo'}
+                     <li><a href="{:url('Website/articleDetails', array('game_code' => $data['game_info']['game_code'], 'id' => $vo['id']))}">{$vo.name}</a><span>{$vo.create_time|format_month_day}</span></li>
+                {/volist}
+              {/notempty}
+          </ul>
+        </div>
+        <div id="tab1-1" class="news_txt">
+          <br/>
+          <ul class="txt">
+
+              {notempty name="article_data['notice']"}
+                {volist name="article_data['notice']" id='vo'}
+                     <li><a href="{:url('Website/articleDetails', array('game_code' => $data['game_info']['game_code'], 'id' => $vo['id']))}">{$vo.name}</a><span>{$vo.create_time|format_month_day}</span></li>
+                {/volist}
+              {/notempty}
+          </ul>
+        </div>
+        <div id="tab1-2" class="news_txt">
+          <br/>
+          <ul class="txt">
+
+              {notempty name="article_data['news']"}
+                {volist name="article_data['news']" id='vo'}
+                     <li><a href="{:url('Website/articleDetails', array('game_code' => $data['game_info']['game_code'], 'id' => $vo['id']))}">{$vo.name}</a><span>{$vo.create_time|format_month_day}</span></li>
+                {/volist}
+              {/notempty}
+          </ul>
+        </div>
+        <div id="tab1-3" class="news_txt">
+          <br/>
+          <ul class="txt">
+
+              {notempty name="article_data['strategy']"}
+                {volist name="article_data['strategy']" id='vo'}
+                     <li><a href="{:url('Website/articleDetails', array('game_code' => $data['game_info']['game_code'], 'id' => $vo['id']))}">{$vo.name}</a><span>{$vo.create_time|format_month_day}</span></li>
+                {/volist}
+              {/notempty}
+          </ul>
+        </div>
+        <div id="tab1-4" class="news_txt">
+          <br/>
+          <ul class="txt">
+
+              {notempty name="article_data['merge']"}
+                {volist name="article_data['merge']" id='vo'}
+                     <li><a href="{:url('Website/articleDetails', array('game_code' => $data['game_info']['game_code'], 'id' => $vo['id']))}">{$vo.name}</a><span>{$vo.create_time|format_month_day}</span></li>
+                {/volist}
+              {/notempty}
+          </ul>
+        </div>
+      </div>
+    </div>
+      
+      
+      {include file="website/login" /}
+      
+  </div>
+  <div class="main_left">
+    <div class="about bg01">
+      <div class="abouttit">游戏简介</div>
+      <p>
+          {$data['game_info']['game_intro']}
+      </p>
+    </div>
+      {include file="website/web_site_service" /}
+  </div>
+  <div class="mainright">
+    <div class="gamebox bg01">
+      <div class="game01">
+        <div class="gmtit">游戏截图</div>
+        <ul>
+            
+          {volist name="data['game_info']['website_screenshot']" id='vo'}
+                <li><a><img src="{$vo}" class="screenshot_img"> </a></li>
+          {/volist}
+          
+        </ul>
+      </div>
+        
+      <div class="tabs03">
+        <ul>
+          {volist name="data['game_info']['website_job_imgs']" id='vo'}
+                <li><a href="#tab-{$key}">{$key}</a></li>
+          {/volist}
+        </ul>
+          {volist name="data['game_info']['website_job_imgs']" id='vo'}
+                <div id="tab-{$key}" class="jiaose">
+                  <img src="{$vo}">
+                </div>
+          {/volist}
+    </div>
+        
+    </div>
+    <div class="linkbox bg01">
+      <ul>
+        <li>
+          <div class=" linknav">
+            <h3>新手指南</h3>
+              {notempty name="article_data['novice']"}
+                {volist name="article_data['novice']" id='vo'}
+                     <a href="{:url('Website/articleDetails', array('game_code' => $data['game_info']['game_code'], 'id' => $vo['id']))}">{$vo.name}</a>
+                {/volist}
+              {/notempty}
+          </div>
+        </li>
+        <li>
+          <div class=" linknav">
+            <h3>游戏指南</h3>
+              {notempty name="article_data['game']"}
+                {volist name="article_data['game']" id='vo'}
+                     <a href="{:url('Website/articleDetails', array('game_code' => $data['game_info']['game_code'], 'id' => $vo['id']))}">{$vo.name}</a>
+                {/volist}
+              {/notempty}
+          </div>
+        </li>
+        <li>
+          <div class=" linknav">
+            <h3>高手进阶</h3>
+              {notempty name="article_data['superior']"}
+                {volist name="article_data['superior']" id='vo'}
+                     <a href="{:url('Website/articleDetails', array('game_code' => $data['game_info']['game_code'], 'id' => $vo['id']))}">{$vo.name}</a>
+                {/volist}
+              {/notempty}
+          </div>
+        </li>
+        <li>
+          <div class=" linknav">
+            <h3>特色系统</h3>
+              {notempty name="article_data['feature']"}
+                {volist name="article_data['feature']" id='vo'}
+                     <a href="{:url('Website/articleDetails', array('game_code' => $data['game_info']['game_code'], 'id' => $vo['id']))}">{$vo.name}</a>
+                {/volist}
+              {/notempty}
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+{include file="website/footer" /}

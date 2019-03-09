@@ -1,0 +1,115 @@
+<script src="__STATIC__/module/admin/ext/echarts/echarts.min.js"></script>
+<div id="main" style="height:500px; width: 48%; float: left;"></div>
+<div id="main2" style="height:500px; width: 48%; float: right;"></div>
+<script type="text/javascript">
+option = {
+    title: {
+        text: ''
+    },
+    tooltip : {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data:['注册量','注册IP','充值数量']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+            data : {$info['month']}
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            name:'注册量',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:{$info['register_number']}
+        },
+        {
+            name:'注册IP',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:{$info['register_ip_number']}
+        },
+        {
+            name:'充值数量',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:{$info['pay_number']}
+        },
+    ]
+};
+
+var myChart = echarts.init(document.getElementById('main'));
+
+myChart.setOption(option);
+
+
+option2 = {
+    legend: {
+        data:['充值金额月度统计']
+    },
+    tooltip: {
+        trigger: 'axis',
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+            data : {$info['month']}
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series: [
+        {
+            name: '充值金额月度统计',
+            type: 'line',
+            smooth: true,
+            lineStyle: {
+                normal: {
+                    width: 3,
+                    shadowColor: 'rgba(0,0,0,0.4)',
+                    shadowBlur: 10,
+                    shadowOffsetY: 10
+                }
+            },
+            data:{$info['pay_money']}
+        }
+    ]
+};
+
+var myChart2 = echarts.init(document.getElementById('main2'));
+
+myChart2.setOption(option2);
+</script>

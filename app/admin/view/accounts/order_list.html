@@ -1,0 +1,206 @@
+<div class="box">
+  <div class="box-header ">
+        <div style="float: left;">
+            <span>
+                充值总金额：{$data['total_money']}
+            </span>
+        </div>
+    <div class="box-tools ">
+        
+        <div class="input-group input-group-sm search-form" style="width: 850px; margin-right: 100px;">
+            
+            
+            <select class="form-control search-input" name="o_scope" style="width: 100px;">
+               <option value="all">所有订单</option>
+               <option value="nb" {if condition="input('o_scope') == 'nb'"}  selected="selected" {/if} >未绑定</option>
+               <option value="nr" {if condition="input('o_scope') == 'nr'"}  selected="selected" {/if} >无角色</option>
+               <option value="wf" {if condition="input('o_scope') == 'wf'"}  selected="selected" {/if} >未支付</option>
+             </select>
+            
+             <select class="form-control search-input" name="game_id" onchange="selectGame(this)" style="width: 100px;">
+                 <option value="0">不限游戏</option>
+                {volist name='game_list' id='vo'}
+                    <option value="{$vo['id']}" {if condition="input('game_id') == $vo['id']"} selected="selected" {/if} >{$vo['game_name']}</option>
+                {/volist}
+             </select>
+             <select class="form-control search-input server_select" name="server_id" id="server_id" style="width: 100px;">
+                <option value="0">不限区服</option>
+                {notempty name='server_list'}
+                    {volist name='server_list' id='vo'}
+                        <option value="{$vo['id']}" {if condition="input('server_id') == $vo['id']"} selected="selected" {/if} >{$vo['server_name']}</option>
+                    {/volist}
+                {/notempty}
+             </select>
+            <select class="form-control search-input" name="search_type" style="width: 110px;">
+               <option value="role">角色名搜索</option>
+               <option value="username" {if condition="input('search_type') == 'username'"}  selected="selected" {/if} >用户名搜索</option>
+               <option value="order_sn" {if condition="input('search_type') == 'order_sn'"}  selected="selected" {/if} >订单号搜索</option>
+               <option value="employee" {if condition="input('search_type') == 'employee'"}  selected="selected" {/if} >员工账号搜索</option>
+               <option value="ip" {if condition="input('search_type') == 'ip'"}  selected="selected" {/if} >IP搜索</option>
+             </select>
+            
+            <input class="pull-right search-input date" style="width: 100px;" name="end_date" placeholder="结束日期" value="{:input('end_date')}" type="text">
+            <input class="pull-right search-input date" style="width: 100px;" name="begin_date" placeholder="开始日期" value="{:input('begin_date')}" type="text">
+            <input name="search_data" class="pull-right search-input" value="{:input('search_data')}" placeholder="角色|用户名|订单号|员工|IP" type="text">
+            <div class="input-group-btn">
+              <button type="button" id="search" url="{:url('orderList')}" class="btn btn-default"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </div>
+    <br/>
+  </div>
+    
+  <div class="box-body table-responsive">
+    <table  class="table table-bordered table-hover">
+      <thead>
+        <tr>
+            <th>平台账号</th>
+            <th>游戏名称</th>
+            <th>服务器</th>
+            <th>角色</th>
+            <th>公会</th>
+            <th>员工</th>
+            <th><ob_link><a class="text-black ajax-get" is-jump='true' href="{:url('orderList', array('order_field' => 'order_money', 'order_val' => empty(input('order_val')) ? 1:0))}"><i class="fa fa-sort"></i> 充值金额</a></ob_link></th>
+            <th>支付方式</th>
+            <th>订单状态</th>
+            <th>订单号</th>
+            <th>下单IP</th>
+            <th>下单时间</th>
+            {if condition="$is_operation"}
+                <th>操作</th>
+            {/if}
+        </tr>
+      </thead>
+      
+      {notempty name="data['list']"}
+        <tbody>
+            {volist name="data['list']" id='vo'}
+                <tr>
+                  <td>{$vo.username}</td>
+                  <td>{$vo.game_name}</td>
+                  <td>{$vo.server_name}</td>
+                  <td>
+                        {notempty name="vo['role_name']"}
+                            {$vo.role_name}
+                            {else /}
+                            
+                            <a href="javascript:;" id="show_role_a_{$vo.id}" style='margin: 5px; display: none; '><span id="show_role_span_{$vo.id}" class='badge bg-green'></span></a>
+                            
+                            <select class="form-control" name="new_role_select" id="role_{$vo.id}" tag_id="{$vo.id}" value="{$vo.role_id}" style="width: 130px; float: left;"></select>
+                            <a onclick="updateRole({$vo['id']})" class="a_{$vo.id}"  href="javascript:;" style='margin: 5px;'><span class='badge bg-green'>更新</span></a>
+                        {/notempty}
+                  </td>
+                  <td>{$vo.conference_name}</td>
+                  <td>{$vo.c_username}</td>
+                  <td>{$vo.order_money}</td>
+                  <td>{$vo.pay_name}</td>
+                  <td>
+                      {eq name='vo.pay_status' value='0'}未支付{/eq}
+                      {eq name='vo.pay_status' value='1'}已支付{/eq} &nbsp;|&nbsp;
+                      {eq name='vo.order_status' value='0'}未充值{/eq}
+                      {eq name='vo.order_status' value='1'}已充值{/eq}
+                  </td>
+                  <td>{$vo.order_sn}</td>
+                  <td>{$vo.ip} - {:get_position($vo.ip)}</td>
+                  <td>{$vo.create_time}</td>
+                    {if condition="$is_operation"}
+                          <td>
+                            {eq name='vo.order_status' value='0'}
+                                <ob_link><a class="ajax-get" href="{:url('replenishOrder', array('id' => $vo['id']))}"><span class='badge bg-green'>补单</span></a></ob_link>
+                            {/eq} 
+                           </td>
+                    {/if}
+                </tr>
+            {/volist}
+        </tbody>
+        {else/}
+        <tbody>
+            <tr class="odd">
+            {if condition="$is_operation"}
+                <td colspan="13" class="text-center" valign="top">{:config('empty_list_describe')}</td>
+                {else /}
+                <td colspan="12" class="text-center" valign="top">{:config('empty_list_describe')}</td>
+            {/if}
+            </tr>
+        </tbody>
+      {/notempty}
+    </table>
+  </div>
+
+  {notempty name="data['render']"}
+  <div class="box-footer clearfix text-center">
+      {$data['render']->render()}
+  </div>
+  {/notempty}
+</div>
+
+<script type="text/javascript">
+
+    $(function(){
+        
+        $('.date').datetimepicker({
+            format: 'yyyy-mm-dd',
+            language:"zh-CN",
+            minView:2,
+            autoclose:true
+        });
+        
+        $("select[name='new_role_select']").each(function(j,item){
+
+            var role_id = $(item).attr('value');
+            var tag_id  = $(item).attr('tag_id');
+
+            $.post("{:url('accounts/getNewRoleOptions')}",{role_id:role_id}, function(data){
+
+                $("#role_" + tag_id).html(data.content);
+            },"json");
+        });
+    });
+    
+    function selectGame(obj)
+    {
+        
+        var game_id = $(obj).val();
+        
+        if (0 != game_id) 
+        {
+            $.post("{:url('analyze/getServerOptions')}",{game_id:game_id}, function(data){
+
+                $(".server_select").html(data.content);
+            },"json");
+        } else {
+            
+            $(".server_select").html("<option value='0'>不限区服</option>");
+        }
+    }
+    
+    function updateRole(id)
+    {
+        
+        var update_role_id = $("#role_" + id).val();
+        
+        if (update_role_id == '') {
+            
+             toast.error('请选择新角色名称');
+             return;
+        }
+        
+        $(".a_" + id).remove();
+        
+        $.post("{:url('accounts/updateRole')}",{id:id,new_role_id:update_role_id}, function(data){
+
+            if (data.code) {
+                
+                toast.success(data.msg);
+                
+                $("#show_role_span_" + id).html('已更新');
+                $("#show_role_a_" + id).show();
+                $("#role_" + id).remove();
+            } else {
+                
+                toast.error(data.msg);
+            }
+            return;
+        },"json");
+    }
+</script>

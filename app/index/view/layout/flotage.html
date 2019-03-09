@@ -1,0 +1,29 @@
+<link href="__STATIC__/module/index/ext/flotage/css/style.css" rel="stylesheet" type="text/css"/>
+
+<!-- 右侧小火箭图标返回顶部 -->
+<div id="shangxia2">
+    <span id="gotop1">
+        <img src="__STATIC__/module/index/ext/flotage/img/huojian.svg" alt="返回顶部小火箭">
+    </span>
+    <span id="gotop2">
+        <img src="{:get_picture_url(config('site_qrcode'))}"  style="height: 125px; width: 125px;" />
+    </span>
+</div>
+
+<script src="__STATIC__/module/index/ext/flotage/js/TweenMax.min.js"></script>
+<script src="__STATIC__/module/index/ext/flotage/js/ScrollToPlugin.min.js"></script>
+
+<script type="text/javascript">
+    
+    $(function() {
+        
+        // 返回顶部，绑定gotop1图标和gotop2文字事件
+        $("#gotop1").click(function(e) {
+           TweenMax.to(window, 1.5, {scrollTo:0, ease: Expo.easeInOut});
+           var huojian = new TimelineLite();
+                huojian.to("#gotop1", 1, {rotationY:720, scale:0.6, y:"+=40", ease:  Power4.easeOut})
+                .to("#gotop1", 1, {y:-1000, opacity:0, ease:  Power4.easeOut}, 0.6)
+                .to("#gotop1", 1, {y:0, rotationY:0, opacity:1, scale:1, ease: Expo.easeOut, clearProps: "all"}, "1.4");
+         });
+    });
+</script>

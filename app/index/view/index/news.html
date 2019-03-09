@@ -1,0 +1,16 @@
+<div class="m_news">
+    <div class="til"> 新闻资讯 <a href="{:url('article/index')}">更多 ></a> </div>
+<div class="m_news_lis">
+        {empty name="data['article_list']"}
+            <div style="text-align: center; font-size: 20px;">
+                aOh! 暂时还没有数据~
+            </div>
+        {else /}
+            <ul>
+                {volist name="data['article_list']" id="v"}
+                    <li> <a href="{:url('article/details', array('id' => $v.id))}">【{$v.category_name}】{$v.name}</a> </li>
+                {/volist}
+            </ul>
+        {/empty}
+  </div>
+</div>

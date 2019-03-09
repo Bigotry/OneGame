@@ -1,0 +1,16 @@
+<!-- 首页轮播 -->
+<div class="banner">
+    <div class="focus-box" id="focus-box">
+        <ul>
+            {volist name="data['slider_list']" id="v"}
+                <li><a><img src="{$v.img_id|get_picture_url}" /></a></li>
+            {/volist}
+        </ul>
+        <div class="focus-btn" id="focus-btn">
+            {volist name="data['slider_list']" id="v" key="k"}
+                <a href="javascript:;">{$k}</a>
+            {/volist}
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>

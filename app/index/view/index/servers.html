@@ -1,0 +1,38 @@
+<div class="m_ser">
+    <div class="til">开服动态</div>
+    <div class="m_ser_box">
+        <div class="m_ser_til"> <a> 最近新服 <i></i> </a>
+            <!--<a> 新服预告 <i></i> </a>--> 
+        </div>
+        <div class="m_ser_con">
+            
+            <div class="m_ser_eg">
+                <div class="m_ser_egcon">
+                    <div class="m_ser_egli">
+                        {volist name="data['server_list']" id="v"}
+                            <div class="m_ser_egdec">
+                                <p>
+                                    <span class="w75">{$v.game_name}</span>
+                                    <span class="w110">{:date('m-d H:i',$v['start_time'])}</span>
+                                    <span class="w75">{$v.server_name}</span>
+                                </p>
+                                <div class="m_ser_kf m_ser_kf2">
+                                    <a class="m_ser_pic" href="{:url('play/index', array('game_code' => $v['game_code'], 'sid' => $v['cp_server_id']))}" target="_blank">
+                                        <img alt="{$v.game_name}" src="{$v.game_logo|get_picture_url}"/>
+                                    </a>
+                                    <em>
+                                        <a href="{:url('play/index', array('game_code' => $v['game_code'], 'sid' => $v['cp_server_id']))}" target="_blank">{$v.game_name}</a> {:date('m-d H:i',$v['start_time'])}
+                                    </em>
+                                    <a class="m_ser_btn" href="{:url('play/index', array('game_code' => $v['game_code'], 'sid' => $v['cp_server_id']))}" target="_blank">开始游戏</a>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        {/volist}
+                  </div>
+                </div>
+                <!--<div class="m_ser_ico m_ser_ico2"> <i>$i</i> <i>$i</i> <i>$i</i> </div>-->
+            </div>
+     
+        </div>
+    </div>
+</div>

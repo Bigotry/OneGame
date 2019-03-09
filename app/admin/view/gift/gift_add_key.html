@@ -1,0 +1,27 @@
+<form action="{:url()}" method="post" class="form_single">
+    <div class="box">
+      <div class="box-body">
+        <div class="row">
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>礼包KEY</label>
+              <input class="form-control" name="key" placeholder="请输入礼包KEY" value="{$info['key']|default=''}" type="text">
+            </div>
+          </div>
+            
+          </div>
+          
+          
+        </div>
+        
+      <div class="box-footer">
+          
+            <input type="hidden" name="gift_id" value="{:input('gift_id')}"/>
+          
+            {include file="layout/edit_btn_group"/}
+      </div>
+        
+      </div>
+
+</form>

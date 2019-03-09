@@ -1,0 +1,65 @@
+<link href="__STATIC__/module/index/platform/css/user.css" type="text/css" rel="stylesheet">
+
+    <div class="u-container fix">
+        <div class="w1000 user-wp">
+
+            <br/>
+            
+            <div class="user-main fix" id="user">
+                
+                {include file="center/center_left" /}
+                
+                <div class="user-ctn">
+                    <div class="mod"><p class="mod-hd"><em class="mod-tit">账号安全</em></p></div>
+                    
+                        <div class="user-mod-wp user-mod-myacc pl70">
+                            <div class="part part-2">
+                                <ul class="setting-list">
+                                    <li>
+                                        <i class="icon-email" style="margin-top: 10px;"></i>
+                                        <div class="info">
+                                            <p>
+                                                <span>密保邮箱</span>
+                                                {empty name="member_info['email']"}
+                                                <em class="tag">未设置</em>
+                                                {else /}
+                                                <em class="tag tag-green">已设置</em>
+                                                {/empty}
+                                            </p>
+                                            <p class="desc">用于忘记密码或帐号被盗时快速重置密码</p>
+                                        </div>
+                                        
+                                        {empty name="member_info['email']"}
+                                          <a href="{:url('center/setEmail')}" class="btn btn-m">设置邮箱</a>
+                                            {else /}
+                                          <a href="{:url('center/setEmail')}" class="btn btn-m">修改邮箱</a>
+                                        {/empty}
+                                    </li>
+                                    <li>
+                                        <i class="icon-phone" style="margin-top: 10px;"></i>
+                                        <div class="info">
+                                                <p><span>手机号码</span>
+                                                <em class="tag">功能维护中</em>					</p>
+                                                <p class="desc">用于忘记密码或帐号被盗时快速重置密码</p>
+                                        </div>
+                                        <!--<a href="javascript:;" onclick="toast.error('敬请期待，研发中...');" class="btn btn-m">设置手机</a>-->
+                                    </li>
+                                    <li>
+                                        <i class="icon-idcard" style="margin-top: 10px;"></i>
+                                        <div class="info">
+                                            <p>
+                                                <span>身份证信息</span>
+                                                <em class="tag">功能维护中</em>
+                                            </p>
+                                            <p class="desc">用于帐号防沉迷认证，是账号申诉的重要依据</p>
+                                        </div>
+                                        
+                                        <!--<a href="{:url('center/wallow')}" class="btn btn-m">设置信息</a>-->
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>

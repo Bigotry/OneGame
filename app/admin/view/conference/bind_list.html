@@ -1,0 +1,61 @@
+<div class="box">
+  <div class="box-header">
+    
+    <ob_link><a class="btn" href="{:url('bindAdd')}"><i class="fa fa-plus"></i> 新 增</a></ob_link>
+    
+    <ob_link><a class="btn confirm ajax-get" href="{:url('bindAllCheck')}"><i class="fa fa-magic"></i> 批量审核</a></ob_link>
+    
+  </div>
+    
+  <div class="box-body table-responsive">
+    <table  class="table table-bordered table-hover">
+      <thead>
+        <tr>
+            <th>公会</th>
+            <th>员工</th>
+            <th>游戏</th>
+            <th>玩家</th>
+            <th>审核状态</th>
+            <th>审核人</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </tr>
+      </thead>
+      
+      {notempty name="list['list']"}
+        <tbody>
+            {volist name="list['list']" id='vo'}
+                <tr>
+                  <td>{$vo.conference_name}</td>
+                  <td>{$vo.employee_username}</td>
+                  <td>{$vo.game_name}</td>
+                  <td>{$vo.username}</td>
+                  <td>
+                      {eq name='vo.is_check' value='0'}审核中{/eq}
+                      {eq name='vo.is_check' value='1'}通过{/eq}
+                      {eq name='vo.is_check' value='2'}未通过{/eq}
+                  </td>
+                  <td>{$vo.check_username}</td>
+                  <td>{$vo.create_time}</td>
+                  <td>
+                      {eq name='vo.is_check' value='0'}
+                        <ob_link><a class="ajax-get" href="{:url('bindCheck', array('id' => $vo['id'], 'is_check' => 1))}"><span class='badge bg-green'>通过</span></a></ob_link>
+                        <ob_link><a class="ajax-get" href="{:url('bindCheck', array('id' => $vo['id'], 'is_check' => 2))}"><span class='badge bg-red'>拒绝</span></a></ob_link>
+                      {/eq}
+                  </td>
+                </tr>
+            {/volist}
+        </tbody>
+        {else/}
+        <tbody><tr class="odd"><td colspan="8" class="text-center" valign="top">{:config('empty_list_describe')}</td></tr></tbody>
+      {/notempty}
+    </table>
+  </div>
+    
+  {notempty name="list['render']"}
+  <div class="box-footer clearfix text-center">
+      {$list['render']->render()}
+  </div>
+  {/notempty}
+    
+</div>

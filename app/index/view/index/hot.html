@@ -1,0 +1,29 @@
+<div class="hot">
+    <div class="til"> 热门游戏<a href="{:url('game/index')}">更多 ></a> </div>
+        <div class="game_li">
+          <ul>
+                {volist name="sys_common_data['hot_game_list']" id="v" key="k"}
+                    {if condition="$k < 7"}  
+                        <li>
+                            <a class="game_pic" href="/g/{$v['game_code']}" target="_blank">
+                                <img src="{$v.game_cover|get_picture_url}" alt="{$v.game_name}"/>
+                            </a>
+                            <h4> 
+                                <a href="/g/{$v['game_code']}" target="_blank">{$v.game_name}</a>
+                                <a target="_blank" href="{:url('play/index', array('game_code' => $v['game_code']))}">进入游戏</a>
+                            </h4>
+                            <div class="g_gw">
+                                <i>{$v.category_name}</i>
+                                <span>
+                                    <a href="/g/{$v['game_code']}" target="_blank">官网</a> | <a href="{:url('gift/index', array('gid' => $v.id))}">礼包</a> 
+                                </span>
+                            </div>
+                        </li>
+                    
+                    {/if}
+                {/volist}
+
+            </ul>
+            <div class="clear"></div>
+        </div>
+</div>

@@ -1,0 +1,80 @@
+<div class="box">
+  <div class="box-header ">
+    
+        <div style="float: left;">
+            <span>
+                注册总量：{$list['data_statistics']['register_number_total']}，IP总量：{$list['data_statistics']['register_ip_total']}，充值会员量：{$list['data_statistics']['pay_number_total']}，充值总金额：{$list['data_statistics']['pay_money_total']}。
+            </span>
+        </div>
+      
+    <div class="box-tools ">
+        
+        <div class="input-group input-group-sm search-form" style="margin-right: 100px;">
+            
+            <input class="pull-right search-input date" style="width: 100px;" name="end_date" placeholder="结束日期" value="{:input('end_date')}" type="text">
+            <input class="pull-right search-input date" style="width: 100px;" name="begin_date" placeholder="开始日期" value="{:input('begin_date')}" type="text">
+            
+            <div class="input-group-btn">
+              <button type="button" id="search" url="{:url('employeeList')}" class="btn btn-default"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </div>
+    <br/>
+  </div>
+    
+  <div class="box-body table-responsive">
+    <table  class="table table-bordered table-hover">
+      <thead>
+        <tr>
+            <th>员工用户名</th>
+            <th>注册数量</th>
+            <th>IP数量</th>
+            <th>充值数量</th>
+            <th>充值金额</th>
+        </tr>
+      </thead>
+      
+      {notempty name="list['data_list']"}
+        <tbody>
+            {volist name="list['data_list']" id='vo'}
+                <tr>
+                  <td>{$vo.username}</td>
+                  <td>{$vo.register_number}</td>
+                  <td>{$vo.register_ip_number}</td>
+                  <td>{$vo.pay_number}</td>
+                  <td>{$vo.pay_money}</td>
+                </tr>
+            {/volist}
+        </tbody>
+        {else/}
+        <tbody><tr class="odd"><td colspan="5" class="text-center" valign="top">{:config('empty_list_describe')}</td></tr></tbody>
+      {/notempty}
+    </table>
+  </div>
+
+  <div class="box-footer clearfix text-center">
+      {$list['data_list']->render()}
+  </div>
+
+</div>
+
+<script type="text/javascript">
+
+    $(function(){
+        
+        $('.date').datetimepicker({
+            format: 'yyyy-mm-dd',
+            language:"zh-CN",
+            minView:2,
+            autoclose:true
+        });
+        
+        $('.time').datetimepicker({
+            format: 'yyyy-mm-dd hh:ii:ss',
+            language:"zh-CN",
+            minView:0,
+            autoclose:true
+        });
+    });
+
+</script>

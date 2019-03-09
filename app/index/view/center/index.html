@@ -1,0 +1,59 @@
+<!-- 个人中心样式 -->
+<link href="__STATIC__/module/index/platform/css/user.css" type="text/css" rel="stylesheet">
+
+
+<div class="u-container fix">
+    <div class="w1000 user-wp">
+
+        <br/>
+
+        <div class="user-main fix" id="user">
+
+            {include file="center/center_left" /}
+
+            <div class="user-ctn">
+                <div class="mod"><p class="mod-hd"><em class="mod-tit">我的游戏</em></p></div>
+                <div class="user-mod-wp user-mod-mygame">
+                    <ul class="mygame-list">
+                        {empty name="list"}
+                            <div style="text-align: center; font-size: 20px;">
+                                aOh! 暂时还没有数据~
+                            </div>
+                        {else /}
+                            {volist name="list" id="v"}
+                                <li>
+                                    <a href="/g/{$v['game_code']}" target="_blank"  style="float: left;">
+                                        <img src="{$v.game_cover|get_picture_url}" alt="{$v.game_name}"/>
+                                    </a>
+                                    
+                                    <div class="info">
+                                        <p class="i1">
+                                            <a href="/g/{$v['game_code']}" target="_blank">{$v['game_name']}</a><em>{$v.category_name}</em>
+                                        </p>
+                                        <p class="i2">
+                                            最近玩过：
+                                            <a href="{:url('play/index', array('game_code' => $v['game_code'], 'sid' => $v['cp_server_id']))}" target="_blank">{$v['server_name']}</a>
+                                        </p>
+                                        <div class="i3">
+                                            <a href="/g/{$v['game_code']}" target="_blank" class="btn-hp">官网</a>
+                                            <!--<a href="#" target="_blank" class="btn-bbs">论坛</a>-->
+                                            <a href="{:url('gift/index', array('gid' => $v.game_id))}" class="btn-lb">礼包</a>
+                                        </div>
+                                    </div>
+                                    <a href="{:url('play/index', array('game_code' => $v['game_code'], 'sid' => $v['cp_server_id']))}" target="_blank" class="btn-go">
+                                        <p class="start_game_p">
+                                            开始游戏
+                                        </p>
+                                        <!--<em>人气新服</em>-->
+                                    </a>
+                                </li>
+                            {/volist}
+                        {/empty}
+                    </ul>
+
+                    <table style="margin:0 auto;"> <td> {$list->render()} </td> </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

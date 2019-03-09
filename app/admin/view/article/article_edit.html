@@ -1,0 +1,99 @@
+<form action="{:url()}" method="post" class="form_single">
+    <div class="box">
+      <div class="box-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>标题</label>
+              <span class="">（文章标题名称）</span>
+              <input class="form-control" name="name" placeholder="请输入文章标题名称" value="{$info['name']|default=''}" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>游戏</label>
+                <select name="game_id" class="form-control">
+                    {volist name='game_list' id='vo'}
+                        <option value="{$vo['id']}" {notempty name="info['game_id']"}{if condition="$info['game_id'] eq $vo['id']"} selected="selected" {/if}{/notempty} >{$vo['game_name']}</option>
+                    {/volist}
+                </select>
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>分类</label>
+              <span class="">（文章分类）</span>
+                <select name="category_id" class="form-control">
+                    {volist name='article_category_list' id='vo'}
+                        <option value="{$vo['id']}" {notempty name="info['category_id']"}{if condition="$info['category_id'] eq $vo['id']"} selected="selected" {/if}{/notempty} >{$vo['name']}</option>
+                    {/volist}
+                </select>
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>发布时间</label>
+              <span class="">（若未选择发布时间默认为当前时间）</span>
+                <input class="form-control date" name="create_time" placeholder="请选择发布时间" value="{$info['create_time']|default=''}" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>描述</label>
+                <span class="">（文章描述信息/简介）</span>
+                <textarea class="form-control" name="describe" rows="3" placeholder="请输入文章描述信息/简介">{$info['describe']|default=''}</textarea>
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>封面图片</label>
+                <span class="">（请上传单张封面图片）</span>
+                <br/>
+                {assign name="cover_id" value="$info.cover_id|default='0'" /}
+                {:widget('file/index', ['name' => 'cover_id', 'value' => $cover_id, 'type' => 'img'])}
+            </div>
+          </div>
+            
+          </div>
+        <div class="row">
+           
+            
+          <div class="col-md-12">
+            <div class="form-group">
+                <label>文章内容</label>
+                <textarea class="form-control textarea_editor" name="content" placeholder="请输入文章内容">{$info['content']|default=''}</textarea>
+                {:widget('editor/index', array('name'=> 'content','value'=> ''))}
+            </div>
+          </div>
+            
+        </div>
+        
+      <div class="box-footer">
+          
+        <input type="hidden" name="id" value="{$info['id']|default='0'}"/>
+        
+        {include file="layout/edit_btn_group"/}
+        
+      </div>
+        
+      </div>
+      </div>
+</form>
+
+        
+<script type="text/javascript">
+    
+    $(function(){
+        $('.date').datetimepicker({
+            format: 'yyyy-mm-dd hh:ii',
+            language:"zh-CN",
+            minView:0,
+            autoclose:true
+        });
+    });
+</script>

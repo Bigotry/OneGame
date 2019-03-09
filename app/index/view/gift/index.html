@@ -1,0 +1,87 @@
+    <!-- 游戏中心样式 -->
+    <link href="__STATIC__/module/index/platform/css/gamecenter.css" type="text/css" rel="stylesheet">
+    
+    <!-- 礼包中心样式 -->
+    <link href="__STATIC__/module/index/platform/css/gift.css" type="text/css" rel="stylesheet">
+    
+    <!--内容开始-->
+    <div class="wrap">
+        <div class="title">
+            <i></i>
+            <h1>
+                礼包中心
+            </h1>
+        </div>
+        
+        <div class="soso search-form">
+            <input type="text" class="search-input" name="keyword" value="{:input('keyword')}" placeholder="请输入礼包名称关键字">
+            <input class="so_btn" type="button" href="javascript:;" id="search" url="{:request()->baseUrl()}">
+        </div>
+
+        <div class="game_kinds">
+            <div class="game_flag">
+                <h4>游戏选择：</h4>
+                <div class="flags" id="type">
+
+                    <a {empty name=":input('gid')"} class="on" {/empty} href="{:url('gift/index')}">全部游戏</a>
+
+                    {volist name="data['game_list']" id="v"}
+                        <a {eq name=":input('gid')" value="$v.id"} class="on" {/eq} href="{:url('gift/index', array('gid' => $v.id))}">{$v.game_name}</a>
+                    {/volist}
+                </div>
+            </div>
+            {empty name="data['game_list']"}
+                <div style="text-align: center; padding: 20px; background-color: #fff; margin-top: 20px;">
+                    <h2>aOh! 暂时还没有数据~</h2>
+                </div>
+            {/empty}
+        </div>
+        
+        
+        <div class="container">
+            <div class="card_l">
+                <div class="card_list">
+                    {notempty name="data['gift_list']"}
+                        {volist name="data['gift_list']" id="v"}
+                            <div class="card-one">
+                                <div class="pic">
+                                    <a href="{:url('gift/details', array('id' => $v['id']))}">
+                                        <img src="{$v.game_head|get_picture_url}">
+                                    </a>
+                                </div>
+                                <div class="mn">
+                                    <div class="title">
+                                        <a href="{:url('gift/details', array('id' => $v['id']))}">
+                                            <h3>{$v.gift_name}</h3>
+                                        </a>
+                                        <span class="type"></span>
+                                    </div>
+                                    <div class="info">
+                                        <p>{$v.gift_describe}</p>
+                                    </div>
+                                    <div class="a-bar">
+                                        <a class="org" href="/g/{$v['game_code']}" target="_blank">官网</a>
+                                        <a class="start" target="_blank" href="{:url('play/index', array('game_code' => $v['game_code']))}">开始游戏</a>
+                                    </div>
+                                </div>
+                                <div class="fr">
+                                    {empty name="v['number']"}
+                                        <a class="noactive" href="javascript:;">礼包已领完</a>
+                                        <p class="remain">剩余:<em>0</em></p>
+                                    {else /}
+                                        <a href="{:url('gift/details', array('id' => $v['id']))}">领取礼包</a>
+                                        <p class="remain">剩余:<em>{$v.number}</em></p>
+                                    {/empty}
+                                </div>
+                            </div>
+                        {/volist}
+                    {/notempty}
+                </div>
+            </div>
+            
+            <table style="margin:0 auto;"> <td> {$data['gift_list']->render()} </td> </table>
+        </div>
+    </div>
+    <!--内容结束-->
+    
+<script type="text/javascript" src="__STATIC__/module/index/platform/js/search.js"></script>

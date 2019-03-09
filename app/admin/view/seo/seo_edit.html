@@ -1,0 +1,74 @@
+<form action="{:url()}" method="post" class="form_single">
+    <div class="box">
+      <div class="box-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>名称</label>
+              <span>（SEO名称便于查阅）</span>
+              <input class="form-control" name="name" placeholder="请输入SEO名称" value="{$info['name']|default=''}" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>URL</label>
+              <span>（格式：模块/控制器/方法 如 index/home/test 统一小写）</span>
+              <input class="form-control" name="url" placeholder="请输入URL" value="{$info['url']|default=''}" type="text">
+            </div>
+          </div>
+            
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>SEO标题</label>
+                <span>（支持变量）</span>
+                <textarea class="form-control" name="seo_title" rows="3" placeholder="请输入SEO标题">{$info['seo_title']|default=''}</textarea>
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>SEO关键字</label>
+                <span>（支持变量）</span>
+                <textarea class="form-control" name="seo_keywords" rows="3" placeholder="请输入SEO关键字">{$info['seo_keywords']|default=''}</textarea>
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>SEO描述</label>
+                <span>（支持变量）</span>
+                <textarea class="form-control" name="seo_description" rows="3" placeholder="请输入SEO描述">{$info['seo_description']|default=''}</textarea>
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>可用变量</label>
+                <span>（此URL中支持的可用变量）</span>
+                <textarea class="form-control" name="usable_val" rows="3" placeholder="请输入可用变量">{$info['usable_val']|default=''}</textarea>
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>排序</label>
+              <input class="form-control" name="sort" placeholder="请输入排序值" value="{$info['sort']|default='0'}" type="text">
+            </div>
+          </div>
+            
+          </div>
+        </div>
+        
+      <div class="box-footer">
+          
+        <input type="hidden" name="id" value="{$info['id']|default='0'}"/>
+        
+        {include file="layout/edit_btn_group"/}
+        
+      </div>
+        
+      </div>
+
+</form>

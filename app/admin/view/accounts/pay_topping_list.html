@@ -1,0 +1,97 @@
+<div class="box">
+  <div class="box-header ">
+    <div class="box-tools ">
+        <div class="input-group input-group-sm search-form" style="width: 580px; margin-right: 100px;">
+             <select class="form-control search-input" name="game_id" onchange="selectGame(this)" style="width: 160px;">
+                 <option value="0">不限游戏</option>
+                {volist name='game_list' id='vo'}
+                    <option value="{$vo['id']}" {if condition="input('game_id') == $vo['id']"} selected="selected" {/if} >{$vo['game_name']}</option>
+                {/volist}
+             </select>
+             <select class="form-control search-input server_select" name="server_id" id="server_id" style="width: 160px;">
+                <option value="0">不限区服</option>
+                {notempty name='server_list'}
+                    {volist name='server_list' id='vo'}
+                        <option value="{$vo['id']}" {if condition="input('server_id') == $vo['id']"} selected="selected" {/if} >{$vo['server_name']}</option>
+                    {/volist}
+                {/notempty}
+             </select>
+            <input class="pull-right search-input date" style="width: 100px;" name="end_date" placeholder="结束日期" value="{:input('end_date')}" type="text">
+            <input class="pull-right search-input date" style="width: 100px;" name="begin_date" placeholder="开始日期" value="{:input('begin_date')}" type="text">
+            <div class="input-group-btn">
+              <button type="button" id="search" url="{:url('payToppingList')}" class="btn btn-default"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </div>
+    <br/>
+  </div>
+    
+  <div class="box-body table-responsive">
+    <table  class="table table-bordered table-hover">
+      <thead>
+        <tr>
+            <th>平台账号</th>
+            <th>游戏名称</th>
+            <th>服务器</th>
+            <th>角色</th>
+            <th>公会</th>
+            <th>员工</th>
+            <th>充值金额</th>
+        </tr>
+      </thead>
+      
+      {notempty name="list"}
+        <tbody>
+            {volist name="list" id='vo'}
+                <tr>
+                  <td>{$vo.username}</td>
+                  <td>{$vo.game_name}</td>
+                  <td>{$vo.server_name}</td>
+                  <td>{$vo.role_name}</td>
+                  <td>{$vo.conference_name}</td>
+                  <td>{$vo.c_username}</td>
+                  <td>{$vo.group_order_money}</td>
+                </tr>
+            {/volist}
+        </tbody>
+        {else/}
+        <tbody><tr class="odd"><td colspan="7" class="text-center" valign="top">{:config('empty_list_describe')}</td></tr></tbody>
+      {/notempty}
+    </table>
+  </div>
+
+  <div class="box-footer clearfix text-center">
+      {$list->render()}
+  </div>
+
+</div>
+
+<script type="text/javascript">
+
+    $(function(){
+        
+        $('.date').datetimepicker({
+            format: 'yyyy-mm-dd',
+            language:"zh-CN",
+            minView:2,
+            autoclose:true
+        });
+    });
+    
+    function selectGame(obj)
+    {
+        
+        var game_id = $(obj).val();
+        
+        if (0 != game_id) 
+        {
+            $.post("{:url('analyze/getServerOptions')}",{game_id:game_id}, function(data){
+
+                $(".server_select").html(data.content);
+            },"json");
+        } else {
+            
+            $(".server_select").html("<option value='0'>不限区服</option>");
+        }
+    }
+</script>

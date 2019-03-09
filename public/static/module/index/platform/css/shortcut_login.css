@@ -1,0 +1,13 @@
+/*---//其他登录(2016/09/21)//---*/
+.otherLogin{ width:auto;height:30px;line-height:30px; padding:0; position:absolute; top:56px; right:0; background:none;}
+.otherLogin .third{ height:30px; float:left;}
+.otherLogin .icon3{ width:30px; height:30px; display:block; float:left; margin:0; background-image:url(../images/user/iconLogin.gif); background-repeat:no-repeat;}
+.otherLogin .qq{ background-position:-30px 0;}
+.otherLogin .qq:hover{ background-position:-30px -30px;}
+.otherLogin .weibo{ background-position:-60px 0;}
+.otherLogin .weibo:hover{ background-position:-60px -30px;}
+.otherLogin .alipay{ background-position:-90px 0;}
+.otherLogin .alipay:hover{ background-position:-90px -30px;}
+.otherLogin .weixin{ background-position:0 0;}
+.otherLogin .weixin:hover{ background-position:0 -30px;}
+.otherLogin span{ float:left; font-size:12px; color:#7e7e7e;}

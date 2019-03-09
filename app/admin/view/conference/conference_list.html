@@ -1,0 +1,76 @@
+<div class="box">
+  <div class="box-header">
+    
+    <ob_link><a class="btn" href="{:url('conferenceAdd')}"><i class="fa fa-plus"></i> 新 增</a></ob_link>
+    &nbsp;
+    <ob_link><a class="btn export" url="{:url('exportConferenceList')}"><i class="fa fa-download"></i> 导 出</a></ob_link>
+    
+    <div class="box-tools ">
+        <div class="input-group input-group-sm search-form">
+            <input name="search_data" class="pull-right search-input" value="{:input('search_data')}" placeholder="公会名称" type="text">
+            <div class="input-group-btn">
+              <button type="button" id="search" url="{:url('conferenceList')}" class="btn btn-default"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </div>
+    <br/>
+  </div>
+    
+  <div class="box-body table-responsive">
+    <table  class="table table-bordered table-hover">
+      <thead>
+        <tr>
+            <th>公会</th>
+            <th>联系人</th>
+            <th>电话</th>
+            <th>QQ</th>
+            <th>开户人</th>
+            <th>开户行</th>
+            <th>卡号</th>
+            <th>管理员</th>
+            <th>比例</th>
+            <th>来源</th>
+            <th>操作</th>
+        </tr>
+      </thead>
+      
+      {notempty name='list'}
+        <tbody>
+            {volist name='list' id='vo'}
+                <tr>
+                  <td>{$vo.conference_name}</td>
+                  <td>{$vo.contact_name}</td>
+                  <td>{$vo.contact_mobile}</td>
+                  <td>{$vo.qq}</td>
+                  <td>{$vo.account_holder}</td>
+                  <td>{$vo.opening_bank}</td>
+                  <td>{$vo.bank_account}</td>
+                  <td>{$vo.m_nickname} | {$vo.username}</td>
+                  <td>{$vo.ratio}</td>
+                  <td>{$vo.s_nickname}</td>
+                  <td class="col-md-2 text-center">
+                        <ob_link><a href="{:url('conferenceEdit', array('id' => $vo['id']))}"><span class='badge bg-green'>编辑</span></a></ob_link>
+                        <ob_link><a href="{:url('gameGold', array('id' => $vo['id']))}"><span class='badge bg-green'>元宝池</span></a></ob_link>
+                  </td>
+                </tr>
+            {/volist}
+        </tbody>
+        {else/}
+        <tbody><tr class="odd"><td colspan="11" class="text-center" valign="top">{:config('empty_list_describe')}</td></tr></tbody>
+      {/notempty}
+    </table>
+  </div>
+
+  <div class="box-footer clearfix text-center">
+      {$list->render()}
+  </div>
+
+</div>
+
+<script>
+    //导出功能
+    $(".export").click(function(){
+        
+        window.location.href = searchFormUrl($(".export"));
+    });
+</script>

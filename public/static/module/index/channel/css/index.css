@@ -1,0 +1,347 @@
+body, button, dd, dl, dt, form, h1, h2, h3, h4, h5, h6, input, li, ol, p, td, textarea, th, ul {
+	margin: 0;
+	padding: 0
+}
+body, button, input, select, textarea {
+	font: 12px \5FAE\8F6F\96C5\9ED1, arial, \5b8b\4f53
+}
+h1, h2, h3, h4, h5, h6 {
+	font-size: 100%
+}
+address, cite, dfn, em, i, var {
+	font-style: normal
+}
+form {
+	display: inline
+}
+small {
+	font-size: 12px
+}
+ol, ul {
+	list-style: none
+}
+b {
+	font-weight: 400;
+	font-weight: inherit
+}
+a {
+	text-decoration: none;
+	color: #666
+}
+.ub_serv a, a:hover {
+	text-decoration: underline
+}
+a:hover {
+	color: #0cacff
+}
+sup {
+	vertical-align: text-top
+}
+sub {
+	vertical-align: text-bottom
+}
+img {
+	vertical-align: top;
+	border: 0;
+	-ms-interpolation-mode: bicubic
+}
+button, input, select, textarea {
+	font-size: 100%;
+	outline: 0
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0
+}
+textarea {
+	resize: none
+}
+.clearfix {
+*zoom:1
+}
+.clearfix:after {
+	content: '\20';
+	display: block;
+	height: 0;
+	clear: both
+}
+.content {
+	position: relative;
+	width: 100%;
+	
+}
+#mskbg, .down-box, .regbox, .user_btm, .v-download {
+	position: absolute
+}
+.qqbtn, .ub_nam span, .wecbtn {
+	display: inline-block
+}
+.reg_ul:after {
+	content: '\20';
+	display: block;
+	height: 0;
+	clear: both
+}
+.hidden, .regbox {
+	display: none
+}
+.reg_ul label, .reg_ul li, .sub_css, .sw_a, .tips_p, .txt_css, .ub_img {
+	float: left
+}
+.down-box, .reg_tit, .ub_nam span, .v-download {
+	overflow: hidden
+}
+.other_line, .reg_tit, .swfbox, .txt_icp {
+	text-align: center
+}
+#user_btm, .qqbtn, .sub_css, .wecbtn {
+	cursor: pointer
+}
+.other_line, .reg_ul label {
+	font-size: 14px
+}
+.reg_ul label, .txt_icp, .user_btm p {
+	color: #fff
+}
+.sub_css {
+	background-repeat: no-repeat
+}
+#mskbg, .regbox {
+	background: rgba(0,0,0,.8);
+filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#cc000000', EndColorStr='#cc000000')
+}
+.content, body {
+	background: #000
+}
+
+.regbox {
+	margin-left: -301px;
+	width: 600px;
+	z-index: 100000;
+	left: 50%;
+	top: 150px;
+	border: 1px solid #000
+}
+.regline {
+	width: 598px;
+	border: 1px solid #666;
+	padding-bottom: 25px
+}
+.reg_tit {
+	height: 60px;
+	line-height: 60px;
+	color: #dabf26;
+	font-size: 28px;
+	font-weight: 700;
+	padding: 20px 0 0
+}
+.reg_tit b {
+	font-size: 50px
+}
+.reg_ul {
+	zoom: 1;
+	padding: 30px 0 0 130px
+}
+.reg_ul li {
+	width: 352px;
+	height: 60px
+}
+.reg_ul label, .tips_p {
+	height: 30px;
+	line-height: 30px
+}
+.reg_ul label {
+	width: 74px
+}
+.tips_p {
+	color: #949494;
+	text-indent: 74px
+}
+.txt_css {
+	vertical-align: middle;
+	width: 254px;
+	margin-right: 7px;
+	height: 16px;
+	line-height: 16px;
+	padding: 7px 8px;
+	font-size: 13px;
+	border: 0;
+	background: #fff;
+	-webkit-box-shadow: 0 0 0 30px #fff inset
+}
+.ub_nam, .ub_serv, .ub_txt {
+	line-height: 20px
+}
+.other_line {
+	width: 345px;
+	padding-top: 18px;
+	margin: 36px auto 20px;
+	border-top: 1px solid #6b6b6b;
+	color: #aaa
+}
+.sw_a, .sw_a:hover {
+	color: #c1ad3d
+}
+.qqbtn, .sub_css, .wecbtn {
+	vertical-align: middle;
+	border: none
+}
+.b_btn {
+	padding: 0 0 0 204px;
+	height: 70px
+}
+.qqbtn, .wecbtn {
+	width: 32px;
+	height: 32px;
+	margin: 0 8px 0 2px;
+	background: url(http://onegame.yuan-jian.com/static/module/index/channel/images/olog_btn.png) no-repeat;
+	outline: 0
+}
+.wecbtn {
+	background-position: 0 -50px
+}
+.sub_css {
+	width: 210px;
+	height: 70px;
+	background-position: 0 -160px
+}
+.sub_css:hover {
+	background-position: -230px -160px
+}
+.sw_a {
+	margin: 25px 0 0 12px
+}
+.ub_serv a, .user_btm span {
+	color: #f2d726
+}
+.user_btm {
+	text-align: left;
+	z-index: 9;
+	bottom: 0;
+	right: 0;
+	width: 320px;
+	height: 98px;
+	background: #836924;
+	border: 1px solid #aa8e4d
+}
+#user_btm {
+	width: 260px
+}
+.ub_img, .ub_img img {
+	width: 60px;
+	height: 60px
+}
+#user_btm .ub_txt {
+	margin: 24px 0 10px
+}
+.ub_img {
+	padding: 20px 20px 0
+}
+.ub_img img {
+	border-radius: 50%
+}
+.ub_txt {
+	height: 20px;
+	margin: 16px 0 5px
+}
+.ub_nam span {
+	vertical-align: top;
+	max-width: 6em;
+	white-space: nowrap;
+	text-overflow: ellipsis
+}
+.ub_serv {
+	margin-top: 5px
+}
+#mskbg {
+	z-index: 8;
+	top: 0;
+	left: 0;
+	width: 100%
+}
+.txt_icp {
+	position: fixed;
+	bottom: 30px;
+	left: 0;
+	right: 0;
+	z-index: 2
+}
+.down-box {
+	z-index: 99;
+	right: 0;
+	bottom: 0;
+	width: 250px;
+	height: 250px
+}
+.v-download {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.regbox {
+	border: none;
+	width: 100%;
+	height: 100%;
+	filter: none;
+	top: 0;
+	left: 0;
+	margin-left: 0;
+	overflow: hidden;
+	background: url(http://onegame.yuan-jian.com/static/module/index/channel/images/regbg.jpg) #000 no-repeat center top;
+}
+.regline {
+	border: none;
+	width: 440px;
+	margin: 0 auto;
+}
+.reg_tit {
+	display: none;
+}
+.reg_ul {
+	padding: 288px 0 0 72px;
+}
+.reg_ul li {
+	width: 300px;
+	height: 53px;
+}
+.reg_ul label {
+	height: 26px;
+	text-indent: -999em;
+	overflow: hidden;
+}
+.txt_css {
+	padding: 5px 8px;
+	width: 164px;
+	border: none;
+	background: none;
+	background: #000\9;
+	box-shadow: none;
+	color: #fff;
+}
+.tips_p {
+	height: 24px;
+	line-height: 24px;
+	color: #eee;
+	text-shadow: #000 2px 0 0, #000 0 1px 0, #000 -1px 0 0, #000 0 -1px 0;
+}
+.b_btn {
+	height: 68px;
+	padding: 15px 0 0 132px;
+}
+.sub_css {
+	background: url(http://onegame.yuan-jian.com/static/module/index/channel/images/btn.png) no-repeat;
+}
+.sub_css {
+	width: 171px;
+	height: 68px;
+}
+.sub_css:hover {
+	background-position: 0 -80px;
+}
+.other_line {
+	margin-top: 50px;
+	border-color: #b7b7b7;
+	padding-top: 10px;
+	color: #b7b7b7;
+}

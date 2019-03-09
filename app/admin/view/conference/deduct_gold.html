@@ -1,0 +1,55 @@
+<form action="{:url()}" method="post" class="form_single">
+    <div class="box">
+      <div class="box-body">
+        <div class="row">
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>选择游戏</label>
+                <span>（不限游戏则会转移所有游戏的订单数据）</span>
+                <select name="game_id" class="form-control">
+                    {volist name='game_list' id='vo'}
+                        <option value="{$vo.id}"  {if condition="$server_info['game_id'] == $vo['id']"} selected="selected" {/if}  >{$vo.game_name}</option>
+                    {/volist}
+                </select>
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>选择区服</label>
+                <span>（不限区服则会转移所有区服的订单数据）</span>
+                <select name="server_id" class="form-control server_select">
+                    {volist name='server_list' id='vo'}
+                        <option value="{$vo.id}"  {if condition="$server_info['id'] == $vo['id']"} selected="selected" {/if}  >{$vo.server_name}</option>
+                    {/volist}
+                </select>
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>扣除额度</label>
+                <input class="form-control" name="money" placeholder="请输入扣除额度" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>用途</label>
+                <input class="form-control" name="use" placeholder="请输入用途" type="text">
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="box-footer">
+        
+        <input type="hidden" name="conference_id" value="{:input('conference_id')}"/>
+        <input type="hidden" name="server_id" value="{:input('id')}"/>
+          
+        {include file="layout/edit_btn_group"/}
+        
+      </div>
+    </div>
+</form>

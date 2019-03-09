@@ -1,0 +1,116 @@
+<!-- 游戏中心样式 -->
+<link href="__STATIC__/module/index/platform/css/gamecenter.css" type="text/css" rel="stylesheet">
+
+<!-- 游戏中心轮播，暂时移除-->
+
+<div class="w1240">
+    <div class="games_rank">
+
+        <!-- 游戏列表 -->
+        <div class="games">
+            <div class="title">
+                <i></i>
+                <h1>
+                    游戏中心
+                </h1>
+            </div>
+            <div class="soso search-form">
+                <input type="text" class="search-input" name="keyword" value="{:input('keyword')}" placeholder="请输入游戏名称关键字">
+                <input class="so_btn" type="button" href="javascript:;" id="search" url="{:request()->baseUrl()}">
+            </div>
+
+            <div class="game_kinds">
+                <div class="game_flag">
+                    <h4>游戏类型：</h4>
+                    <div class="flags" id="type">
+
+                        <a {empty name=":input('cid')"} class="on" {/empty} href="{:url('game/index')}">全部游戏</a>
+
+                        {volist name="data['game_category_list']" id="v"}
+                            <a {eq name=":input('cid')" value="$v.id"} class="on" {/eq} href="{:url('game/index', array('cid' => $v.id))}">{$v.category_name}</a>
+                        {/volist}
+                    </div>
+                </div>
+                {empty name="data['game_list']"}
+                    <div style="text-align: center; padding: 20px; background-color: #fff; margin-top: 20px;">
+                        <h2>aOh! 暂时还没有数据~</h2>
+                    </div>
+                {/empty}
+            </div>
+
+            <div class="g_lis">
+
+                {notempty name="data['game_list']"}
+                    <ul id="gamestable">
+                        {volist name="data['game_list']" id="v"}
+                            <li>
+                                <img src="{$v.game_cover|get_picture_url}" alt="{$v.game_name}">
+
+                                <div class="b_dec">
+                                        <div class="g_mask">
+                                        </div>
+                                        <div class="g_btns">
+                                            <a class="g_xq" target="_blank" href="{:url('play/index', array('game_code' => $v['game_code']))}">进入新区</a>
+                                            <a href="/g/{$v['game_code']}" target="_blank">进入官网</a>|
+                                            <a href="{:url('gift/index', array('gid' => $v.id))}">领取礼包</a>
+                                        </div>
+                                </div>
+                            </li>
+                        {/volist}
+                    </ul>
+                {/notempty}
+                <div class="clear"></div>
+            </div>
+
+            <table style="margin:0 auto;"> <td> {$data['game_list']->render()} </td> </table>
+        </div>
+
+
+        <!-- 游戏排行榜 -->
+        <div class="rank">
+            <div class="title">
+                <i></i>
+                <h1>
+                    游戏排行榜
+                </h1>
+            </div>
+
+            <div class="rank_con">
+                {notempty name="data['game_top_list']"}
+                    {volist name="data['game_top_list']" id="v" key="k"}
+                        <div class="rank_eg">
+                            <div class="rank_normal">
+                                    <i>{$k}</i>
+                                    <a class="rank_name" href="/g/{$v['game_code']}" target="_blank">{$v.game_name}</a>
+                                    <a class="rank_btn" href="/g/{$v['game_code']}" target="_blank">官网</a>
+                                    <a class="rank_btn" href="{:url('gift/index', array('gid' => $v.id))}">礼包</a>
+                                    <div class="clear">
+                                    </div>
+                            </div>
+                            <a class="rank_h" target="_blank" href="{:url('play/index', array('game_code' => $v['game_code']))}">
+                                <img src="{$v.game_cover|get_picture_url}" alt="{$v.game_name}" width="222" height="107">
+                            </a>
+                        </div>
+                    {/volist}
+                    {else /}
+                    <div style="text-align: center; padding: 20px; background-color: #fff; margin-top: 20px;">
+                        <h3>aOh! 暂时还没有数据~</h3>
+                    </div>
+                {/notempty}
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+</div>
+</div>
+<script type="text/javascript" src="__STATIC__/module/index/platform/js/search.js"></script>
+<script>
+
+    $(document).ready(function(e) {
+        $(".rank_eg").eq(0).children(".rank_h").show();
+        $(".rank_eg").hover(function(){
+            $(this).children(".rank_h").show();
+            $(this).siblings().children(".rank_h").hide();
+        });
+    });
+</script>

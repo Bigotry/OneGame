@@ -1,0 +1,11 @@
+{assign name="controller" value=":request()->controller()" /}
+{assign name="action" value=":request()->action()" /}
+
+<ul class="user-menu">
+
+    <li {if condition="($controller == 'Center') AND ($action == 'index')"}  class="active" {/if} ><a href="{:url('center/index')}" class="user-m2">我的游戏</a></li>
+    <li {if condition="($controller == 'Center') AND ($action == 'changepassword')"}  class="active" {/if} ><a href="{:url('center/changepassword')}" class="user-m7">密码修改</a></li>
+    <li {if condition="($controller == 'Center') AND ($action == 'safety' OR $action == 'setemail')"}  class="active" {/if} ><a href="{:url('center/safety')}" class="user-m4">账号安全</a></li>
+    <li {if condition="($controller == 'Center') AND ($action == 'gift')"}  class="active" {/if} ><a href="{:url('center/gift')}" class="user-m12">我的礼包</a></li>
+    <li><a href="{:url('center/pay')}" class="user-m6">充值中心</a></li>
+</ul>

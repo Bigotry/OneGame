@@ -1,0 +1,106 @@
+    <!-- 快捷登录样式 -->
+    <link href="__STATIC__/module/index/platform/css/shortcut_login.css" type="text/css" rel="stylesheet">
+    
+    <!-- 登录方式 -->
+    <div class="log_kinds">
+        
+        <!-- 正常登录 -->
+        <div class="log_box log_eg"> 
+        {empty name="sys_common_data['login_member_info']"}
+            <!-- 登录前 -->
+            <div class="login login-form">
+                <div class="log_inp">
+                <h2>游戏平台登录</h2>
+                <form method="post" class="login-form">
+                    <dl>
+                        <dd> <i></i>
+                          <input type="text" name="username" placeholder="用户名" />
+                        </dd>
+                        <dd> <i></i>
+                        <input type="password" name="password" placeholder="密码" />
+                    </dd>
+                    </dl>
+                    <div class="autolog"> 
+                        <span>
+                            <input type="checkbox" checked="checked" name="autologin" value="yes"/>下次自动登录
+                        </span>
+                        <a href="{:url('safety/retrievePassword')}">忘记密码？</a>
+                        <div class="clear"></div>
+                    </div>
+                    <button  type="button" class="log_btn btn-tologin">
+                        登录
+                    </button>
+                </form>
+                </div>
+
+              <div class="log_other">
+                  
+                    <div class="otherLogin" style="top:auto; margin-top:-6px; right:auto; margin-left: 18px;" data-init="1">
+                            <div class="third">
+                                <a onclick="toLogin();"  href="javascript:;" title="QQ登录" data-code="qq" class="otherLoginItem icon3 qq"></a>
+                            </div>
+                    </div>
+                  
+                    <a href="{:url('login/register')}">注册账号</a>
+              </div>
+            </div>
+            {else /}
+            <!-- 登录后 -->
+            <div class="logined login-logined">
+              <div class="user_inf">
+                    <div class="user_face">
+                        <a class="user_head" href="{:url('center/index')}">
+                            <img src="__STATIC__/module/index/platform/images/user/head.gif" />
+                        </a>
+                    <div class="user_txt">
+                        <p>
+                            <span id="login_username">{$sys_common_data['login_member_info']['nickname']}</span>
+                            <a href="{:url('login/logout')}" class="exit">[退出]</a> <br clear="all" />
+                        </p>
+                        <!--<p> 积分：<em>210</em> </p>-->
+                        <p class="user_btns">
+                            <a href="{:url('center/pay')}">充值</a> 
+                            <a href="{:url('gift/index')}">礼包</a>
+                            <br clear="all" />
+                    </p>
+                    </div>
+                  <div class="clear"></div>
+                </div>
+<!--                    <div class="user_vip"> <i class="vip vip8"></i>
+                        <div class="level_line"> <span class="level_line_l"></span>
+                        <div class="level_num" style="width:50%"></div>
+                        <span class="level_line_r"></span>
+                        <div class="clear"></div>
+                        <i> 362/ 400 </i> </div>
+                    </div>-->
+                  </div>
+                <div class="lately">
+                    <h3>&nbsp;最近玩过</h3>
+                    <ul>
+                        
+                        {notempty name="data['play_list']"}
+                            {volist name="data['play_list']" id="v"}
+                                <li>
+                                    <img src="{$v.game_head|get_picture_url}">
+                                    <a href="{:url('play/index', array('game_code' => $v['game_code'], 'sid' => $v['cp_server_id']))}" target="_blank">{$v.game_name}</a>
+                                    <a href="{:url('play/index', array('game_code' => $v['game_code'], 'sid' => $v['cp_server_id']))}" target="_blank">{$v.server_name}</a>
+                                    <a href="{:url('play/index', array('game_code' => $v['game_code'], 'sid' => $v['cp_server_id']))}" target="_blank" class="s_btn">开始游戏</a>
+                                </li>
+                            {/volist}
+                        {/notempty}
+                    </ul>
+                </div>
+            </div>
+        {/empty}
+        </div>
+      
+    </div>
+    
+<script>
+    var login_action_url = "{:url('login/loginHandle')}";
+    function toLogin()
+    {
+       location.href="/loginapi/QQAPI/oauth/index.php";
+    }
+</script>
+<script src="__STATIC__/module/index/platform/js/login.js" language="javascript" type="text/javascript"></script>

@@ -1,0 +1,25 @@
+<div class="wallpaper"> <img src="{$data['game_info']['website_bg_img_url']}"></div>
+
+<div class="wallcont">
+  <div class="top_nav"> 
+    <a href="{:url('website/index', array('game_code' => $game_code))}" class="first-item"><span>官网首页</span>
+    <p> HOME </p>
+    </a> 
+      
+      <a href="{:url('website/articleList',array('game_code' => $game_code,'cid' => config('website_article_category')['news']))}"><span>新闻资讯</span>
+    <p> NEWS </p>
+    </a> 
+      
+    <a href="{:url('website/articleList',array('game_code' => $game_code,'cid' => config('website_article_category')['novice']))}"><span>游戏资料</span>
+    <p> DATA </p>
+    </a> 
+      
+    <a href="{:url('website/articleList',array('game_code' => $game_code,'cid' => config('website_article_category')['strategy']))}" ><span>游戏攻略</span>
+    <p> RAIDERS </p>
+    </a> 
+      
+    <a href="{:url('center/pay')}" ><span>充值中心</span>
+    <p> PAY </p>
+    </a> 
+  </div>
+</div>

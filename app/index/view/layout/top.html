@@ -1,0 +1,75 @@
+<body>
+<div class="dt_box">
+  <div class="dt_in">
+    <div class="dt_left">
+  	<a href="javascript:" onclick="sethome(this,'http://www.game.com')" class="dt_home"><i class="dt_ico dt_ico_02"></i>设为首页</a>
+        <a href="javascript:" onclick="addfavorite()" class="dt_collect"><i class="dt_ico dt_ico_03"></i>加入收藏</a>
+    </div>
+    <ul class="dt_right clearfix">
+      
+    {notempty name="sys_common_data['login_member_info']"}
+        <li class="g_top_log">
+            <i class="dt_ico dt_ico_04"></i>欢迎您~ 
+            <a href="{:url('center/index')}">{$sys_common_data['login_member_info']['nickname']}</a>
+            
+            <a href="{:url('login/logout')}"> | 退出</a>
+        </li>
+        {else /}
+        <li class="g_top_log top_not_login_li">
+            <a href="{:url('login/login')}">登录</a>
+            |
+            <a href="{:url('login/register')}">注册</a>
+        </li>
+    {/notempty}
+      
+      <li class="game_all">
+        <div class="game_all_btn"> 
+            <span>所有游戏</span>
+        </div>
+        <div class="game_all_list">
+          <div class="game_all_img">
+            <ul>
+                {volist name="sys_common_data['hot_game_list']" id="v" key="k"}
+                    <li  {eq name="k" value='1'} style="display:block;" {/eq} > <a href="/g/{$v['game_code']}" target="_blank"> <img alt="{$v.game_name}" src="{$v.endways_cover|get_picture_url}"/> </a> </li>
+                {/volist}
+            </ul>
+          </div>
+          <div class="game_all_name">
+            <div class="game_all_til">热门游戏</div>
+            <ul>
+                {volist name="sys_common_data['hot_game_list']" id="v"}
+                    <li> 
+                        <!--<i class="game_all_h"></i>-->
+                        <a href="/g/{$v['game_code']}" target="_blank">{$v.game_name}</a> 
+                    </li>
+                {/volist}
+            </ul>
+            <p class="game_all_more"> <a href="{:url('index/gamecenter')}">更多>></a> </p>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+    
+<script type="text/javascript">
+
+    function sethome(obj,url){
+        if(document.all){
+            obj.style.behavior = 'url(#default#homepage)';   
+            obj.setHomePage(url);
+        }else{
+            toast.error('您可以尝试快捷键Ctrl+D 设置');
+        }
+    }
+    
+    function addfavorite() {
+        if (document.all) {
+            
+            window.external.addFavorite(window.location,document.title);
+        } else {
+            toast.error('您可以尝试快捷键Ctrl+D 加入收藏');
+        }
+    }
+</script>

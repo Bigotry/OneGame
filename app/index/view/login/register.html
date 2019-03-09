@@ -1,0 +1,111 @@
+<!-- 登录样式 -->
+<link href="__STATIC__/module/index/platform/css/login.css" type="text/css" rel="stylesheet">
+
+    <div class="top clearfix">
+        <div class="logo">
+            <span>账号注册</span>
+        </div>
+        <div class="swf">
+            <div class="topBar">
+                <h3><em>账号注册</em><span>已有{:config('web_site_name')}账号，可直接<a class="loginUrl" href="{:url('login/login')}">登录</a></span></h3>
+            </div>
+        </div>
+    </div>
+        
+<form action="{:url('login/registerHandle')}" method="post" class="register-form">
+<div class="loginbox tabs">
+    
+    <hr style='border-top:2px solid #ff5d13; border-bottom: none; border-left: none; border-right: none; '/>
+    
+    <div class="piclist" id="tab-1">
+    <div class="inputli">
+    <ul class="clearfloat">
+
+        <li>
+          <div class="form-group">
+                <label>用户名：</label>
+                <input type="text" class="form-control" name="username" placeholder="请输入用户名">
+                <span>* 6-18个字符，以字母开头，只能包含字母与数字</span>
+          </div>
+        </li>
+        <li>
+          <div class="form-group">
+                <label>登录密码：</label>
+                <input type="password" class="form-control" name="password" placeholder="请输入登录密码">
+                <span>* 6-20个字符，建议不要过于简单</span>
+          </div>
+        </li>
+        <li>
+          <div class="form-group">
+                <label>确认密码：</label>
+                <input type="password" class="form-control" name="password_confirm" placeholder="请输入确认密码">
+                <span>* 6-20个字符，两次密码输入需保持一致</span>
+          </div>
+        </li>
+
+<!--        <li>
+          <div class="form-group">
+                <label>电子邮箱：</label>
+                <input type="text" class="form-control" name="email" placeholder="请输入电子邮箱">
+                <span>* 电子邮箱是您找回密码的重要凭证，请正确填写</span>
+          </div>
+        </li>-->
+        
+<!--        <li>
+          <div class="form-group">
+                <label>真实姓名：</label>
+                <input type="text" class="form-control" name="real_name" placeholder="请输入真实姓名">
+                <span>* 真实姓名将用于防沉迷认证，请正确填写</span>
+          </div>
+        </li>
+        
+        <li>
+          <div class="form-group">
+                <label>身份证号码：</label>
+                <input type="text" class="form-control" name="identity_card" placeholder="请输入身份证号码">
+                <span>* 身份证号码将用于防沉迷认证，请正确填写</span>
+          </div>
+        </li>-->
+
+        <li>
+           <div class="form-group" style="padding-left: 150px;">
+               &nbsp;&nbsp;<input type="checkbox" checked="checked" disabled="disabled" name="autologin" value="yes" style="height: 17px;"/>
+               &nbsp;我已经看过并同意<a href="" target="_blank" >《{:config('web_site_name')}注册协议》</a>
+            <br>
+          </div>
+        </li>
+
+    </ul>
+    <a href="javascript:;" class="btn register-form-sub">注册</a>
+    </div>
+      
+    </div>
+</div>
+</form>
+<script type="text/javascript">
+
+    //注册
+    $(".register-form-sub").click(function(){
+
+        $('.fakeloader').show();
+        
+        var self = $('.register-form');
+        $.post(self.attr("action"), self.serialize(), success, "json");
+        return false;
+
+        function success(data){
+
+            setTimeout(function(){ $('.fakeloader').hide(); }, 500);
+            
+            obalert(data);
+        }
+    });
+    
+    //回车
+    $("input").keyup(function(e){
+        if(e.keyCode === 13){
+            $(".register-form-sub").click();
+            return false;
+        }
+    });
+</script>

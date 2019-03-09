@@ -1,0 +1,13 @@
+<div class="pay_l">
+    <h1>选择支付方式</h1>
+    <div class="pay_nav">
+        
+        
+        {volist name="data['pay_list']" id="v"}
+        
+            <a {eq name=":ucfirst(input('pay_code'))" value="$v['driver_name']"} class="on" {/eq} href="{:url('center/pay', array('pay_code' => $v['driver_name']))}"><i></i><span class="{$v['icon']}"></span>{$v['driver_info']['driver_name']}</a>
+        
+        {/volist}
+        
+    </div>
+</div>

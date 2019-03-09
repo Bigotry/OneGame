@@ -1,0 +1,76 @@
+<div class="box">
+  <div class="box-header ">
+    
+    <div class="box-tools ">
+        
+        <div class="input-group input-group-sm search-form" style="margin-right: 100px;">
+            
+            <input class="pull-right search-input date" style="width: 100px;" name="end_date" placeholder="结束日期" value="{:input('end_date')}" type="text">
+            <input class="pull-right search-input date" style="width: 100px;" name="begin_date" placeholder="开始日期" value="{:input('begin_date')}" type="text">
+            
+            <input type="hidden" name="game_id" value="{:input('game_id')}">
+            
+            <div class="input-group-btn">
+              <button type="button" id="search" url="{:url('serverList')}" class="btn btn-default"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </div>
+    <br/>
+  </div>
+    
+  <div class="box-body table-responsive">
+    <table  class="table table-bordered table-hover">
+      <thead>
+        <tr>
+            <th>区服名称</th>
+            <th>注册数量</th>
+            <th>IP数量</th>
+            <th>充值数量</th>
+            <th>充值金额</th>
+        </tr>
+      </thead>
+      
+      {notempty name='list'}
+        <tbody>
+            {volist name="list" id='vo'}
+                <tr>
+                  <td>{$vo.server_name}</td>
+                  <td>{$vo.register_number}</td>
+                  <td>{$vo.register_ip_number}</td>
+                  <td>{$vo.pay_number}</td>
+                  <td>{$vo.pay_money}</td>
+                </tr>
+            {/volist}
+        </tbody>
+        {else/}
+        <tbody><tr class="odd"><td colspan="5" class="text-center" valign="top">{:config('empty_list_describe')}</td></tr></tbody>
+      {/notempty}
+    </table>
+  </div>
+
+  <div class="box-footer clearfix text-center">
+      {$list->render()}
+  </div>
+
+</div>
+
+<script type="text/javascript">
+
+    $(function(){
+        
+        $('.date').datetimepicker({
+            format: 'yyyy-mm-dd',
+            language:"zh-CN",
+            minView:2,
+            autoclose:true
+        });
+        
+        $('.time').datetimepicker({
+            format: 'yyyy-mm-dd hh:ii:ss',
+            language:"zh-CN",
+            minView:0,
+            autoclose:true
+        });
+    });
+
+</script>

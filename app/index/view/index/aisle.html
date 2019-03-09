@@ -1,0 +1,36 @@
+
+<div class="fast">
+    <div class="til">快速通道</div>
+    <div class="fast_con"> 
+        <a href="{:url('login/register')}"> 免费注册 <i class="f_ico1"></i> </a>
+        <a href="{:url('center/pay')}"> 充值游戏 <i class="f_ico2"></i> </a>
+        <a href="{:url('center/changepassword')}"> 修改密码 <i class="f_ico3"></i> </a>
+        <a href="{:url('safety/retrievePassword')}"> 密码找回 <i class="f_ico4"></i> </a>
+        <a href="javascript:;" onclick="toast.error('功能维护中，请联系客服');"> 绑定手机 <i class="f_ico5"></i> </a>
+        <a href="{:url('center/setemail')}"> 绑定邮箱 <i class="f_ico6"></i> </a>
+        <a href="javascript:;" onclick="toast.error('功能维护中，请联系客服');"> 账号申述 <i class="f_ico7"></i> </a>
+        <a href="javascript:;" onclick="toast.error('功能维护中，请联系客服');"> 防沉迷认证 <i class="f_ico8"></i> </a>
+    </div>
+</div>
+
+<!-- 客服中心 -->
+<div class="kf">
+<div class="kf_til">
+    <!--<a>客服7x24小时</a>-->
+</div>
+<div class="kf_con">
+    <span>
+        <img src="__STATIC__/module/index/platform/images/img8.png" />
+        <a href="http://wpa.qq.com/msgrd?v=3&uin={:config('service_qq')}&site=qq&menu=yes">在线客服</a>
+    </span>
+    <p>
+        <a>
+            客服Q：{:config('service_qq')}
+            <!--<i></i>-->
+        </a>
+        
+        <!--<em> 商务Q<b>{:config('service_business_qq')}</b> </em>-->
+        <em> 7x24小时在线服务 </em>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="box">
+  <div class="box-body table-responsive">
+    <table  class="table table-bordered table-hover">
+      <thead>
+        <tr>
+            <th>游戏名称</th>
+            <th>当前额度</th>
+            <th>已用额度</th>
+            <th>剩余额度</th>
+            <th>操作</th>
+        </tr>
+      </thead>
+      
+      {notempty name='list'}
+        <tbody>
+            {volist name='list' id='vo'}
+                <tr>
+                  <td>{$vo.game_name}</td>
+                  <td>{$vo.total_money}</td>
+                  <td>{$vo.use_money}</td>
+                  <td>{$vo.residue_money}</td>
+                  <td>
+                      <a href="{:url('serverGold', array('id' => $vo['id'], 'conference_id' => input('id')))}"><span class='badge bg-green'>区服明细</span></a>
+                  </td>
+                </tr>
+            {/volist}
+        </tbody>
+        {else/}
+        <tbody><tr class="odd"><td colspan="5" class="text-center" valign="top">{:config('empty_list_describe')}</td></tr></tbody>
+      {/notempty}
+    </table>
+  </div>
+
+  <div class="box-footer clearfix text-center">
+      {$list->render()}
+  </div>
+
+</div>

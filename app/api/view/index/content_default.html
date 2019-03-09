@@ -1,0 +1,46 @@
+<div id="project">
+  <div class="pull-left">
+    <h2>OneGame API文档</h2>
+  </div>
+  <div class="clearfix"></div>
+</div>
+    <div id="header">
+        <p>
+        
+            OneGame平台API文档，可支持在线调试。
+            
+            <br/>
+        <hr/>
+        
+        <div id="project">
+          <div class="pull-left">
+            <h2>错误码规范</h2>
+            code 第1位（错误提示级别）,第2-3位（错误模块）,第4-7位（错误代码）<br/><br/>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+         
+        <table>
+            <thead>
+            <tr>
+              <th>class</th>
+              <th>property</th>
+              <th>code</th>
+              <th>msg</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {volist name="code_list" id='vo'}
+                <tr>
+                  <td>{$vo.class}</td>
+                  <td>{$vo.property}</td>
+                  <td>{$vo.code}</td>
+                  <td>{$vo.msg}</td>
+                </tr>
+            {/volist}
+            </tbody>
+        </table>
+            
+        </p>
+</div>

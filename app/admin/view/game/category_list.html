@@ -1,0 +1,46 @@
+<div class="box">
+  <div class="box-header">
+    
+    <ob_link><a class="btn" href="{:url('categoryEdit')}"><i class="fa fa-plus"></i> 新 增</a></ob_link>
+    
+  </div>
+    
+  <div class="box-body table-responsive">
+    <table  class="table table-bordered table-hover">
+      <thead>
+      <tr>
+          <th>分类名称</th>
+          <th>分类描述</th>
+          <th>创建时间</th>
+          <th>状态</th>
+          <th>操作</th>
+      </tr>
+      </thead>
+      
+      {notempty name='list'}
+        <tbody>
+            {volist name='list' id='vo'}
+                <tr>
+                  <td>{$vo.category_name}</td>
+                  <td>{$vo.category_describe}</td>
+                  <td>{$vo.create_time}</td>
+                  <td>{$vo.status_text}</td>
+                  <td class="col-md-2 text-center">
+                      <a href="{:url('categoryEdit', array('id' => $vo['id']))}" class="btn"><i class="fa fa-edit"></i> 编 辑</a>
+                      &nbsp;
+                      <a class="btn confirm ajax-get"  href="{:url('categoryDel', array('id' => $vo['id']))}"><i class="fa fa-trash-o"></i> 删 除</a>
+                  </td>
+                </tr>
+            {/volist}
+        </tbody>
+        {else/}
+        <tbody><tr class="odd"><td colspan="5" class="text-center" valign="top">{:config('empty_list_describe')}</td></tr></tbody>
+      {/notempty}
+    </table>
+  </div>
+
+  <div class="box-footer clearfix text-center">
+      {$list->render()}
+  </div>
+
+</div>

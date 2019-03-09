@@ -1,0 +1,48 @@
+<!-- 登录样式 -->
+<link href="__STATIC__/module/index/platform/css/login.css" type="text/css" rel="stylesheet">
+<link href="__STATIC__/module/index/platform/css/shortcut_login.css" type="text/css" rel="stylesheet">
+
+<div class="g-container fix ">
+    <div class="w1000 login-main w1200">
+        <div class="mod-login-wp">
+            <ul class="login-tab login-tab-1">
+                <li>{:config('web_site_name')} 平台登录</li>
+                <!-- <li>扫码登录</li> -->
+            </ul>
+            <div class="login-tab-con">
+                <div class="login-item login-account">
+                    <form class="login-form" method="post">
+                        <div class="w-item"> <label  class="icon-user"></label> <input name="username"  type="text" placeholder="用户名" /> </div>
+                        <div class="w-item"> <label  class="icon-lock"></label> <input name="password"  type="password" placeholder="密码" /> </div>
+                        <div class="user-opt fix">
+                            <a href="{:url('safety/retrievePassword')}" class="fr">忘记密码？</a>
+                        </div>
+                        
+                        <button  type="button" class="btn-tologin">
+                            登录
+                        </button>
+                        
+                        <p class="tips" id="tips"></p>
+                        <div class="user-third">
+                            <a href="{:url('login/register')}" class="freereg">免费注册<i></i></a>
+                            <div class="otherLogin" style="top:auto;  margin-top:-4px; right:auto" data-init="1">
+                                <div class="third">
+                                    <a onclick="toLogin();"  href="javascript:;" title="QQ登录" data-code="qq" class="otherLoginItem icon3 qq"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var login_action_url = "{:url('login/loginHandle')}";
+    function toLogin()
+    {
+       location.href="/loginapi/QQAPI/oauth/index.php";
+    }
+</script>
+<script src="__STATIC__/module/index/platform/js/login.js" language="javascript" type="text/javascript"></script>

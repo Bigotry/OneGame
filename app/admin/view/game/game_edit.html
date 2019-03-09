@@ -1,0 +1,195 @@
+<form action="{:url()}" method="post" class="form_single">
+    <div class="box">
+      <div class="box-body">
+        <div class="row">
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>游戏分类</label>
+              <span>（游戏分类名称，用于游戏归类）</span>
+                <select name="game_category_id" class="form-control">
+                    {volist name='category_list' id='vo'}
+                        <option value="{$vo['id']}" {notempty name="info['game_category_id']"}{if condition="$info['game_category_id'] eq $vo['id']"} selected="selected" {/if}{/notempty} >{$vo['category_name']}</option>
+                    {/volist}
+                </select>
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>游戏名称</label>
+              <input class="form-control" name="game_name" placeholder="请输入游戏名称" value="{$info['game_name']|default=''}" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>游戏标识</label>
+              <span>（游戏code纯英文字母，唯一标识）</span>
+              <input class="form-control" name="game_code" placeholder="请输入游戏标识" value="{$info['game_code']|default=''}" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>游戏币比例</label>
+              <span>（1为 1元一个，100为 1元 100个）</span>
+              <input class="form-control" name="game_currency_ratio" placeholder="请输入游戏币比例" value="{$info['game_currency_ratio']|default='100'}" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>是否推荐</label>
+                <select name="is_recommend" class="form-control">
+                    <option value="0">否</option>
+                    <option value="1" {notempty name="info['is_recommend']"}{if condition="$info['is_recommend'] eq 1"} selected="selected" {/if}{/notempty} >是</option>
+                </select>
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>是否热门</label>
+                <select name="is_hot" class="form-control">
+                    <option value="0">否</option>
+                    <option value="1" {notempty name="info['is_hot']"}{if condition="$info['is_hot'] eq 1"} selected="selected" {/if}{/notempty} >是</option>
+                </select>
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>排序</label>
+              <span>（数值越大，排序越靠前）</span>
+              <input class="form-control" name="sort" placeholder="请输入排序值" value="{$info['sort']|default='0'}" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>游戏维护结束时间</label>
+                <span>（除测试人员外，游戏维护结束时间之前不可进入游戏）</span>
+                <input class="form-control date" name="maintain_end_time" placeholder="请选择游戏维护结束时间" value="{$info['maintain_end_time']|default=''}" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>微端下载链接</label>
+              <input class="form-control" name="client_url" placeholder="请输入微端下载链接" value="{$info['client_url']|default=''}" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>游戏横向封面</label>
+                <span>（请上传游戏封面图片，推荐尺寸：590X280）</span>
+                {assign name="game_cover" value="$info.game_cover|default='0'" /}
+                {:widget('file/index', ['name' => 'game_cover', 'value' => $game_cover, 'type' => 'img'])}
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>游戏纵向封面</label>
+                <span>（请上传游戏封面图片，推荐尺寸：170X230）</span>
+                {assign name="endways_cover" value="$info.endways_cover|default='0'" /}
+                {:widget('file/index', ['name' => 'endways_cover', 'value' => $endways_cover, 'type' => 'img'])}
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>游戏LOGO</label>
+                <span>（请上传游戏LOGO图片）</span>
+                {assign name="game_logo" value="$info.game_logo|default='0'" /}
+                {:widget('file/index', ['name' => 'game_logo', 'value' => $game_logo, 'type' => 'img'])}
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>游戏头像</label>
+                <span>（请上传游戏头像图片）</span>
+                {assign name="game_head" value="$info.game_head|default='0'" /}
+                {:widget('file/index', ['name' => 'game_head', 'value' => $game_head, 'type' => 'img'])}
+            </div>
+          </div>
+            
+
+        <div class="col-md-6">
+          <div class="form-group">
+              <label>官网大背景图</label>
+              {assign name="website_bg_img" value="$info.website_bg_img|default='0'" /}
+              {:widget('file/index', ['name' => 'website_bg_img', 'value' => $website_bg_img, 'type' => 'img'])}
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+              <label>官网左侧简介图（多图）</label>
+              {assign name="website_intro_imgs" value="$info.website_intro_imgs|default=''" /}
+              {:widget('file/index', ['name' => 'website_intro_imgs', 'value' => $website_intro_imgs, 'type' => 'imgs'])}
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+              <label>官网游戏截图（多图）</label>
+              {assign name="website_screenshot" value="$info.website_screenshot|default=''" /}
+              {:widget('file/index', ['name' => 'website_screenshot', 'value' => $website_screenshot, 'type' => 'imgs'])}
+          </div>
+        </div>
+            
+        <div class="col-md-6">
+          <div class="form-group">
+              <label>官网职业介绍图（多图）</label>
+              {assign name="website_job_imgs" value="$info.website_job_imgs|default=''" /}
+              {:widget('file/index', ['name' => 'website_job_imgs', 'value' => $website_job_imgs, 'type' => 'imgs'])}
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+              <label>微端封面图</label>
+              {assign name="client_cover" value="$info.client_cover|default='0'" /}
+              {:widget('file/index', ['name' => 'client_cover', 'value' => $client_cover, 'type' => 'img'])}
+          </div>
+        </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+            <label>游戏简介</label>
+            <textarea class="form-control" name="game_intro" rows="3" placeholder="请输入游戏简介">{$info['game_intro']|default=''}</textarea>
+        </div>
+      </div>
+            
+            
+          </div>
+          
+          
+        </div>
+        
+      <div class="box-footer">
+          
+        <input type="hidden" name="id" value="{$info['id']|default='0'}"/>
+        
+        {include file="layout/edit_btn_group"/}
+      </div>
+        
+      </div>
+
+</form>
+
+
+<script type="text/javascript">
+    $(function(){
+        $('.date').datetimepicker({
+            format: 'yyyy-mm-dd hh:ii',
+            language:"zh-CN",
+            minView:0,
+            autoclose:true
+        });
+    });
+</script>

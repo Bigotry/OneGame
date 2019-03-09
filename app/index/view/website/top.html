@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>{$data['game_info']['game_name']}官网</title>
+</head>
+<script type="text/javascript" src="__STATIC__/module/index/website/js/jquery.js"></script>
+<script type="text/javascript" src="__STATIC__/module/index/website/js/jquery.tabslet.min.js"></script>
+<link rel="stylesheet" href="__STATIC__/module/index/website/css/style.css" type="text/css">
+<link rel="stylesheet" href="__STATIC__/module/index/website/css/zzy_style.css" type="text/css">
+<script>
+    $(function(){
+        $('.tabs').tabslet();
+        $('.tabs1').tabslet();
+        $('.tabs02').tabslet({
+        });
+        $('.tabs03').tabslet({
+            animation: true,
+            autorotate: true,
+           delay: 5000
+        });
+    });
+</script>
+
+<body>
+<div class="header">
+  <div class="topnav">
+    <div class="top_content">
+        <div class="logobox"> <a href="{:url('index/index')}"><img class="logo_img" src="{:get_picture_url(config('web_site_logo'))}"></a> </div>
+        
+        <div class="sign"> 
+            
+            
+            <!--<a href="#">注册</a><a href="#">登录</a>--> 
+            
+            
+                    {empty name=":is_login()"}
+                    
+                        <a href="{:url('login/login')}">登录</a>
+                        <a href="{:url('login/register')}">注册</a>
+                        
+                        {else /}
+
+                        
+                        <a> 欢迎您~ {$data['login_member']['nickname']}</a>
+                        
+                        <a href="{:url('login/logout')}">注销</a>
+                        
+                        <a href="{:url('center/index')}">个人中心</a>
+
+                        <a href="{:url('center/pay')}">充值中心</a>
+                  
+                    {/empty}
+                    
+                    
+            
+            <a class="selegame" href="#">选择游戏</a>
+            
+            
+            <ul class="select">
+              {volist name="data['game_all_list']" id='vo'}
+                    <li><a  href="{:url('website/index', array('game_code' => $vo['game_code']))}">{$vo.game_name}</a></li>
+              {/volist}
+            </ul>
+      </div>
+    </div>
+  </div>
+</div>
+    
+<script>
+        
+    $(".selegame").click(function(){
+            $(".select").slideDown()
+    })
+    $(".select").mouseleave(function(){
+            $(".select").slideUp()
+    })
+</script>

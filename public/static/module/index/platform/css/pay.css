@@ -1,0 +1,180 @@
+/* CSS Document */
+*{margin:0; padding:0;}
+body{font:12px Microsoft YaHei; color:#575757; background:#f7f7f7;}
+a, input{text-decoration:none; outline:none;}
+img, input{border:0 none;}
+li{list-style:none; vertical-align:top;}
+em, i{font-style:normal;}
+.w1000{width:1000px; margin:0 auto;}
+.clear{float:none; clear:both;}
+
+/*头部*/
+.p_head{height:90px; line-height:90px; background:#fff; box-shadow: 0 4px 4px rgba(0,0,0,.2)}
+.logo{float:left; display:inline;}
+.logo a, .logo span{float:left; display:block;}
+.logo span{font-size:30px; line-height:56px;  margin:17px 0 0 35px; padding-left:30px; border-left:1px solid #ccc;}
+
+.login{float:right; display:inline;}
+.log_n{display:none;}
+.log_n a{color:#575757; margin:0 10px;}
+.log_n a:hover{color:#1f88e5;}
+.login_n a{color:#575757; margin:0 10px;}
+.login_n a:hover{color:#1f88e5;}
+.use_name, .vip_leve, .g_top_msg, .quit{float:right; display:block; height:90px; font:12px/90px SimSun; color:#818080; margin-right:15px;}
+.use_name:hover, .use_msg:hover, .quit:hover{color:#f35a09;}
+.vip_leve{background:url(../images/pay/top_icon.png) no-repeat; width:47px; height:14px; margin-top:38px;}
+.vip_leve0{background-position:0 -41px;}
+.vip_leve1{background-position:0 -61px;}
+.vip_leve2{background-position:0 -81px;}
+.vip_leve3{background-position:0 -101px;}
+.vip_leve4{background-position:0 -121px;}
+.vip_leve5{background-position:0 -141px;}
+.vip_leve6{background-position:0 -161px;}
+.vip_leve7{background-position:0 -181px;}
+.vip_leve8{background-position:0 -201px;}
+
+.g_top_msg{position:relative;}
+.use_msg{height:21px; line-height:21px; display:block; color:#818080; margin-top:34px; padding-right:27px; background:url(../images/pay/top_icon.png) no-repeat; background-position:27px 5px;}
+.use_msg_has{background-position:27px -17px;}
+
+.top_msg_li{width:358px; background:#fff; border:1px solid #d9d9d9; box-shadow:0 1px 2px #e7e7e7; position:absolute; top:59px; left:-150px; font-size:12px; line-height:20px; color:#777373; display:none;}
+.top_msg_li dt{line-height:43px; text-align:center;  padding:0 10px;}
+.top_msg_li dt span{color:#ff7200;}
+.top_msg_li dd{padding:8px 0; border-top:1px solid #ebebeb;  margin:0 10px;}
+.top_msg_li dd div{font-weight:bold; color:#626262; margin-bottom:5px;}
+.top_msg_li dd div p{float:left; display:inline; width:200px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.top_msg_li dd div span{float:right; display:inline;}
+.top_msg_li dd p a{color:#ff7200;}
+.top_msg_li dd.g_top_more{height:34px; padding:0; text-align:center; line-height:34px; background:#f2f2f2; margin:10px 0 0; border:none;}
+.top_msg_li dd.g_top_more a{color:#898888; display:block;}
+
+/*两栏*/
+.pay{background:#fff; border:1px solid #cddaee; margin-top:20px;}
+.pay_l{width:245px; background:#f9fafc; float:left; display:inline;min-height:900px;}
+.pay_l h1{height:77px; font:bold 18px/77px Microsoft YaHei; text-align:center; color:#fff; background:#f26522;}
+.pay_nav a{height:62px; padding-left:85px; display:block; font:16px/62px Microsoft YaHei; color:#575757; border-bottom:1px solid #f1f1f1; position:relative;}
+.pay_nav a i{width:3px; background:#f26522; height:0; position:absolute; top:0; left:0;}
+.pay_nav a span{width:24px; height:24px; background:url(../images/pay/icon.png?v=2017092701) no-repeat; position:absolute; top:19px; left:40px;}
+.pay_nav a span.pay_ico1{background-position:1px 0;}
+.pay_nav a span.pay_ico2{background-position:-23px 0;}
+.pay_nav a span.pay_ico3{background-position:-47px 0;}
+.pay_nav a span.pay_ico4{background-position:-71px 0;}
+.pay_nav a span.pay_ico5{background-position:-95px 0;}
+.pay_nav a span.pay_ico6{background-position:1px -24px;}
+.pay_nav a span.pay_ico7{background-position:-23px -24px;}
+.pay_nav a span.pay_ico8{background-position:-47px -24px;}
+.pay_nav a span.pay_ico9{background-position:-71px -24px;}
+.pay_nav a span.pay_ico10{background-position:-95px -24px;}
+.pay_nav a:hover{color:#f26522;}
+.pay_nav a.on{background:#fff; color:#f26522;}
+.pay_nav a.on i{height:100%;}
+
+.pay_r{width:753px; float:right; display:inline; position:relative;}
+
+/*微信支付*/
+.pay_eg{padding-bottom:30px;}
+.pay_eg h1{font:normal 24px Microsoft YaHei; padding:40px 0 0 40px;}
+.pay_li{margin-top:20px;}
+.pay_box{position:relative;}
+.w110{width:110px; margin-right:20px; font:14px/56px Microsoft YaHei; text-align:right; float:left; display:block;}
+.pay_box{width:623px; float:right; display:inline;padding: 11px 0;}
+.change_n{font-size:24px;}
+.change_n a{font-size:14px; line-height:56px; color:#1f88e5;}
+.change_n a:hover, .pay_ex p a:hover{text-decoration:underline;}
+.change_y{width:180px; height:20px; padding:8px 5px; margin-top:10px; font-size:16px; border:1px solid #f26522;  border-radius:3px;}
+
+
+
+input,select{font:normal 14px Microsoft YaHei; }
+.pay_box select {
+   background: transparent;
+   padding: 5px ;
+   /*width:31%;*/
+   width: 192px;
+   border: 1px solid #f26522;
+   height: 34px;
+}
+
+
+
+.gase_checked{background-position:0 -246px;}
+.game_ser{width:610px; height:355px; background:#fff; border:1px solid #f26522; border-radius:3px; position:absolute; top:60px; left:0;z-index: 1}
+.close{width:12px; height:12px; background:url(../images/pay/icon.png) no-repeat; background-position:-19px -83px; position:absolute; top:10px; right:9px;z-index: 666;}
+.gs_til{height:36px; padding:0 10px; font-size:16px; line-height:36px; position:relative;}
+.ser_ch{height:25px; font-size:12px; line-height:25px; position:absolute; top:6px; right:30px;}
+.ser_ch span, .ser_ch select, .ser_inp{float:left; display:block; margin-right:8px;}
+.ser_ch select{width:97px; height:25px; border:1px solid #d8d8d8; border-radius:3px;}
+.ser_inp{width:127px; height:25px; background:url(../images/pay/icon.png) no-repeat; background-position:0 -307px;}
+.ser_inp input{width:82px; height:17px; padding:4px 5px; float:left; display:inline; background:none;}
+.ser_inp input.ser_btn{width:35px; height:25px; cursor:pointer;}
+
+
+.gs_nav{height:34px; padding:0 50px; background:#f26522; line-height:34px;}
+.gs_nav a{width:68px; height:34px; float:left; display:block; color:#fff; text-align:center;}
+.ser .gs_nav a{width:83px;}
+.gs_nav a.on, .gs_nav a:hover{background:url(../images/pay/icon.png) no-repeat; background-position:-130px -107px; color:#f26522;}
+.ser .gs_nav a.on, .ser .gs_nav a:hover{background-position:-152px 2px;}
+/*.gs_box{height:195px; overflow-y:auto; margin-top:10px;}*/
+.gs_box{padding:0 10px;}
+.gs_eg{height:260px; overflow-y:auto; margin-top:10px; position:relative;}
+/*.gs_eg, .ser, .game_ser{display:none;}*/
+.gs_eg a{width:91px; height:24px; padding-left:35px; color:#4d4d4d; line-height:24px; float:left; display:block; margin:0 0 10px 10px; background:#f1ecf1 url(../images/pay/icon.png) no-repeat; background-position:-170px -141px;}
+.gs_eg a:hover{background-position:-170px -161px;}
+.gs_kinds span{width:20px; height:20px; text-align:center; line-height:20px; color:#fff; margin:2px 0 0 10px; background:url(../images/pay/icon.png) no-repeat; background-position:-90px -81px; float:left; display:block;}
+.gs_k{width:550px; float:left; display:inline; *margin-bottom:10px;}
+
+.amount{width:102px; height:52px; line-height:52px; text-align:center; font-size:14px; color:#4b4b4b; border:1px solid #cddaee; border-radius:3px; float:left; display:block; margin:0 17px 18px 0; background:#f7f7f7; overflow:hidden; position:relative;}
+.amount i{width:29px; height:29px; background:url(../images/pay/icon.png) no-repeat; background-position:0px -50px; position:absolute; bottom:0; right:0; display:none;}
+.amount:hover, .activeon{border-color:#f26522;}
+.activeon i{display:block;}
+.amount_on_input{border-color:#f26522;}
+.amount_on_input i{display:block;}
+.amount_input{width:342px; text-align:left; overflow:visible; position:relative;}
+.amount_input input{width:188px; height:16px; padding:7px 20px; background:#fff; border:1px solid #eeeded; margin:0 20px; vertical-align:middle;}
+/*.amount_input:hover{border-color:#cddaee;}*/
+.amount_input p{line-height:20px; font-size:14px; color:#999; position:absolute; bottom:-30px; left:20px;}
+.pay_ex p{height:56px; line-height:56px; font-size:14px;}
+.pay_ex p span{width:90px; float:left; display:block;}
+.pay_ex p em, .pay_ex p a{float:left; display:inline; color:#f26522;}
+.pay_ex p+p{height:20px; line-height:20px;}
+.pay_btn{width:232px; height:65px; display:block; margin:35px 0 0 130px; background:#f26522; border-radius:3px; font-size:24px; line-height:65px; text-align:center; color:#fff;}
+.pay_btn:hover{background:#f26522;}
+.pag_dec{width:650px; padding:10px 15px; border:1px solid #cddaee; background:#fafbfd; margin:50px auto 0; font-size:14px; line-height:30px;}
+.pag_dec p{color:#929292;}
+.pag_dec a{color:#1f88e5;}
+
+
+/*客服+公告*/
+.notice{padding:30px 0 50px; margin-top:20px;}
+.not_eg{width:265px; margin-left:50px; float:left; display:inline;}
+.not_til{font-size:20px; line-height:30px; padding-left:40px; position:relative;}
+.not_ico1{width:24px; height:24px; background:url(../images/pay/icon.png) no-repeat; background-position:-122px -1px; position:absolute; top:50%; left:0; margin-top:-12px;}
+.not_ico2{background-position:-122px -27px;}
+.not_ico3{background-position:-122px -53px;}
+.not_txt{margin-top:10px; font-size:12px; line-height:30px;}
+.not_txt span{font-size:18px;}
+.not_txt p{margin-bottom:10px;}
+.not_txt a{display:block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; color:#575757;}
+.not_txt a:hover{color:#f26522;}
+.not_txt a.kf{width:129px; height:36px; display:inline-block; vertical-align:middle; background:#f26522; border-radius:3px; line-height:36px; text-align:center; color:#fff; font-size:14px;}
+.not_txt a.kf:hover{background:#f26522;}
+
+/*弹窗部分之微信支付或支付扫码宝支付*/
+.wx_tc{width:318px; height:433px; background:#fff; border-radius:3px; box-shadow:0 0 30px #aaa; *border:1px solid #eeeded; border:1px solid #eeeded\9; position:fixed; top:50%; left:50%; margin:-216px 0 0 -159px; z-index:99;}
+.wx_close{width:14px; height:14px; background-position:0 -83px; top:10px; right:10px;}
+.wx_con{text-align:center; font-size:14px;}
+.wx_con h3{font:normal 20px Microsoft YaHei; padding:40px 0 15px;}
+.wx_con p{text-align:left; padding-left:55px; line-height:35px;}
+.wx_con p span{font-size:24px; color:#f26522;}
+.wx_con img{width:159px; height:165px; display:block; margin:10px auto 0;}
+.wx_con em{display:block; margin-top:20px; line-height:30px;}
+.wx_con span{font-size:12px; color:#b7b7b7;}
+
+
+
+/*2017-3-22增加*/
+.card_kinds a{width:93px; height:38px; background:#f6f6f6; border:1px solid #c2c2c2; border-radius:3px; float:left; display:block; margin:8px 10px 0 0; font:14px/38px Microsoft YaHei; color:#444; text-align:center;}
+.card_kinds a:hover{border-color:#f93;}
+.card_kinds a.on{background:#f93; border-color:#f93; color:#fff;}
+
+.note_t{position:absolute; top:10px; right:10px; color:#f26522;}

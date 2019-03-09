@@ -1,0 +1,41 @@
+{include file="website/top" /}
+
+
+{include file="website/header" /}
+
+
+
+<div class="mainbox clearfix">
+  <div class="cont_left">
+
+      {include file="website/login_gw" /}
+      
+      
+        <div class="about bg01">
+      <div class="abouttit">游戏简介</div>
+      <p>
+          {$data['game_info']['game_intro']}
+      </p>
+    </div>   
+      {include file="website/web_site_service" /}
+     
+      
+  </div>
+  <div class="cont_right">
+
+      
+    <div class="newsnav contbox">
+        <!--<div class="add">首页&gt;新闻&gt;公告详情</div>-->
+        <h1>{$article_details_data['article_info']['name']}</h1>
+        
+        <div class="information"><span>{$article_details_data['article_info']['describe']}</span> {$article_details_data['article_info']['create_time']}</div>
+        <div class="txtnav">
+            {:html_entity_decode($article_details_data['article_info']['content'])}
+        </div>
+    </div>
+      
+  </div>  
+</div>
+
+
+{include file="website/footer" /}

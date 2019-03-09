@@ -1,0 +1,54 @@
+<div class="foot">
+  <div class="w1200">
+        <div class="f_head">
+        <a href="{:url('article/details', array('id' => config('single_article')['about']))}">关于我们</a>
+        <a href="{:url('article/details', array('id' => config('single_article')['contact']))}">联系我们</a>
+        <a href="{:url('article/details', array('id' => config('single_article')['recruit']))}">诚聘英才</a>
+        <a href="{:url('article/details', array('id' => config('single_article')['cooperation']))}">商务合作</a>
+        <a href="{:url('article/details', array('id' => config('single_article')['tutelage']))}">家长监护</a>
+    </div>
+        <div class="f_links"> 友情链接：
+        {volist name="sys_common_data['link_list']" id="v"}
+            <a href="{$v.url}" target="_blank">{$v.name}</a>
+        {/volist}
+        </div>
+      
+        <div class="f_logo">
+            
+            网络文化经营许可证：{:config('site_culture')} &nbsp; |  &nbsp; 增值电信业务许可证：{:config('site_telecom')} &nbsp; |  &nbsp; 网站备案号：{:config('site_icp')}
+            
+            <div class="clear"></div>
+        </div>
+        <p>健康游戏公告：抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</p>
+        <div class="f_pic">
+            <a  target="_blank" href="http://www.hbdjbh.net">
+                <img src="__STATIC__/module/index/platform/images/safe_1.png"/>
+            </a>
+            <a  target="_blank" href="http://www.cyberpolice.cn/wfjb/html/index.shtml">
+                <img src="__STATIC__/module/index/platform/images/safe_2.png"/>
+            </a>
+            <a  target="_blank" href="{:get_picture_url(config('site_licence'))}">
+                <img src="__STATIC__/module/index/platform/images/safe_3.png"/>
+            </a>
+            <a  target="_blank" href="http://www.12377.cn">
+                <img src="__STATIC__/module/index/platform/images/safe_5.png"/>
+            </a>
+        </div>
+      </div>
+</div>
+
+{include file="layout/flotage" /}
+
+</body>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?39d9eab9d349ba353e9e34ec80b06c75";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</html>

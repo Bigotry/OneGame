@@ -1,0 +1,38 @@
+<div class="box">
+  <div class="box-body table-responsive">
+    <table  class="table table-bordered table-hover">
+      <thead>
+        <tr>
+            <th>区服名称</th>
+            <th>当前额度</th>
+            <th>已用额度</th>
+            <th>剩余额度</th>
+            <th>操作</th>
+        </tr>
+      </thead>
+      
+      {notempty name='list'}
+        <tbody>
+            {volist name='list' id='vo'}
+                <tr>
+                  <td>{$vo.server_name}</td>
+                  <td>{$vo.total_money}</td>
+                  <td>{$vo.use_money}</td>
+                  <td>{$vo.residue_money}</td>
+                  <td>
+                        <ob_link><a href="{:url('deductGold', array('id' => $vo['id'], 'conference_id' => input('conference_id')))}"><span class='badge bg-green'>扣除额度</span></a></ob_link>
+                  </td>
+                </tr>
+            {/volist}
+        </tbody>
+        {else/}
+        <tbody><tr class="odd"><td colspan="5" class="text-center" valign="top">{:config('empty_list_describe')}</td></tr></tbody>
+      {/notempty}
+    </table>
+  </div>
+
+  <div class="box-footer clearfix text-center">
+      {$list->render()}
+  </div>
+
+</div>

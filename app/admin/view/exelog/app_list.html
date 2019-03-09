@@ -1,0 +1,51 @@
+<div class="box">
+  <div class="box-header">
+    <ob_link><a class="btn confirm ajax-get" href="{:url('logImport')}"><i class="fa fa-hand-lizard-o"></i> 日志入库</a></ob_link>
+    <ob_link><a class="btn confirm ajax-get" href="{:url('logClean')}"><i class="fa fa-trash-o"></i> 清空日志</a></ob_link>
+  </div>
+    
+  <div class="box-body table-responsive">
+    <table  class="table table-bordered table-hover">
+      <thead>
+      <tr>
+          <th>执行路径</th>
+          <th>执行时间（单位：秒）</th>
+          <th>占用内存（单位：KB）</th>
+          <th>操作系统</th>
+          <th>来源路径</th>
+          <th>浏览器</th>
+          <th>ip</th>
+          <!--<th>session_id</th>-->
+          <th>login_id</th>
+          <th>记录时间</th>
+      </tr>
+      </thead>
+      
+      {notempty name='list'}
+        <tbody>
+            {volist name='list' id='vo'}
+                <tr>
+                  <td>{$vo.exe_url}</td>
+                  <td>{$vo.exe_time}</td>
+                  <td>{$vo.exe_memory}</td>
+                  <td>{$vo.exe_os}</td>
+                  <td>{$vo.source_url}</td>
+                  <td>{$vo.browser}</td>
+                  <td>{$vo.ip}</td>
+                  <!--<td>{$vo.session_id}</td>-->
+                  <td>{$vo.login_id}</td>
+                  <td>{$vo.create_time}</td>
+                </tr>
+            {/volist}
+        </tbody>
+        {else/}
+        <tbody><tr class="odd"><td colspan="10" class="text-center" valign="top">{:config('empty_list_describe')}</td></tr></tbody>
+      {/notempty}
+    </table>
+  </div>
+
+  <div class="box-footer clearfix text-center">
+      {$list->render()}
+  </div>
+
+</div>

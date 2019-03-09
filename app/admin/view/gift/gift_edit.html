@@ -1,0 +1,47 @@
+<form action="{:url()}" method="post" class="form_single">
+    <div class="box">
+      <div class="box-body">
+        <div class="row">
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>游戏</label>
+                <select name="game_id" class="form-control">
+                    {volist name='game_list' id='vo'}
+                        <option value="{$vo['id']}" {notempty name="info['game_id']"}{if condition="$info['game_id'] eq $vo['id']"} selected="selected" {/if}{/notempty} >{$vo['game_name']}</option>
+                    {/volist}
+                </select>
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>礼包名称</label>
+              <input class="form-control" name="gift_name" placeholder="请输入礼包名称" value="{$info['gift_name']|default=''}" type="text">
+            </div>
+          </div>
+            
+
+        <div class="col-md-6">
+          <div class="form-group">
+              <label>礼包简介</label>
+              <textarea class="form-control" name="gift_describe" rows="3" placeholder="请输入礼包简介">{$info['gift_describe']|default=''}</textarea>
+          </div>
+        </div>
+            
+            
+          </div>
+          
+          
+        </div>
+        
+      <div class="box-footer">
+          
+        <input type="hidden" name="id" value="{$info['id']|default='0'}"/>
+        
+        {include file="layout/edit_btn_group"/}
+      </div>
+        
+      </div>
+
+</form>

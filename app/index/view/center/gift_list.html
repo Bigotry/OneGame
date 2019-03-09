@@ -1,0 +1,59 @@
+<!-- 个人中心样式 -->
+<link href="__STATIC__/module/index/platform/css/user.css" type="text/css" rel="stylesheet">
+    
+    <div class="u-container fix">
+        <div class="w1000 user-wp">
+
+            <br/>
+            
+            <div class="user-main fix" id="user">
+                
+                {include file="center/center_left" /}
+                
+                <div class="user-ctn">
+                    <div class="mod"><p class="mod-hd"><em class="mod-tit">我的礼包</em></p></div>
+                    
+                    <div class="user-mod-wp user-mod-credit" id="user-mod-credit">
+                        
+                        <div class="user-credit-bd">
+                            
+                        {empty name="list"}
+                        
+                            <div style="text-align: center; font-size: 20px;">
+                                aOh! 暂时还没有数据~
+                            </div>
+                        
+                            {else /}
+                            
+                            <table class="user-center-table">
+                                <thead>
+                                    <tr>
+                                        <td>游戏</td>
+                                        <td>礼包</td>
+                                        <td>卡号</td>
+                                        <td>领取时间</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-data none" style="display: table-row-group;">
+
+                                    {volist name="list" id="v"}
+                                        <tr>
+                                            <td>{$v.game_name}</td>
+                                            <td>{$v.gift_name}</td>
+                                            <td>{$v.key}</td>
+                                            <td>{$v.get_time|format_time}</td>
+                                        </tr>
+                                    {/volist}
+
+                                </tbody>
+                            </table>
+
+                            <table style="margin:0 auto;"> <td> {$list->render()} </td> </table>
+
+                            {/empty}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,25 @@
+<div class="only">
+    <div class="til">
+        独代大作
+    </div>
+    <div class="only_li">
+        <ul>
+            {volist name="data['recommend_game_list']" id="v"}
+                <li>
+                    <a href="{:url('website/index', array('game_code' => $v['game_code']))}" target="_blank"> <img alt="{$v.game_name}" src="{$v.game_cover|get_picture_url}"/> </a>
+                    <div class="only_txt">
+                        <div class="only_name">
+                            <h2>{$v.game_name}</h2>
+                            <p> <a href="{:url('website/index', array('game_code' => $v['game_code']))}" target="_blank">官网</a> | <a href="{:url('gift/index', array('gid' => $v.id))}">礼包</a> </p>
+                            </div>
+                        <div class="only_btns">
+                            <a target="_blank" href="{:url('play/index', array('game_code' => $v['game_code']))}">进入新区</a>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </li>
+            {/volist}
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="box">
+  <div class="box-header">
+    
+      <ob_link><a class="btn" href="{:url('giftAddKey', array('gift_id' => input('id')))}"><i class="fa fa-plus"></i> 新 增</a></ob_link>
+      <ob_link><a class="btn" href="{:url('giftImportKey', array('gift_id' => input('id')))}"><i class="fa fa-plus"></i> 批量导入</a></ob_link>
+    
+  </div>
+    
+  <div class="box-body table-responsive">
+    <table  class="table table-bordered table-hover">
+      <thead>
+        <tr>
+            <th>游戏名称</th>
+            <th>礼包名称</th>
+            <th>礼包KEY</th>
+            <th>是否领取</th>
+            <th>领取会员</th>
+            <th>领取时间</th>
+            <th>创建时间</th>
+        </tr>
+      </thead>
+      
+      {notempty name='list'}
+        <tbody>
+            {volist name='list' id='vo'}
+                <tr>
+                  <td>{$vo.game_name}</td>
+                  <td>{$vo.gift_name}</td>
+                  <td>{$vo.key}</td>
+                  <td>{$vo.is_get|whether_text}</td>
+                  <td>{$vo.nickname}</td>
+                  <td>{$vo.get_time|format_time}</td>
+                  <td>{$vo.create_time}</td>
+                </tr>
+            {/volist}
+        </tbody>
+        {else/}
+        <tbody><tr class="odd"><td colspan="7" class="text-center" valign="top">{:config('empty_list_describe')}</td></tr></tbody>
+      {/notempty}
+    </table>
+  </div>
+
+  <div class="box-footer clearfix text-center">
+      {$list->render()}
+  </div>
+
+</div>

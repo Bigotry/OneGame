@@ -1,0 +1,60 @@
+<form action="{:url()}" method="post" class="form_single">
+    <div class="box">
+      <div class="box-body">
+        <div class="row">
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>登录用户名</label>
+              <input class="form-control" name="username" placeholder="请输入登录用户名" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>登录密码</label>
+              <input class="form-control" name="password" placeholder="请输入登录密码" type="password">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>用户昵称</label>
+              <input class="form-control" name="nickname" placeholder="请输入用户昵称" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>联系电话</label>
+              <input class="form-control" name="mobile" placeholder="请输入联系电话" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>选择公会</label>
+                <select name="conference_id" class="form-control">
+                    {volist name='conference_list' id='vo'}
+                        <option value="{$vo.id}">{$vo.conference_name}</option>
+                    {/volist}
+                </select>
+            </div>
+          </div>
+            
+            
+          </div>
+          
+          
+        </div>
+        
+      <div class="box-footer">
+          
+            <input type="hidden" name="id" value="{:input('id')}"/>
+          
+            {include file="layout/edit_btn_group"/}
+      </div>
+        
+      </div>
+
+</form>

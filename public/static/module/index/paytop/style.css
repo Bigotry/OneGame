@@ -1,0 +1,85 @@
+@charset "utf-8";
+/*reset.css*/
+html{ font-size:100%;}
+body { margin:0; color: #fff; font:12px/1.5 "microsoft yahei", Arial, sans-serif; background-color:#050301;}
+dl, dd, h1, h2, h3, h4, h5, h6, p, ul, ol { margin:0;}
+ul, ol { padding-left:0; list-style-type:none;}
+img { border:0;}
+a { color: #333; text-decoration:none; outline: 0 none;}
+a:hover { color: #000; text-decoration:none;}
+a, button { cursor:pointer}
+table { border-collapse:collapse; border-spacing:0}
+input, select, img { vertical-align:middle;}
+a, input, button { padding:0; margin:0; outline:0}
+i,em {font-style: normal;}
+.fl { float: left; display: inline;}
+.fr { float: right; display: inline;}
+.dib { display: inline-block; vertical-align: top; *display: inline; *zoom: 1;}
+.tc { text-align: center;}
+.f14 { font-size: 14px;}
+.fb{font-weight:bold;}
+.fix {zoom:1;}
+.fix:after,.fix:before{display:block;content:"clear";height:0;clear:both;overflow:hidden;visibility:hidden;}
+.none { display: none;}
+.hidden { width: 0px; height: 0px; overflow: hidden;}
+
+.bg_top{background:url(http://onegame.yuan-jian.com/static/module/index/paytop/bg_01.jpg) no-repeat top center;}
+.top_head{background:url(http://onegame.yuan-jian.com/static/module/index/paytop/head.jpg) no-repeat top center; height:1634px; position:relative;}
+.wrapper{ width:1000px; margin:0 auto;}
+
+.rank_01{position:absolute; top:788px; left:298px; width:402px; height:90px;}
+.rank_01 .slogo{position:absolute; top:-230px; left:50%; margin-left:-94px; width:187px;}
+.rank_02{position:absolute; top:900px; left:0; width:269px; height:90px;}
+.rank_02 .slogo,.rank_03 .slogo{position:absolute; top:-236px; left:50%; margin-left:-94px; width:187px;}
+.rank_03{position:absolute; top:900px; right:0; width:269px; height:90px;}
+.rank_com{ position:absolute; height:242px; width:208px;}
+.rank_04{left:164px; top:1055px;}
+.rank_05{left:397px; top:1055px;}
+.rank_06{left:627px; top:1055px;}
+.rank_07{left:47px; top:1327px;}
+.rank_08{left:280px; top:1327px;}
+.rank_09{left:511px; top:1327px;}
+.rank_10{left:743px; top:1327px;}
+
+.rank_use{color:#fffbc3; line-height:22px;}
+.rank_use_01{padding:6px 0 0 172px;}
+.rank_use_02{padding:10px 0 0 96px;}
+.rank_use_03{padding:10px 0 0 96px;}
+.rank_use_com{color:#fefbcd; line-height:22px; padding:88px 0 0 48px;}
+
+.part_01{padding:65px;}
+
+.chart_table {border-collapse:collapse;border:3px solid #920902; width:310px; float:left;}
+.chart_table td,.chart_table th{line-height:32px; text-align:center; *line-height:31px;}
+.chart_table td {border:1px solid #920902;position:relative; color:#ccc;}
+.chart_table th{color:#fff;border:1px solid #920902;position:relative;}
+.icon_cup{ background:url(http://onegame.yuan-jian.com/static/module/index/paytop/cup_ico.png) no-repeat ; padding-left:15px;color:#EAEE1E;font-style:italic;text-shadow:1px 1px #B8960C;}
+
+/*.game-footer 最小宽度=顶栏宽度，修复移动端下阅读空白问题*/
+.game-footer { width: 100%; min-width: 1024px; height: 1400px; overflow:hidden; background: #27262a; font:12px/1.5 "microsoft yahei", Arial, sans-serif;}
+.game-footer-inner { width: 100%; height: 198px; border-top: 1px solid #27262a; border-bottom: 1px solid #27262a; background: #1d1c20; position: relative; overflow:hidden;}
+.game-footer-fun { width: 1098px; height: 198px; overflow: hidden; margin: 0 auto; position: absolute; top: 0px; left: 50%; margin-left: -530px;}
+.game-footer-fun dl { width: 133px; height: 135px; margin: 32px 0 0 -1px; padding-left: 50px; border-left: 1px solid #2a292d; float: left;}
+.game-footer-fun dt { height: 18px; color: #5e5e5e; font-weight: 700; margin-bottom: 8px;}
+.game-footer-fun dd { height: 22px; line-height: 22px;}
+.game-footer-fun dd a { color: #5e5e5e; transition: all 0.4s ease;}
+.game-footer-fun dd a:hover { color: #3f6c8c;}
+.game-footer-more { width: 720px; height: 198px; overflow: hidden; position: absolute; top: 0px; left: 184px; display: none;}
+.game-footer-m { width: 732px; height: 170px; overflow: hidden; background: #1d1c20; position: absolute; top: 0px; left: 714px;}
+.game-footer-copyright { width: 1024px; height: 145px; margin: 0 auto;}
+.game-footer-copr { height: 77px; padding-left: 14px; margin-top: 34px; overflow: hidden; color: #fff; float: left;}
+.game-footer-copr2 { height: 56px; margin-top: 44px;}
+.game-footer-copr a { color: #6e6e6e; transition: all 0.4s ease}
+.game-footer-copr a:hover { color: #3f6c8c;}
+.game-footer-copr p { height: 14px; line-height: 14px; overflow: hidden; margin-bottom: 7px;}
+/*底部风格 --白色*/
+.game-footer-white { background: #f0f0f0;}
+.game-footer-white .game-footer-inner { border-top: 1px solid #e2e2e2; border-bottom: 1px solid #e2e2e2; background: #fff;}
+.game-footer-white .game-footer-inner .game-footer-fun dl { border-left: 1px solid #e3e3e3;}
+.game-footer-white .game-footer-fun dt { color: #6f6f6f;}
+.game-footer-white .game-footer-fun dd a { color: #6f6f6f;}
+.game-footer-white .game-footer-fun dd a:hover { color: #03b4f5;}
+.game-footer-white .game-footer-m { background: #fff;}
+.game-footer-white .game-footer-copr  { border-left: 1px solid #d6d5d5; color: #908f92;}
+.game-footer-white .game-footer-copr a { color: #908f92;}
+.game-footer-white .game-footer-copr a:hover { color: #03b4f5;}

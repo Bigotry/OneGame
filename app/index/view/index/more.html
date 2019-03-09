@@ -1,0 +1,24 @@
+<div class="hot">
+    <div class="til"> 更多游戏<a href="{:url('game/index')}">更多 ></a> </div>
+    <div class="game_more">
+        <ul>
+        {volist name="data['more_game_list']" id="v"}
+            <li>
+                <a class="g_pic" href="/g/{$v['game_code']}" target="_blank">
+                    <img alt="{$v.game_name}" src="{$v.game_head|get_picture_url}"/>
+                </a>
+                <div class="g_dec">
+                    <a href="/g/{$v['game_code']}" target="_blank">{$v.game_name}</a>
+                    <span>{$v.category_name}</span>
+                <p>
+                    <a href="/g/{$v['game_code']}" target="_blank">官网</a>
+                    <a target="_blank" href="{:url('play/index', array('game_code' => $v['game_code']))}">进入游戏</a>
+                </p>
+                </div>
+                <div class="clear"></div>
+            </li>
+        {/volist}
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>

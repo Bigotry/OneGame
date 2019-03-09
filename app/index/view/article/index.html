@@ -1,0 +1,28 @@
+<!-- 新闻中心样式 -->
+<link href="__STATIC__/module/index/platform/css/newscenter.css" type="text/css" rel="stylesheet">
+
+<div class="newsbox">
+    <div class="newsnav w1200">
+        <ul class="newstab">
+            <li {empty name=":input('cid')"} class="active" {/empty} ><a href="{:url('article/index')}">全部</a></li>
+            
+            {volist name="data['category_list']" id="v"}
+                <li {eq name=":input('cid')" value="$v['id']"} class="active" {/eq} ><a href="{:url('article/index', array('cid' => $v['id']))}">{$v['name']}</a></li>
+            {/volist}
+            
+        </ul>
+
+        {empty name="data['article_list']"}
+            <div style="text-align: center; font-size: 20px; margin-top: 30px;">
+                aOh! 暂时还没有数据~
+            </div>
+        {else /}
+            <ul class="newslist">
+                {volist name="data['article_list']" id="v"}
+                    <li><a href="{:url('article/details', array('id' => $v.id))}">{$v.name}</a><span class="date">{$v['create_time']}</span></li>
+                {/volist}
+            </ul>
+            <table style="margin:0 auto;"> <td> {$data['article_list']->render()} </td> </table>
+        {/empty}
+    </div>
+</div>

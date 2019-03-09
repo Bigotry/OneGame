@@ -1,0 +1,199 @@
+<!-- 支付中心样式 -->
+<link href="__STATIC__/module/index/platform/css/pay.css" type="text/css" rel="stylesheet">
+
+<div class="w1000 pay" style="min-height:835px;">
+    
+    {include file="center/pay_left" /}
+
+    <!-- 右侧 -->
+    <div class="pay_r">
+    	<!--<p class="note_t">适度娱乐理性消费</p>-->
+        <!-- 微信支付 -->
+        <div class="pay_eg">
+            <h1>{$data['pay_info']['driver_name']}</h1>
+            
+            <form action="{:url('payhandle')}" method="post" class="pay-form">
+            <div class="pay_con wxscanx_pay-way-18">
+                <div class="pay_li pay_account">
+                    <p class="w110">充值账号：</p>
+                    <div class="pay_box">
+                        <!-- 账号显示 -->
+                        <div class="change_n">
+                            <span class="preview_username">{$sys_common_data['login_member_info']['username']}</span>
+                           <!-- <a href="#" class="change-account">[更改账号]</a>-->
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="pay_li pay_games">
+                    <p class="w110">充值到：</p>
+                    <div class="pay_box">
+                        <select onchange="selectGame(this)" name="game_id" id='game_id'>
+                            <option value="0">请选择游戏</option>
+                            {volist name="data['game_list']" id="v"}  
+                                <option value="{$v.id}">{$v.game_name}</option>
+                            {/volist}
+                        </select>
+                        <select onchange="selectServer(this)" id="server_id" name="server_id">
+                            <option value='0'>请选择服务器</option>
+                        </select>
+                        <select id="role_id" name="role_id">
+                            <option value=''>请选择角色</option>
+                        </select>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="pay_li">
+                    <p class="w110">选择金额：</p>
+                    <div class="pay_box wxscanx">
+                            <a class="amount amount_select " href="javascript:;" onclick="clickPrice(this)" value="10">10元<i></i></a>
+                            <a class="amount amount_select " href="javascript:;" onclick="clickPrice(this)" value="20">20元<i></i></a>
+                            <a class="amount amount_select " href="javascript:;" onclick="clickPrice(this)" value="30">30元<i></i></a>
+                            <a class="amount amount_select " href="javascript:;" onclick="clickPrice(this)" value="50">50元<i></i></a>
+                            <a class="amount amount_select " href="javascript:;" onclick="clickPrice(this)" value="100">100元<i></i></a>
+                            <a class="amount amount_select " href="javascript:;" onclick="clickPrice(this)" value="200">200元<i></i></a>
+                            <a class="amount amount_input">
+                                <input type="text" name="price" id='price' onkeyup="priceOnChange()" placeholder="其他金额" />元
+                            </a>
+                            <a class="amount amount_select " href="javascript:;" onclick="clickPrice(this)" value="300">300元<i></i></a>
+                            <a class="amount amount_select " href="javascript:;" onclick="clickPrice(this)" value="500">500元<i></i></a>
+                            <a class="amount amount_select " href="javascript:;" onclick="clickPrice(this)" value="1000">1000元<i></i></a>
+                            <a class="amount amount_select " href="javascript:;" onclick="clickPrice(this)" value="2000">2000元<i></i></a>
+                            <a class="amount amount_select " href="javascript:;" onclick="clickPrice(this)" value="3000">3000元<i></i></a>
+                            <a class="amount amount_select " href="javascript:;" onclick="clickPrice(this)" value="5000">5000元<i></i></a>
+                        <div class="clear"></div>
+                        <!--微信支付-->
+                        <div id="wx_pay_exe"  style="display:none;"></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <input type="hidden" name="pay_code" id="pay_code" value="{$data['pay_info']['driver_class']}" />
+
+                <a class="pay_btn pay-form-btn"  href="javascript:;">立即充值</a>
+            </div>
+            </form>
+            <div class="pag_dec">
+                    <span>支付说明：</span>
+                    <p>
+                        1、若金额不正确或低于10元则无法完成充值；<br>
+                        2、若为IE浏览器建议使用IE9以上版本；<br>
+                    </p>
+                </div>
+        </div>
+
+  </div>
+    <div class="clear"></div>
+</div>
+
+<script type="text/javascript">
+    
+    $(".pay-form-btn").click(function(){
+
+        var game_id = $('#game_id').val();
+        var server_id = $('#server_id').val();
+        var price = $('#price').val();
+        var pay_code = $('#pay_code').val();
+        var role_id = $('#role_id').val();
+         
+        if (game_id == '0') { toast.error('请选择游戏'); return; }
+        if (server_id == '0') { toast.error('请选择服务器'); return; }
+        if (role_id == '') { toast.error('请选择角色');  return;  }
+        if (price == '') { toast.error('请选择或输入充值金额');  return;  }
+
+        $('.fakeloader').show();
+        
+        //微信支付ajax提交
+        if (pay_code == 'wxpay' || pay_code == 'Wxpay') {
+            
+            var self = $('.pay-form');
+            $.post(self.attr("action"), self.serialize(), success, "text");
+            return false;
+            function success(data){
+                
+                $('.fakeloader').hide();
+                $('#wx_pay_exe').html(data);
+                $('#wx_pay_exe').show();
+            }
+        } else {
+            
+            $(".pay-form").submit();
+        }
+    });
+     
+    function isJSON(str) {
+        if (typeof str == 'string') {
+            try {
+                var obj=JSON.parse(str);
+                if(str.indexOf('{')>-1){
+                    return true;
+                }else{
+                    return false;
+                }
+
+            } catch(e) {
+                console.log(e);
+                return false;
+            }
+        }
+        return false;
+    }
+
+    function selectGame(obj)
+    {
+        
+        $('#wx_pay_exe').html('');
+        
+        var game_id = $(obj).val();
+            
+        game_id == '0' && $('#server_id').html("<option value='0'>请选择服务器</option>");
+
+        $.post("{:url('index/getServerOption')}", {game_id:game_id}, success, "text");
+        return false;
+        function success(data)
+        {
+            $('#server_id').html(data);
+        }
+    }
+ 
+    function selectServer(obj)
+    {
+        
+        $('#wx_pay_exe').html('');
+        
+        var server_id = $(obj).val();
+        
+        var game_id = $('#game_id').val();
+            
+        $('#role_id').html("<option value=''>请选择角色</option>");
+
+        $.post("{:url('index/getRoleOption')}", {game_id:game_id, server_id:server_id}, success, "text");
+        return false;
+        function success(data)
+        {
+            $('#role_id').html(data);
+        }
+    }
+    
+    function clickPrice(obj)
+    {
+        
+        $(".wxscanx").children(".amount_select").removeClass('activeon');
+        
+        $(obj).addClass('activeon');
+        
+        var price = $(obj).attr('value');
+            
+        $('#price').val(price);
+        $('#wx_pay_exe').html('');
+    }
+    
+    function priceOnChange()
+    {
+        
+        $(".wxscanx").children(".amount_select").removeClass('activeon');
+        $('#wx_pay_exe').html('');
+    }
+    
+</script>

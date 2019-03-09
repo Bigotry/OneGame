@@ -1,0 +1,62 @@
+    <link href="__STATIC__/module/index/platform/css/user.css" type="text/css" rel="stylesheet">
+    
+    <div class="u-container fix">
+        <div class="w1000 user-wp">
+
+            <br/>
+            
+            <div class="user-main fix" id="user">
+                
+                {include file="center/center_left" /}
+                
+                <div class="user-ctn">
+                    <div class="mod"><p class="mod-hd"><em class="mod-tit">{$ob_title}</em></p></div>
+                    
+                    <div class="user-mod-wp user-mod-info pl70" id="user-mod-info">
+                        <form action="{:url('center/setemail')}" method="post" class="userinfo-modify changepassword-form">
+                            
+                            <div class="w-item">
+                                <label class="w-label"><i>*</i> 邮箱地址：</label>
+                                
+                                <input type="text" class="w-input" name="email" value="{$member_info['email']|default=''}" id="email" placeholder="请输入邮箱地址">
+                            </div>
+                            
+                            <div class="w-item">
+                                <label class="w-label"> </label>
+                                <div class="w-div tc">
+                                    
+                                    <input type="button" value="提交" class="btn btn-l btn-blue shbtn changepassword-form-sub">
+                                    <a onclick="formReset()" class="btn btn-l btn-gray btn-back-def  shbtn">重置</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        //提交
+        $(".changepassword-form-sub").click(function(){
+
+            $('.fakeloader').show();
+
+            var self = $('.changepassword-form');
+            $.post(self.attr("action"), self.serialize(), success, "json");
+            return false;
+
+            function success(data){
+                
+                setTimeout(function(){ $('.fakeloader').hide(); }, 500);
+                
+                obalert(data);
+            }
+        });
+        
+        function formReset()
+        {
+            $('.changepassword-form')[0].reset();
+        }
+    </script>

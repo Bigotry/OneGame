@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>微端登录</title>
+    <meta name="description" content="" />
+    <meta content=""  name="keywords" />
+    <link href="http://s7.yx-s.com/!6fa1cf77/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <!--new tpl-->
+    <div id="content" class="main3">
+             <div id="unameWrap" class="login_Af">
+            <div id="msg_layer"></div>
+            <div class="login_Af-pop">
+                <h1>
+                    <span>亲爱的</span>
+                    <span class="name">{$member.nickname}</span>
+                    <span>欢迎您！</span>
+                    <a href="{:url('client/index', array('game_code' => $game_info['game_code']))}">注销</a>
+                </h1>
+                <div class="serve limi">
+                    <h2>最近登录服务器</h2>
+                    <div>
+                        <ul class="clearfix" id="played">
+                            <span id="played_item_tpl" itemcount="2" >
+                                {notempty name="server_info"}
+                                <li><a style="cursor: pointer;" href="{:url('play/index', array('game_code' => $game_info['game_code'], 'sid' => $server_info['cp_server_id'],'type' => 3 ,'from' => 'miniloader'))}">{$server_info.server_name}</a></li>
+                                {/notempty}
+                            </span>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="serve all js_chooseServe">
+                  <h2>所有服务器</h2>
+                  <div class="nav">
+                    <ul>
+                     <li class="cur first">所有区</li>
+                    </ul>
+                  </div>
+                    <div class="ul cont" >
+                    <ul>
+                       {volist name="list" id='vo'}
+
+                        <li> <a  style="cursor: pointer;"  href="{:url('play/index', array('game_code' => $game_info['game_code'], 'sid' => $vo['cp_server_id'], 'type' => 3, 'from' => 'miniloader'))}">{$vo.server_name}</a> </li>
+
+                        {/volist}
+                                           
+                    </ul>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

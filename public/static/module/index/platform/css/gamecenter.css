@@ -1,0 +1,65 @@
+/* tFocus */
+#tFocus-btn li.active,#tFocus-leftbtn,#tFocus-rightbtn{display:block;background:url(../images/common/spr.png) no-repeat;}
+#tFocus{width:1240px;background:#DDD;overflow:hidden;margin:30px auto 0 auto; position:relative;}
+#tFocus-pic{width:1240px;height:380px;position:relative;}
+#tFocus-pic li{width:100%; height:100%;position:absolute;left:0;top:0;filter:alpha(opacity:0);opacity:0;}
+#tFocus-pic li img{ width:100%; height:100%;}
+
+#tFocusBtn{width:359px;height:68px;bottom:10px; left:50%; margin-left:-180px;z-index:20;overflow:hidden; position:absolute; z-index:100;}
+#tFocus-btn{width:288px;height:68px;position:relative;left:0;bottom:0;overflow:hidden;float:left;margin-right:3px;}
+#tFocus-btn ul{width:100000px;position:absolute;left:0;top:0;}
+#tFocus-btn li{height:57px;width:91px;padding-top:7px;display:block;float:left;margin-right:5px;}
+#tFocus-btn li img{border:2px solid #dddddd; height:57px; width:87px;}
+#tFocus-btn li.active{background-position:-448px -100px;}
+#tFocus-btn li.active img{border:2px solid #f26522}
+#tFocus-leftbtn,#tFocus-rightbtn{height:40px;margin-top:18px;width:15px;float:left;text-indent:-9999px;}
+#tFocus-leftbtn{margin-right:5px;background-position:-455px -60px;}
+#tFocus-rightbtn{background-position:-480px -60px;}
+
+
+/*全部游戏*/
+.games_rank{margin-top:30px;}
+.games{width:956px; float:left; display:inline; position:relative;}
+.title{height:33px; padding-left:15px; position:relative; max-width:200px;}
+.title i{width:7px; height:33px; background:url(../images/common/icon.png) no-repeat; background-position:0 0; position:absolute;     top: -6px; left:0;}
+.title h1{font-size:23px; font-weight:normal; line-height:18px; color:#6c6c6c; float:left;;}
+.title h1 span{display:block; font-size:12px; color:#bcbcbc; text-transform : uppercase; padding-top:3px; letter-spacing:2px;}
+
+.soso{width:300px; height:34px; border:1px solid #eee; background:#fff; border-radius:3px; overflow:hidden; overflow:hidden; position:absolute; top:0px; right:0;}
+.soso input{width:234px; height:24px; padding:5px 16px; float:left; display:inline; background:none; }
+.soso input.so_btn{width:34px; height:34px; padding:0; background:url(../images/common/icon.png) no-repeat; background-position:-115px -3px; cursor:pointer;}
+
+.game_kinds, .rank_con{margin-top:10px; padding:20px 30px; background:#fff; border:1px solid #e1e1e1; border-top:2px solid #f26522; border-radius:6px;}
+.game_flag{padding:10px 0 10px 75px; position:relative;}
+.game_flag h4{font:bold 14px/40px Microsoft YaHei; color:#000; position:absolute; top:0; left:0;}
+.flags{font:13px/20px Microsoft YaHei; color:#000;}
+.flags a{padding:2px 8px; color:#000;}
+.flags a.on,.flags a:hover{background:#f26522; color:#fff;}
+.g_lis ul{ margin-left:-22px; *width:110%;}
+.g_lis ul li{width:222px; height:152px; cursor:pointer; border-radius:5px; overflow:hidden; float:left; display:inline; margin:28px 0 0 22px; position:relative;}
+
+.g_lis ul li img{width:222px; height:152px; transition:all 0.6s; border-radius:5px; }
+.b_dec{width:100%; height:100%; transition:all 0.5s; position:absolute; top:-152px; left:0; z-index:2; border-radius:5px;  background:rgba(0,0,0,0.05)}
+.g_lis ul li:hover .b_dec{top:0px; }
+.g_lis ul li:hover img{filter: blur(3px);}
+.g_mask{width:100%; height:100%; background:#000; opacity:0.7; filter:alpha(opacity=70);}
+.g_btns{width:100%; padding-top:55px; text-align:center; color:#fff; position:absolute; top:0; left:0;}
+.g_btns a{color:#fff; margin:0 5px;}
+.g_btns a:hover{text-decoration:underline;}
+.g_btns a.g_xq{width:75px; height:20px; border:1px solid #f26522; border-radius:3px; font:14px/20px Microsoft YaHei; color:#f26522; margin:0 auto 10px; display:block; transition:all 200ms linear;}
+.g_btns a.g_xq:hover{color:#fff; background:#f26522; text-decoration:none;}
+
+
+/*游戏排行榜*/
+.rank{width:252px; float:right; display:inline;}
+.rank_con{padding:10px 14px 20px;}
+.rank_normal{font:13px/16px Microsoft YaHei; padding:8px 0 8px 32px; position:relative;}
+.rank_normal i{width:16px; height:16px; border:1px solid #f26522; text-align:center; color:#f26522; position:absolute; top:8px; left:0; border-radius:3px;}
+.rank_h{width:222px; height:107px; display:block; overflow:hidden; position:relative; display:none;}
+
+.rank_normal a{float:left; display:block; color:#000;}
+.rank_normal a.rank_name{width:105px;}
+.rank_normal a.rank_btn{width:30px; height:16px; border:1px solid #f26522; color:#f26522; text-align:center; border-radius:3px; margin-left:10px;}
+.rank_eg:hover i, .rank_eg:hover a.rank_btn{color:#fff; background:#f26522;}
+.rank_eg:hover a.rank_name{text-decoration:underline;}
+
