@@ -308,7 +308,7 @@ INSERT INTO `ob_config` VALUES ('52', 'team_developer', '3', '研发团队人员
 INSERT INTO `ob_config` VALUES ('53', 'api_status_option', '3', 'API接口状态', '4', '', '', '1504242433', '1528962834', '1', '0:待研发\r\n1:研发中\r\n2:测试中\r\n3:已完成', '0');
 INSERT INTO `ob_config` VALUES ('54', 'api_data_type_option', '3', 'API数据类型', '4', '', '', '1504328208', '1528962834', '1', '0:字符\r\n1:文本\r\n2:数组\r\n3:文件', '0');
 INSERT INTO `ob_config` VALUES ('55', 'frontend_theme', '1', '前端主题', '1', '', '', '1504762360', '1552106301', '1', 'default', '0');
-INSERT INTO `ob_config` VALUES ('56', 'api_domain', '1', 'API部署域名', '4', '', '', '1504779094', '1528962834', '1', 'http://youlaiwan.com', '0');
+INSERT INTO `ob_config` VALUES ('56', 'api_domain', '1', 'API部署域名', '4', '', '', '1504779094', '1528962834', '1', 'http://xxxx.com', '0');
 INSERT INTO `ob_config` VALUES ('57', 'api_key', '1', 'API加密KEY', '4', '', '泄露后API将存在安全隐患', '1505302112', '1528962834', '1', 'l2V|gfZp{8`;jzR~6Y1_', '0');
 INSERT INTO `ob_config` VALUES ('58', 'loading_icon', '4', '页面Loading图标设置', '1', '1:图标1\r\n2:图标2\r\n3:图标3\r\n4:图标4\r\n5:图标5\r\n6:图标6\r\n7:图标7', '页面Loading图标支持7种图标切换', '1505377202', '1552106301', '1', '7', '80');
 INSERT INTO `ob_config` VALUES ('59', 'sys_file_field', '3', '文件字段配置', '3', '', 'key为模型名，值为文件列名。', '1505799386', '1528923967', '1', '0_article:file_id', '0');
