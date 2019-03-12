@@ -43,7 +43,8 @@ class Game extends AdminBase
     // 应用场景
     protected $scene = [
         
-        'edit' =>  ['game_name','game_code','game_currency_ratio','sort'],
+        'edit'      =>  ['game_name','game_code','game_currency_ratio','sort'],
+        'h5_edit'   =>  ['game_name','sort'],
     ];
     
 }

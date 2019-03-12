@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2019-03-09 12:48:23
+Date: 2019-03-12 19:18:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,7 +31,7 @@ CREATE TABLE `ob_action_log` (
   `update_time` int(11) unsigned NOT NULL DEFAULT '0',
   `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '执行行为的时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=25462 DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED COMMENT='行为日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=25477 DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED COMMENT='行为日志表';
 
 -- ----------------------------
 -- Records of ob_action_log
@@ -407,6 +407,35 @@ CREATE TABLE `ob_file` (
 INSERT INTO `ob_file` VALUES ('4', 'b7e908de1642224e0c55db6d96f26187.xlsx', '20180510/b7e908de1642224e0c55db6d96f26187.xlsx', 'upload/file/20180510/b7e908de1642224e0c55db6d96f26187.xlsx', 'dedfe49b5d2cbcc990c47c2b1175f7d37389dbf8', '1525948151', '1525948151', '1');
 
 -- ----------------------------
+-- Table structure for `ob_h5_game`
+-- ----------------------------
+DROP TABLE IF EXISTS `ob_h5_game`;
+CREATE TABLE `ob_h5_game` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `game_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '游戏名称',
+  `game_intro` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '游戏简介',
+  `game_cover` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '游戏封面',
+  `game_head` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '游戏头像图片',
+  `is_recommend` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否推荐',
+  `is_hot` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否热门',
+  `sort` int(10) unsigned NOT NULL DEFAULT '0',
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态',
+  `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
+  `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='手游模块游戏表';
+
+-- ----------------------------
+-- Records of ob_h5_game
+-- ----------------------------
+INSERT INTO `ob_h5_game` VALUES ('9', '我在三国有座城', '策略回合，群战决胜', '211', '212', '1', '1', '0', '1', '1552385510', '1552385510');
+INSERT INTO `ob_h5_game` VALUES ('10', '蓝月超变', '至尊江湖，热血沙场', '213', '219', '1', '1', '0', '1', '1552386260', '1552385822');
+INSERT INTO `ob_h5_game` VALUES ('11', '热血传奇', '征战玛法，问鼎传奇', '215', '214', '1', '1', '0', '1', '1552386066', '1552386066');
+INSERT INTO `ob_h5_game` VALUES ('12', '龙城战歌', '热血至尊，王者战歌', '216', '220', '1', '1', '0', '1', '1552386288', '1552386163');
+INSERT INTO `ob_h5_game` VALUES ('13', '龙族霸业', '重塑玛法，缔造不朽', '218', '217', '1', '1', '0', '1', '1552386223', '1552386223');
+INSERT INTO `ob_h5_game` VALUES ('14', '侠客令', '九阴真经，再现江湖', '221', '222', '1', '1', '0', '1', '1552386545', '1552386376');
+
+-- ----------------------------
 -- Table structure for `ob_hook`
 -- ----------------------------
 DROP TABLE IF EXISTS `ob_hook`;
@@ -474,7 +503,7 @@ CREATE TABLE `ob_member` (
 -- ----------------------------
 -- Records of ob_member
 -- ----------------------------
-INSERT INTO `ob_member` VALUES ('1', 'admin', 'admin', '7f41a2ad81a36b60bf3d59ad4e247435', '1', '3162875@qq.com', '18555550710', '1552106846', '0', '1', '1', '0', '1', '127.0.0.1', '0', '');
+INSERT INTO `ob_member` VALUES ('1', 'admin', 'admin', '7f41a2ad81a36b60bf3d59ad4e247435', '1', '3162875@qq.com', '18555550710', '1552383956', '0', '1', '1', '0', '1', '127.0.0.1', '0', '');
 
 -- ----------------------------
 -- Table structure for `ob_member_extend`
@@ -511,7 +540,7 @@ CREATE TABLE `ob_menu` (
   `update_time` int(11) unsigned NOT NULL DEFAULT '0',
   `create_time` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=266 DEFAULT CHARSET=utf8 COMMENT='菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=268 DEFAULT CHARSET=utf8 COMMENT='菜单表';
 
 -- ----------------------------
 -- Records of ob_menu
@@ -645,6 +674,8 @@ INSERT INTO `ob_menu` VALUES ('262', '区服明细', '233', '0', 'admin', 'analy
 INSERT INTO `ob_menu` VALUES ('263', '导出公会', '208', '0', 'admin', 'conference/exportconferencelist', '1', 'fa-download', '1', '1529141811', '1529141811');
 INSERT INTO `ob_menu` VALUES ('264', '公会结算', '235', '20', 'admin', 'accounts/conferenceaccounts', '0', 'fa-credit-card', '1', '1529567976', '1529567976');
 INSERT INTO `ob_menu` VALUES ('265', '公会结算导出', '264', '0', 'admin', 'accounts/conferenceaccountsexport', '1', 'fa-download', '1', '1530689307', '1530689307');
+INSERT INTO `ob_menu` VALUES ('266', '手游列表', '203', '12', 'admin', 'game/h5gamelist', '0', 'fa-th', '1', '1552384533', '1552384526');
+INSERT INTO `ob_menu` VALUES ('267', '手游编辑', '266', '0', 'admin', 'game/h5gameedit', '1', 'fa-edit', '1', '1552385134', '1552385134');
 
 -- ----------------------------
 -- Table structure for `ob_picture`
@@ -660,7 +691,7 @@ CREATE TABLE `ob_picture` (
   `update_time` int(11) unsigned NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=211 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='图片表';
+) ENGINE=InnoDB AUTO_INCREMENT=223 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='图片表';
 
 -- ----------------------------
 -- Records of ob_picture
@@ -727,6 +758,18 @@ INSERT INTO `ob_picture` VALUES ('207', 'cdda2b81dd6e9f6a04be64a4e92ac4e2.png', 
 INSERT INTO `ob_picture` VALUES ('208', 'e866962cc0362e21066c1190597b0630.png', '20181229/e866962cc0362e21066c1190597b0630.png', '', '9ebcb99a05908ab1fd771ed881d870efb1e10745', '1546076090', '0', '1');
 INSERT INTO `ob_picture` VALUES ('209', '21a8f1ad8d395de84c56e97409594b9f.jpg', '20181229/21a8f1ad8d395de84c56e97409594b9f.jpg', '', '449305dd65b76a185cbcd5ac9a1fbdcf4e1d1f2d', '1546076098', '0', '1');
 INSERT INTO `ob_picture` VALUES ('210', '6d092b92cfb3aaa1d21017697b2933ad.png', '20190309/6d092b92cfb3aaa1d21017697b2933ad.png', '', 'f595c0bd89ae18f6ed9a36a35778de16901ef9f8', '1552106200', '0', '1');
+INSERT INTO `ob_picture` VALUES ('211', '99e7cb6c4c6398dc73df824541db8745.jpg', '20190312/99e7cb6c4c6398dc73df824541db8745.jpg', '', '31ca0defc52292a402d8a2fe92677f916c5f7d59', '1552385493', '0', '1');
+INSERT INTO `ob_picture` VALUES ('212', 'a50833346ff3625fa30899f5517560f0.gif', '20190312/a50833346ff3625fa30899f5517560f0.gif', '', 'ba7f09f6d55e478275fb4b3b97f8f6d827b38c9a', '1552385496', '0', '1');
+INSERT INTO `ob_picture` VALUES ('213', '00bd62736ceee142e34c7f5c8c1f8d10.jpg', '20190312/00bd62736ceee142e34c7f5c8c1f8d10.jpg', '', 'd68cf93bf2eb339ffb506ce4bbe74371d68c4422', '1552385795', '0', '1');
+INSERT INTO `ob_picture` VALUES ('214', '5bc7a24642efb67d00734bb215577715.gif', '20190312/5bc7a24642efb67d00734bb215577715.gif', '', '8e0b877a4a1ace833db87f597e6ab240f9e60914', '1552385814', '0', '1');
+INSERT INTO `ob_picture` VALUES ('215', 'ff6f7154ea6298384bca0a40da935f3d.jpg', '20190312/ff6f7154ea6298384bca0a40da935f3d.jpg', '', '731ea3e29d1119d52dc2daad4222a8f4bde2c7b8', '1552386045', '0', '1');
+INSERT INTO `ob_picture` VALUES ('216', 'bd5585e75511beba115b739853fd6acb.jpg', '20190312/bd5585e75511beba115b739853fd6acb.jpg', '', '3f018be66252b58c288f5ca094c24c873faaea04', '1552386155', '0', '1');
+INSERT INTO `ob_picture` VALUES ('217', 'ca8e1deb76d367e9b9b224c23c8bcb3b.gif', '20190312/ca8e1deb76d367e9b9b224c23c8bcb3b.gif', '', '8ab77829ac0ab0ef66b6bd2333e40af3c3a9b28d', '1552386160', '0', '1');
+INSERT INTO `ob_picture` VALUES ('218', 'bb793a9985c77e366412930d50a04be2.jpg', '20190312/bb793a9985c77e366412930d50a04be2.jpg', '', '63461ba5d8f7711f971e0579dec6cf578625f5ca', '1552386218', '0', '1');
+INSERT INTO `ob_picture` VALUES ('219', '325abf8c9f84b8d8461805fa56856702.gif', '20190312/325abf8c9f84b8d8461805fa56856702.gif', '', '8a6fff44e43d80f57dc52269cfb95df3b7da69d3', '1552386253', '0', '1');
+INSERT INTO `ob_picture` VALUES ('220', '30600d30d44d24a32b997a06f2621bb7.gif', '20190312/30600d30d44d24a32b997a06f2621bb7.gif', '', '216e40a311fecac2f87acb180e5f3ec880ddae65', '1552386283', '0', '1');
+INSERT INTO `ob_picture` VALUES ('221', '810234a947866564aee53ff9d0875ea3.jpg', '20190312/810234a947866564aee53ff9d0875ea3.jpg', '', 'bdcffd1cd49d90925db26fe722550b4be218043c', '1552386365', '0', '1');
+INSERT INTO `ob_picture` VALUES ('222', 'e5da12518d09710fca45e3f907db92ba.gif', '20190312/e5da12518d09710fca45e3f907db92ba.gif', '', 'c241adae33c04e7195a31a473a1e2adf002799f3', '1552386368', '0', '1');
 
 -- ----------------------------
 -- Table structure for `ob_seo`

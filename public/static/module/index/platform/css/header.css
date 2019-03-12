@@ -176,7 +176,7 @@ input,select{font-family:"微软雅黑"}
  position:relative; z-index:1;}
 .logo{float:left; display:inline;}
 .nav{float:right; display:inline; height:30px; margin-top:30px;}
-.nav li{width:120px; height:30px; float:left; display:inline; font:16px/30px Microsoft YaHei; text-align:center; margin:0 5px;}
+.nav li{width:100px; height:30px; float:left; display:inline; font:16px/30px Microsoft YaHei; text-align:center; margin:0 5px;}
 .nav li a{display:block; color:#5e5e5e; border-radius:13px; transition:all 0.5s}
 .nav li.on a, .nav li a:hover{background:#f26522; color:#fff!important; text-decoration:none;}
 

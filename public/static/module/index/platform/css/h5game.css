@@ -1,0 +1,91 @@
+/*热门游戏*/
+.hot_sev{margin-top:40px;}
+.hot{width:951px; float:left; display:inline;}
+.til{font-size:30px; color:#565656; height:40px; line-height:40px; position:relative;}
+.til h2{font-size:30px; font-weight:normal; float:left; display:inline;}
+
+.hot_games{margin-top:10px;}
+.hot_games ul li{width:290px; height:320px; background:#fff; border-radius:5px; float:left; display:inline; margin:0 27px 27px 0; overflow:hidden;
+	-webkit-transition: box-shadow .3s linear, transform .3s linear;
+	-o-transition: box-shadow .3s linear, transform .3s linear;
+	transition: box-shadow .3s linear, transform .3s linear;
+}
+.hot_games ul li:hover{
+	-webkit-box-shadow: 0 3px 7px rgba(0,0,0,.08);
+	box-shadow: 0 3px 7px rgba(0,0,0,.08);
+	-webkit-transform: translate3d(0, -4px, 0);
+	-ms-transform: translate3d(0, -4px, 0);
+	-o-transform: translate3d(0, -4px, 0);
+	transform: translate3d(0, -4px, 0);
+	position:relative; z-index:4;}
+.hot_pic{width:290px; height:240px; overflow:hidden; position:relative;}
+.pic_hot{width:100%; height:100%;}
+.ico_hmob{background-position:-61px -118px;}
+.ico_hh5{background-position:0 -118px;}
+.hot_layer{width:290px; height:190px; padding-top:50px; text-align:center;  font-size:14px; color:#ffe6dc; position:absolute; bottom:-240px; left:0; z-index:3;}
+.hot_layer img{width:115px; height:115px; border-radius:5px;}
+.hot_layer p{margin-top: 10px;}
+.hot_layer h3{font-weight:normal; font-size:20px; line-height:40px;}
+.hot_layer_h5 h3{padding-top:30px;}
+.game_btn{width:100px; height:30px; background:rgba(255, 249, 247, 1); display:block; margin:10px auto 0; border-radius:5px; color:#f26522; line-height:30px;
+	-webkit-transition: all .2s ease-out;
+	-o-transition: all .2s ease-out;
+	transition: all .2s ease-out;
+}
+.game_btn:hover{background:rgba(255, 249, 247, 0.95); color: #dc4700;}
+.hot_dec{height:70px; padding:10px 100px 0 12px; line-height:32px; color:#8f8f8f; font-size:14px; position:relative;}
+.hot_name{font-size:20px; color:#6b6b6b; display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+.hot_dec p{height:32px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.hot_btn{width:76px; height:25px; border:1px solid #ababab; border-radius:5px; line-height:25px; text-align:center; color:#8f8f8f; position:absolute; bottom:15px; right:12px; 
+	-webkit-transition: all .2s linear;
+	-o-transition: all .2s linear;
+	transition: all .2s linear;
+}
+.hot_btn:hover{background:#3ac344; border-color:#3ac344; color:#fff;}
+.hot_btn_h5:hover{background:#f26522; border-color:#f26522;}
+.hot_btn_pc:hover{background:#259def; border-color:#259def;}
+
+.h_home{background-position: 0 -177px;}
+.h_gift{background-position: -32px -177px;}
+
+/*开服列表*/
+.sev{width:289px; float:right; display:inline;}
+.sev_box{height:667px; background:#fff; border-radius:5px; overflow:hidden; margin-top:10px; position:relative;}
+.sev_box ul{position:absolute; top:0; left:0; display:none;}
+.sev_box ul li{height:100px; padding: 0 10px;
+	-webkit-transition: all .2s ease-out;
+	-o-transition: all .2s ease-out;
+	transition: all .2s ease-out;
+}
+.sev_box ul li a{width:169px; height:82px; border-bottom:1px solid #f8f8f8; padding:18px 10px 0 90px; display:block; color:#aaa; line-height:23px; position:relative;}
+.sev_pic{width:66px; height:66px; overflow:hidden; border-radius:10px; border: 1px solid #ecf0f1; position:absolute; top:18px; left:8px;}
+.sev_pic img{width:100%; height:100%;}
+.sev_box ul li a p{overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.name_sev{font-size:18px; color:#636363;}
+.time_sev{ position:relative;}
+.sev_box ul li:hover{background:#fef9f8; border-radius:5px;}
+.sev_page{width:100%; height:30px; padding-top:20px; text-align:center; position:absolute; bottom:0; left:0;}
+.sev_page i{width:8px; height:8px; border-radius:100%; display:inline-block; margin:0 6px; background:#a5a5a5; cursor:pointer;}
+.sev_page i.cur{background:#f26522;}
+
+/*游戏列表*/
+.games{margin-top: 13px;}
+.games_box{width:100%; padding-bottom: 52px; background:#fff; margin-top:10px; position:relative;}
+.til_game{height:31px; border:1px solid #f26522; border-radius:5px; overflow:hidden; position:absolute; top:-48px; right:0;}
+.til_game a{width:95px; height:31px; font-size:18px; line-height:31px; text-align:center; color:#8f8f8f; float:left; display:block;}
+.til_game a+a{border-left:1px solid #f26522;}
+.til_game a.cur{color:#fff; background:#f26522;}
+.game_eg li{width:105px; height:80px; padding-left:90px; float:left; display:inline; margin:52px 0 0 45px; color:#8f8f8f; line-height:26px; position:relative;}
+.game_pic{width:80px; height:80px; border-radius:10px; border: 1px solid #eef1f2; overflow:hidden; position:absolute; top:0; left:0;}
+.game_pic img{width:100%; height:100%;}
+.game_eg{display:none;}
+.game_eg li h4{font-weight:normal; font-size:14px; color:#565656;}
+.game_eg li h4, .game_eg li p{overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.btn_game{width:70px; height:20px; border: 1px solid #f26522; display:block; border-radius:5px; text-align:center; line-height:20px; color:#f26522; margin-top:5px;
+	-webkit-transition: all .2s ease-out;
+	-o-transition: all .2s ease-out;
+	transition: all .2s ease-out;
+}
+.btn_game_mob{border-color:#3ac344; color: #3ac344;}
+.btn_game:hover{background:#f26522; color:#fff;}
+.btn_game_mob:hover{background:#3ac344;}

@@ -1,0 +1,84 @@
+<form action="{:url()}" method="post" class="form_single">
+    <div class="box">
+      <div class="box-body">
+        <div class="row">
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>游戏名称</label>
+              <input class="form-control" name="game_name" placeholder="请输入游戏名称" value="{$info['game_name']|default=''}" type="text">
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>游戏简介</label>
+              <input class="form-control" name="game_intro" placeholder="请输入游戏简介" value="{$info['game_intro']|default=''}" type="text">
+            </div>
+          </div>
+            
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>是否推荐</label>
+                <select name="is_recommend" class="form-control">
+                    <option value="0">否</option>
+                    <option value="1" {notempty name="info['is_recommend']"}{if condition="$info['is_recommend'] eq 1"} selected="selected" {/if}{/notempty} >是</option>
+                </select>
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>是否热门</label>
+                <select name="is_hot" class="form-control">
+                    <option value="0">否</option>
+                    <option value="1" {notempty name="info['is_hot']"}{if condition="$info['is_hot'] eq 1"} selected="selected" {/if}{/notempty} >是</option>
+                </select>
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>排序</label>
+              <span>（数值越大，排序越靠前）</span>
+              <input class="form-control" name="sort" placeholder="请输入排序值" value="{$info['sort']|default='0'}" type="text">
+            </div>
+          </div>
+            
+            
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>游戏封面</label>
+                <span>（请上传游戏封面图片，推荐尺寸：290X240）</span>
+                {assign name="game_cover" value="$info.game_cover|default='0'" /}
+                {:widget('file/index', ['name' => 'game_cover', 'value' => $game_cover, 'type' => 'img'])}
+            </div>
+          </div>
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>游戏头像</label>
+                <span>（请上传游戏头像图片，推荐尺寸：100X100）</span>
+                {assign name="game_head" value="$info.game_head|default='0'" /}
+                {:widget('file/index', ['name' => 'game_head', 'value' => $game_head, 'type' => 'img'])}
+            </div>
+          </div>
+            
+            
+          </div>
+          
+          
+        </div>
+        
+      <div class="box-footer">
+          
+        <input type="hidden" name="id" value="{$info['id']|default='0'}"/>
+        
+        {include file="layout/edit_btn_group"/}
+      </div>
+        
+      </div>
+
+</form>

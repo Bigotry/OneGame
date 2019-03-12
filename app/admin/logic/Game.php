@@ -88,6 +88,15 @@ class Game extends AdminBase
     }
     
     /**
+     * 手游列表
+     */
+    public function getH5GameList($where = [], $field = true, $order = '', $paginate = 0)
+    {
+        
+        return $this->modelH5Game->getList($where, $field, $order, $paginate);
+    }
+    
+    /**
      * 获取游戏信息
      */
     public function getGameInfo($where = [], $field = true)
@@ -99,6 +108,17 @@ class Game extends AdminBase
         !empty($info['website_screenshot']) && $info['website_screenshot_array'] = str2arr($info['website_screenshot']);
         !empty($info['website_job_imgs'])   && $info['website_job_imgs_array']   = str2arr($info['website_job_imgs']);
         !empty($info['maintain_end_time'])  ?  $info['maintain_end_time']        = format_time($info['maintain_end_time'], 'Y-m-d H:i') : $info['maintain_end_time'] = '';
+        
+        return $info;
+    }
+    
+    /**
+     * 获取H5游戏信息
+     */
+    public function getH5GameInfo($where = [], $field = true)
+    {
+        
+        $info = $this->modelH5Game->getInfo($where, $field);
         
         return $info;
     }
@@ -125,6 +145,25 @@ class Game extends AdminBase
     }
     
     /**
+     * 手游信息编辑
+     */
+    public function h5GameEdit($data = [])
+    {
+        
+        $validate_result = $this->validateGame->scene('h5_edit')->check($data);
+        
+        if (!$validate_result) : return [RESULT_ERROR, $this->validateGame->getError()]; endif;
+        
+        $result = $this->modelH5Game->setInfo($data);
+        
+        $handle_text = empty($data['id']) ? '新增' : '编辑';
+        
+        $result && action_log($handle_text, '游戏信息' . $handle_text . '，id：' . $data['id']);
+        
+        return $result ? [RESULT_SUCCESS, '操作成功', url('h5GameList')] : [RESULT_ERROR, $this->modelH5Game->getError()];
+    }
+    
+    /**
      * 游戏删除
      */
     public function gameDel($where = [])
@@ -135,6 +174,19 @@ class Game extends AdminBase
         $result && action_log('删除', '游戏信息删除' . '，where：' . http_build_query($where));
         
         return $result ? [RESULT_SUCCESS, '删除成功'] : [RESULT_ERROR, $this->modelWgGame->getError()];
+    }
+    
+    /**
+     * 手游删除
+     */
+    public function h5GameDel($where = [])
+    {
+        
+        $result = $this->modelH5Game->deleteInfo($where);
+        
+        $result && action_log('删除', '游戏信息删除' . '，where：' . http_build_query($where));
+        
+        return $result ? [RESULT_SUCCESS, '删除成功'] : [RESULT_ERROR, $this->modelH5Game->getError()];
     }
     
     
