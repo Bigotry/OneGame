@@ -1,0 +1,55 @@
+<!-- 游戏中心样式 -->
+<link href="__STATIC__/module/index/platform/css/h5game.css" type="text/css" rel="stylesheet">
+
+<div class="w1240">
+	<!-- 游戏列表 -->
+	<div class="games">
+		<!--<div class="til">游戏列表</div>-->
+                
+		<div class="games_box">
+			<div class="til_game">
+                                <a href="{:url('h5/index')}" {if condition="input('type') == ''"}  class="cur" {/if}  height="1" id="first-hei">全部游戏</a>
+                                <a href="{:url('h5/index',array('type' => '角色扮演'))}"  {if condition="input('type') == '角色扮演'"}  class="cur" {/if}  height="1" id="first-hei">角色扮演</a>
+                                <a href="{:url('h5/index',array('type' => '动作格斗'))}" {if condition="input('type') == '动作格斗'"}  class="cur" {/if} height="1" id="first-hei">动作格斗</a>
+                                <a href="{:url('h5/index',array('type' => '梦幻回合'))}" {if condition="input('type') == '梦幻回合'"}  class="cur" {/if} height="1" id="first-hei">梦幻回合</a>
+                                <a href="{:url('h5/index',array('type' => '仙侠即时'))}" {if condition="input('type') == '仙侠即时'"}  class="cur" {/if} height="1" id="first-hei">仙侠即时</a>
+                                <a href="{:url('h5/index',array('type' => '经营策略'))}" {if condition="input('type') == '经营策略'"}  class="cur" {/if} height="1" id="first-hei">经营策略</a>
+                                <a href="{:url('h5/index',array('type' => '卡牌三国'))}" {if condition="input('type') == '卡牌三国'"}  class="cur" {/if} height="1" id="first-hei">卡牌三国</a>
+                                <a href="{:url('h5/index',array('type' => '魔幻动漫'))}" {if condition="input('type') == '魔幻动漫'"}  class="cur" {/if} height="1" id="first-hei">魔幻动漫</a>
+                                <a href="{:url('h5/index',array('type' => '休闲竞技'))}" {if condition="input('type') == '休闲竞技'"}  class="cur" {/if} height="1" id="first-hei">休闲竞技</a>
+                                <a href="{:url('h5/index',array('type' => '放置挂机'))}" {if condition="input('type') == '放置挂机'"}  class="cur" {/if} height="1" id="first-hei">放置挂机</a>
+                                <a href="{:url('h5/index',array('type' => '未归类'))}"  {if condition="input('type') == '未归类'"}  class="cur" {/if} height="1" id="first-hei">未归类</a>
+			</div>
+
+                    {empty name="game_list_data['items']"}
+                        <div style="text-align: center; font-size: 20px; padding: 30px;">
+                            aOh! 暂时还没有数据~
+                        </div>
+                    {else /}
+                        <ul class="game_eg" style="display: block;">
+                            {volist name="game_list_data['items']" id="v" key="k"}
+                                <li>
+                                    <span class="game_pic">
+                                        <img src="{$v.iconUrl}" alt="{$v.name}">
+                                    </span>
+                                    <h4>{$v.name}</h4>
+                                    <p>{$v.brief}</p>
+                                    <a href="{:url('h5/play',array('gid' => $v.id))}" class="btn_game">点击开玩</a>
+                                </li>
+                            {/volist}
+                        </ul>
+                    {/empty}
+                    
+            <div class="clear"></div>
+                </div>
+<table style="margin:0 auto;">
+    <td>
+        <ul class="pagination">
+            <li><a href="{$prev_url}">上一页</a></li>
+            <li><a href="{$next_url}">下一页</a></li>
+        </ul>
+    </td>
+</table>
+                
+	</div>
+</div>

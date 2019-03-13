@@ -33,48 +33,6 @@ class Game extends IndexBase
     }
     
     /**
-     * 获取手游首页数据
-     */
-    public function getH5GameData($param = [])
-    {
-        
-        $data['game_recommend_list']     =   $this->getGameRecommend();
-        
-        $data['game_hot_list']           =   $this->getGameHot();
-        
-        $data['game_all_list']           =   $this->getGameAll();
-        
-        return $data;
-    }
-    
-    /**
-     * 手游推荐列表
-     */
-    public function getGameRecommend()
-    {
-        
-        return $this->modelH5Game->getList(['is_recommend' => 1], true, 'sort desc', false, [], null, 6);
-    }
-    
-    /**
-     * 手游热门列表
-     */
-    public function getGameHot()
-    {
-        
-        return $this->modelH5Game->getList(['is_hot' => 1], true, 'sort desc', false, [], null, 6);
-    }
-    
-    /**
-     * 手游全部列表
-     */
-    public function getGameAll()
-    {
-        
-        return $this->modelH5Game->getList([], true, 'sort desc', false);
-    }
-
-    /**
      * 游戏排行榜
      */
     public function getGameTop()

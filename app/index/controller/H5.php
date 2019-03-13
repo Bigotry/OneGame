@@ -23,10 +23,36 @@ class H5 extends IndexBase
         
         set_url();
         
-        $this->setTitle('H5手游');
+        $this->setTitle('OneGame - H5手游');
         
-        $this->assign('data', $this->logicGame->getH5GameData($this->param));
+        $data = $this->logicH5->gameList($this->param);
         
-        return $this->fetch('index');
+        if (empty($data['game_data']['items']) && $this->param['page'] != 1) {
+            
+            $type = empty($this->param['type']) ? '' : $this->param['type'];
+            
+            return $this->redirect('h5/index', ['page' => $this->param['page']-1, 'type' => $type]);
+        }
+        
+        $this->assign('game_list_data', $data['game_data']);
+        $this->assign('prev_url', $data['prev_url']);
+        $this->assign('next_url', $data['next_url']);
+        
+        return $this->fetch('jiule_index');
+    }
+    
+    // 开始游戏
+    public function play($gid = 0)
+    {
+        
+        set_url();
+        
+        !is_login() && $this->redirect('login/login');
+        
+        $this->setTitle('OneGame - H5手游');
+        
+        $this->assign('play_url', $this->logicH5->play($gid));
+        
+        return $this->fetch('jiule_play');
     }
 }

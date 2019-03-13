@@ -44,7 +44,6 @@ class Game extends AdminBase
     protected $scene = [
         
         'edit'      =>  ['game_name','game_code','game_currency_ratio','sort'],
-        'h5_edit'   =>  ['game_name','sort'],
     ];
     
 }

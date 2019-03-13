@@ -1,0 +1,36 @@
+.game_box{background: url(../images/bg.png) no-repeat center top;height: 872px;overflow: hidden;min-width: 1200px;width: 100%;}
+.game_content{
+    position: relative;
+    margin: 50px auto 0;
+    width: 440px;
+    border: 5px solid #fff;
+    border-radius: 5px;
+    height: 800px;
+    background: #999;
+}
+@keyframes shake {
+    0% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+    39% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+    40% {
+        transform: scale(1.1) rotate(10deg);
+        -webkit-transform: scale(1.1) rotate(10deg);
+    }
+    60% {
+        transform: scale(1.1) rotate(0deg);
+        -webkit-transform: scale(1.1) rotate(0deg);
+    }
+    80% {
+        transform: scale(1.1) rotate(-10deg);
+        -webkit-transform: scale(1.1) rotate(-10deg);
+    }
+    100% {
+        transform: scale(1.1) rotate(0deg);
+        -webkit-transform: scale(1.1) rotate(0deg);
+    }
+}

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2019-03-12 19:18:46
+Date: 2019-03-13 18:54:54
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,7 +31,7 @@ CREATE TABLE `ob_action_log` (
   `update_time` int(11) unsigned NOT NULL DEFAULT '0',
   `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '执行行为的时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=25477 DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED COMMENT='行为日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=25480 DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED COMMENT='行为日志表';
 
 -- ----------------------------
 -- Records of ob_action_log
@@ -185,7 +185,7 @@ CREATE TABLE `ob_article_category` (
   `icon` char(20) NOT NULL DEFAULT '' COMMENT '分类图标',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='分类表';
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='分类表';
 
 -- ----------------------------
 -- Records of ob_article_category
@@ -323,8 +323,8 @@ INSERT INTO `ob_config` VALUES ('69', 'auth_group_id_employee', '0', '公会员�
 INSERT INTO `ob_config` VALUES ('70', 'auth_group_id_finance', '0', '公司财务权限组ID', '5', '', '此数值修改后会发生无法想象的灾难。', '1519899036', '1528934088', '1', '3', '0');
 INSERT INTO `ob_config` VALUES ('71', 'auth_group_id_channel', '0', '渠道合作方权限组ID', '5', '', '此数值修改后会发生无法想象的灾难。', '1519899057', '1528934088', '1', '2', '0');
 INSERT INTO `ob_config` VALUES ('72', 'web_site_logo', '5', '网站LOGO', '1', '', '', '1519959965', '1552106301', '1', '152', '120');
-INSERT INTO `ob_config` VALUES ('73', 'service_qq', '1', '客服QQ', '6', '', '', '1520050246', '1545992762', '1', '3162875', '0');
-INSERT INTO `ob_config` VALUES ('74', 'service_business_qq', '1', '商务QQ', '6', '', '', '1520050307', '1528931777', '1', '2411064605', '0');
+INSERT INTO `ob_config` VALUES ('73', 'service_qq', '1', '客服QQ', '6', '', '', '1520050246', '1552469091', '1', '3162875', '0');
+INSERT INTO `ob_config` VALUES ('74', 'service_business_qq', '1', '商务QQ', '6', '', '', '1520050307', '1528931777', '1', '3162875', '0');
 INSERT INTO `ob_config` VALUES ('75', 'site_icp', '1', '网站备案号', '1', '', '', '1520069355', '1552106301', '1', '鄂ICP备XXXXXX号', '0');
 INSERT INTO `ob_config` VALUES ('76', 'site_copyright', '1', '网站版权', '1', '', '', '1520069417', '1552106301', '1', 'Copyright  2018  OneGame 版权所有', '0');
 INSERT INTO `ob_config` VALUES ('77', 'site_licence', '5', '网络文化经营许可证', '1', '', '网络文化经营许可证', '1520069756', '1552106301', '1', '210', '121');
@@ -332,7 +332,7 @@ INSERT INTO `ob_config` VALUES ('78', 'site_qrcode', '5', '网站浮动二维码
 INSERT INTO `ob_config` VALUES ('82', 'site_culture', '1', '网络文化经营许可证', '1', '', '', '1525244774', '1552106301', '1', '鄂网文 [2017] XXXXX-XXX号', '0');
 INSERT INTO `ob_config` VALUES ('79', 'web_site_name', '1', '网站名称', '1', '', '', '1521601709', '1552106301', '1', 'OneGame', '0');
 INSERT INTO `ob_config` VALUES ('80', 'auth_group_id_operation', '0', '公司运营权限组ID', '5', '', '', '1524129592', '1528934088', '1', '6', '0');
-INSERT INTO `ob_config` VALUES ('81', 'service_email', '1', '投诉邮箱', '6', '', '', '1524306415', '1545992762', '1', 'service@xxxxx.com', '0');
+INSERT INTO `ob_config` VALUES ('81', 'service_email', '1', '投诉邮箱', '6', '', '', '1524306415', '1552469091', '1', 'service@xxxxx.com', '0');
 INSERT INTO `ob_config` VALUES ('83', 'site_telecom', '1', '增值电信业务许可证', '1', '', '', '1525244802', '1552106301', '1', '鄂B2-XXXXXXXX', '0');
 INSERT INTO `ob_config` VALUES ('84', 'pay_min_money', '0', '最小支付金额', '5', '', '', '1526104777', '1528934088', '1', '10', '0');
 
@@ -349,7 +349,7 @@ CREATE TABLE `ob_driver` (
   `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '安装时间',
   `update_time` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='插件表';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='插件表';
 
 -- ----------------------------
 -- Records of ob_driver
@@ -358,6 +358,7 @@ INSERT INTO `ob_driver` VALUES ('1', 'Webgame', 'Lhsc', 'a:2:{s:9:\"login_key\";
 INSERT INTO `ob_driver` VALUES ('2', 'Pay', 'Alipay', 'a:7:{s:14:\"alipay_account\";s:8:\"xxxxxxxx\";s:14:\"alipay_partner\";s:12:\"xxxxxxxxxxxx\";s:10:\"alipay_key\";s:0:\"\";s:12:\"alipay_appid\";s:9:\"xxxxxxxxx\";s:20:\"alipay_rsaPrivateKey\";s:0:\"\";s:25:\"alipay_alipayrsaPublicKey\";s:0:\"\";s:4:\"icon\";s:8:\"pay_ico2\";}', '1', '1546089520', '1546090424');
 INSERT INTO `ob_driver` VALUES ('3', 'Pay', 'Wxpay', 'a:5:{s:5:\"appid\";s:12:\"xxxxxxxxxxxx\";s:9:\"appsecret\";s:11:\"xxxxxxxxxxx\";s:9:\"partnerid\";s:12:\"xxxxxxxxxxxx\";s:10:\"partnerkey\";s:10:\"xxxxxxxxxx\";s:4:\"icon\";s:8:\"pay_ico1\";}', '1', '1546089540', '1546090435');
 INSERT INTO `ob_driver` VALUES ('4', 'Pay', 'Yeepay', 'a:3:{s:12:\"yeepay_merid\";s:11:\"xxxxxxxxxxx\";s:10:\"yeepay_key\";s:10:\"xxxxxxxxxx\";s:4:\"icon\";s:8:\"pay_ico3\";}', '1', '1546089550', '1546090440');
+INSERT INTO `ob_driver` VALUES ('5', 'H5game', 'Jiule', 'a:2:{s:10:\"channel_id\";s:4:\"1336\";s:10:\"secret_key\";s:17:\"jjjjfffffdddddsss\";}', '1', '1552471657', '1552471657');
 
 -- ----------------------------
 -- Table structure for `ob_exe_log`
@@ -405,35 +406,6 @@ CREATE TABLE `ob_file` (
 -- Records of ob_file
 -- ----------------------------
 INSERT INTO `ob_file` VALUES ('4', 'b7e908de1642224e0c55db6d96f26187.xlsx', '20180510/b7e908de1642224e0c55db6d96f26187.xlsx', 'upload/file/20180510/b7e908de1642224e0c55db6d96f26187.xlsx', 'dedfe49b5d2cbcc990c47c2b1175f7d37389dbf8', '1525948151', '1525948151', '1');
-
--- ----------------------------
--- Table structure for `ob_h5_game`
--- ----------------------------
-DROP TABLE IF EXISTS `ob_h5_game`;
-CREATE TABLE `ob_h5_game` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `game_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '游戏名称',
-  `game_intro` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '游戏简介',
-  `game_cover` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '游戏封面',
-  `game_head` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '游戏头像图片',
-  `is_recommend` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否推荐',
-  `is_hot` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否热门',
-  `sort` int(10) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态',
-  `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
-  `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='手游模块游戏表';
-
--- ----------------------------
--- Records of ob_h5_game
--- ----------------------------
-INSERT INTO `ob_h5_game` VALUES ('9', '我在三国有座城', '策略回合，群战决胜', '211', '212', '1', '1', '0', '1', '1552385510', '1552385510');
-INSERT INTO `ob_h5_game` VALUES ('10', '蓝月超变', '至尊江湖，热血沙场', '213', '219', '1', '1', '0', '1', '1552386260', '1552385822');
-INSERT INTO `ob_h5_game` VALUES ('11', '热血传奇', '征战玛法，问鼎传奇', '215', '214', '1', '1', '0', '1', '1552386066', '1552386066');
-INSERT INTO `ob_h5_game` VALUES ('12', '龙城战歌', '热血至尊，王者战歌', '216', '220', '1', '1', '0', '1', '1552386288', '1552386163');
-INSERT INTO `ob_h5_game` VALUES ('13', '龙族霸业', '重塑玛法，缔造不朽', '218', '217', '1', '1', '0', '1', '1552386223', '1552386223');
-INSERT INTO `ob_h5_game` VALUES ('14', '侠客令', '九阴真经，再现江湖', '221', '222', '1', '1', '0', '1', '1552386545', '1552386376');
 
 -- ----------------------------
 -- Table structure for `ob_hook`
@@ -498,12 +470,14 @@ CREATE TABLE `ob_member` (
   PRIMARY KEY (`id`),
   KEY `index_username` (`username`),
   KEY `index_qqopenid` (`qqopenid`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='会员表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='会员表';
 
 -- ----------------------------
 -- Records of ob_member
 -- ----------------------------
-INSERT INTO `ob_member` VALUES ('1', 'admin', 'admin', '7f41a2ad81a36b60bf3d59ad4e247435', '1', '3162875@qq.com', '18555550710', '1552383956', '0', '1', '1', '0', '1', '127.0.0.1', '0', '');
+INSERT INTO `ob_member` VALUES ('1', 'admin', 'admin', '7f41a2ad81a36b60bf3d59ad4e247435', '1', '3162875@qq.com', '18555550710', '1552469236', '0', '1', '1', '0', '1', '127.0.0.1', '0', '');
+INSERT INTO `ob_member` VALUES ('2', 'qq123456', 'qq123456', '7f41a2ad81a36b60bf3d59ad4e247435', '1', '', '', '1552466207', '1552466207', '1', '1', '0', '0', '127.0.0.1', '0', '');
+INSERT INTO `ob_member` VALUES ('3', 'www11111', 'www11111', '7f41a2ad81a36b60bf3d59ad4e247435', '1', '', '', '1552469013', '1552466393', '1', '1', '0', '0', '127.0.0.1', '0', '');
 
 -- ----------------------------
 -- Table structure for `ob_member_extend`
@@ -674,8 +648,6 @@ INSERT INTO `ob_menu` VALUES ('262', '区服明细', '233', '0', 'admin', 'analy
 INSERT INTO `ob_menu` VALUES ('263', '导出公会', '208', '0', 'admin', 'conference/exportconferencelist', '1', 'fa-download', '1', '1529141811', '1529141811');
 INSERT INTO `ob_menu` VALUES ('264', '公会结算', '235', '20', 'admin', 'accounts/conferenceaccounts', '0', 'fa-credit-card', '1', '1529567976', '1529567976');
 INSERT INTO `ob_menu` VALUES ('265', '公会结算导出', '264', '0', 'admin', 'accounts/conferenceaccountsexport', '1', 'fa-download', '1', '1530689307', '1530689307');
-INSERT INTO `ob_menu` VALUES ('266', '手游列表', '203', '12', 'admin', 'game/h5gamelist', '0', 'fa-th', '1', '1552384533', '1552384526');
-INSERT INTO `ob_menu` VALUES ('267', '手游编辑', '266', '0', 'admin', 'game/h5gameedit', '1', 'fa-edit', '1', '1552385134', '1552385134');
 
 -- ----------------------------
 -- Table structure for `ob_picture`

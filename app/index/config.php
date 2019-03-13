@@ -33,7 +33,9 @@ return [
         'website/articledetails',
         'play/index',
         'center/pay',
-        'center/index'
+        'center/index',
+        'h5/index',
+        'h5/play',
     ],
     
     // 单页文章配置

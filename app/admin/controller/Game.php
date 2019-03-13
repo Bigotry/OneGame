@@ -60,31 +60,7 @@ class Game extends AdminBase
         
         return $this->fetch('game_list');
     }
-    
-    /**
-     * 手游列表
-     */
-    public function h5GameList()
-    {
-        
-        $this->assign('list', $this->logicGame->getH5GameList());
-        
-        return $this->fetch('h5_game_list');
-    }
-    
-    /**
-     * 手游编辑
-     */
-    public function h5GameEdit()
-    {
-        
-        IS_POST && $this->jump($this->logicGame->h5GameEdit($this->param));
-        
-        !empty($this->param['id']) && $this->assign('info', $this->logicGame->getH5GameInfo(['id' => $this->param['id']]));
-        
-        return $this->fetch('h5_game_edit');
-    }
-    
+
     /**
      * 游戏编辑
      */
@@ -107,15 +83,6 @@ class Game extends AdminBase
     {
         
         $this->jump($this->logicGame->gameDel(['id' => $id]));
-    }
-    
-    /**
-     * 手游删除
-     */
-    public function h5GameDel($id = 0)
-    {
-        
-        $this->jump($this->logicGame->h5GameDel(['id' => $id]));
     }
     
     /**

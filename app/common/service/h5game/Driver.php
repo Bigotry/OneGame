@@ -9,12 +9,39 @@
 // | Repository | https://gitee.com/Bigotry/OneBase                      |
 // +---------------------------------------------------------------------+
 
-namespace app\common\model;
+namespace app\common\service\h5game;
+
+use app\common\service\BaseInterface;
 
 /**
- * 手游模型
+ * H5手游服务驱动
  */
-class H5Game extends ModelBase
+interface Driver extends BaseInterface
 {
-
+    
+    /**
+     * 获取驱动参数
+     */
+    public function getDriverParam();
+    
+    /**
+     * 获取基本信息
+     */
+    public function driverInfo();
+    
+    /**
+     * 配置信息
+     */
+    public function config();
+    
+    /**
+     * 手游开始
+     */
+    public function play($gid);
+    
+    /**
+     * 手游列表
+     */
+    public function gameList($param);
+    
 }

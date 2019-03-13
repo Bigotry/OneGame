@@ -70,8 +70,9 @@
 
 /*游戏列表*/
 .games{margin-top: 13px;}
-.games_box{width:100%; padding-bottom: 52px; background:#fff; margin-top:10px; position:relative;}
-.til_game{height:31px; border:1px solid #f26522; border-radius:5px; overflow:hidden; position:absolute; top:-48px; right:0;}
+/*.games_box{width:100%; padding-bottom: 52px; background:#fff; margin-top:10px; position:relative;}*/
+.games_box{width:100%; padding-bottom: 52px; background:#fff; margin-top:80px; position:relative;}
+.til_game{height:31px; border:1px solid #f26522; border-radius:5px; overflow:hidden; position:absolute; top:-48px; }
 .til_game a{width:95px; height:31px; font-size:18px; line-height:31px; text-align:center; color:#8f8f8f; float:left; display:block;}
 .til_game a+a{border-left:1px solid #f26522;}
 .til_game a.cur{color:#fff; background:#f26522;}
