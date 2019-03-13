@@ -25,7 +25,7 @@
 
 ![OneGame-首页](https://images.gitee.com/uploads/images/2019/0309/133328_3c500ad9_917834.png "首页.png")
 
-![OneGame-手游](https://images.gitee.com/uploads/images/2019/0312/192700_b68321f2_917834.png "手游中心.png")
+![OneGame-手游](https://images.gitee.com/uploads/images/2019/0313/191858_4e10351c_917834.png "手游列表.png")
 
 ![OneGame-礼包](https://images.gitee.com/uploads/images/2019/0309/133343_bc041f02_917834.png "礼包.png")
 
