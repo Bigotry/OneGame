@@ -27,11 +27,13 @@ class H5 extends IndexBase
         
         $data = $this->logicH5->gameList($this->param);
         
-        if (empty($data['game_data']['items']) && $this->param['page'] != 1) {
+        $page = empty($this->param['page']) ? 1 : $this->param['page'];
+        
+        if (empty($data['game_data']['items']) && $page != 1) {
             
             $type = empty($this->param['type']) ? '' : $this->param['type'];
             
-            return $this->redirect('h5/index', ['page' => $this->param['page']-1, 'type' => $type]);
+            return $this->redirect('h5/index', ['page' => $page-1, 'type' => $type]);
         }
         
         $this->assign('game_list_data', $data['game_data']);
