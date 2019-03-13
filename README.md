@@ -14,7 +14,7 @@
 3. 配置访问域名与URL重写，配置教程可参考OneBase开发手册。
 4. 安装完成即可访问，后台默认账号admin，密码111111。若需接入游戏请自行联系游戏厂商。
 
-[在线演示](http://onegame.yuan-jian.com)
+[在线演示](http://onegame.yuan-jian.com)  http://onegame.yuan-jian.com
 
 
 #### 效果图
