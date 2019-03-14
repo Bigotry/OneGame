@@ -90,3 +90,20 @@
 .btn_game_mob{border-color:#3ac344; color: #3ac344;}
 .btn_game:hover{background:#f26522; color:#fff;}
 .btn_game_mob:hover{background:#3ac344;}
+
+.subscript{
+  color: #fff;
+  height: 20px;
+  width: 50px;
+  position: absolute;
+  right: -15px;
+  text-align: center;
+  font-family: "黑体";
+  background-color: #f26522;
+  -moz-transform:rotate(45deg);
+  -webkit-transform:rotate(45deg);
+  -o-transform:rotate(45deg);
+  -ms-transform:rotate(45deg);
+  transform:rotate(45deg);
+  margin-top: -80px;
+}

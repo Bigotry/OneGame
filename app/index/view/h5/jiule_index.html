@@ -31,10 +31,24 @@
                                 <li>
                                     <span class="game_pic">
                                         <img src="{$v.iconUrl}" alt="{$v.name}">
+                                        
+                                        <div class="subscript">
+                                            {eq name="v['dtype']" value="1"}
+                                                安卓
+                                                {else/}
+                                                H5
+                                            {/eq}
+                                        </div>
+                                        
                                     </span>
                                     <h4>{$v.name}</h4>
                                     <p>{$v.brief}</p>
-                                    <a href="{:url('h5/play',array('gid' => $v.id))}" class="btn_game">点击开玩</a>
+                                    
+                                        {eq name="v['dtype']" value="1"}
+                                            <a href="{$v.downloadUrl}" class="btn_game">安卓下载</a>
+                                            {else/}
+                                            <a href="{:url('h5/play',array('gid' => $v.id))}" class="btn_game">点击开玩</a>
+                                        {/eq}
                                 </li>
                             {/volist}
                         </ul>
@@ -46,6 +60,7 @@
     <td>
         <ul class="pagination">
             <li><a href="{$prev_url}">上一页</a></li>
+            {$page_number}
             <li><a href="{$next_url}">下一页</a></li>
         </ul>
     </td>

@@ -39,6 +39,7 @@ class H5 extends IndexBase
         $this->assign('game_list_data', $data['game_data']);
         $this->assign('prev_url', $data['prev_url']);
         $this->assign('next_url', $data['next_url']);
+        $this->assign('page_number', $data['page_number']);
         
         return $this->fetch('jiule_index');
     }

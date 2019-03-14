@@ -99,7 +99,7 @@ class Jiule extends H5game implements Driver
             }
         }
         
-        $game_list_data = exec_get_request("http://h5.zyttx.com/api/applistV2?type=1&page=$page&pagesize=30&starttime=0&endtime=0&categoryName=".$type);
+        $game_list_data = exec_get_request("http://h5.zyttx.com/api/applistV2?type=0&page=$page&pagesize=30&starttime=0&endtime=0&categoryName=".$type);
         
         $data['game_data'] = json_decode($game_list_data, true);
         
@@ -115,6 +115,17 @@ class Jiule extends H5game implements Driver
         
         $data['prev_url'] = url('h5/index', ['page' => $page-1, 'type' => $type]);
         $data['next_url'] = url('h5/index', ['page' => $page+1, 'type' => $type]);
+        
+        $page_number = '';
+        
+        for ($i=0; $i<$data['game_data']['totalPage']; $i++)
+        {
+            $u = url('h5/index', ['page' => $i+1, 'type' => $type]);
+            
+            $page_number .= "<li><a href='".$u."'>".($i+1)."</a></li>";
+        }
+        
+        $data['page_number'] = $page_number;
         
         return $data;
     }
