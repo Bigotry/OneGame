@@ -51,8 +51,6 @@ class Mgame extends IndexBase
     public function download($id = 0)
     {
         
-        set_url();
-        
         !is_login() && $this->redirect('login/login');
         
         $this->logicMgame->download($id);
