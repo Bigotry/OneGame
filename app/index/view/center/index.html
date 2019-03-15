@@ -21,32 +21,63 @@
                             </div>
                         {else /}
                             {volist name="list" id="v"}
-                                <li>
-                                    <a href="/g/{$v['game_code']}" target="_blank"  style="float: left;">
-                                        <img src="{$v.game_cover|get_picture_url}" alt="{$v.game_name}"/>
-                                    </a>
+                                {eq name="v['type']" value="1"}
                                     
-                                    <div class="info">
-                                        <p class="i1">
-                                            <a href="/g/{$v['game_code']}" target="_blank">{$v['game_name']}</a><em>{$v.category_name}</em>
-                                        </p>
-                                        <p class="i2">
-                                            最近玩过：
-                                            <a href="{:url('play/index', array('game_code' => $v['game_code'], 'sid' => $v['cp_server_id']))}" target="_blank">{$v['server_name']}</a>
-                                        </p>
-                                        <div class="i3">
-                                            <a href="/g/{$v['game_code']}" target="_blank" class="btn-hp">官网</a>
-                                            <!--<a href="#" target="_blank" class="btn-bbs">论坛</a>-->
-                                            <a href="{:url('gift/index', array('gid' => $v.game_id))}" class="btn-lb">礼包</a>
-                                        </div>
-                                    </div>
-                                    <a href="{:url('play/index', array('game_code' => $v['game_code'], 'sid' => $v['cp_server_id']))}" target="_blank" class="btn-go">
-                                        <p class="start_game_p">
-                                            开始游戏
-                                        </p>
-                                        <!--<em>人气新服</em>-->
-                                    </a>
-                                </li>
+                                        <li>
+                                            <a href="{:url('Mgame/play', array('gid' => $v['game_id']))}" target="_blank"  style="float: left;">
+                                                <img src="{$v.game_head}" alt="{$v.game_name}" style="width: 100px; height: 100px;"/>
+                                            </a>
+
+                                            <div class="info">
+                                                <p class="i1">
+                                                    <a href="{:url('Mgame/play', array('gid' => $v['game_id']))}" target="_blank">{$v['game_name']}</a><em>{$v.category_name}</em>
+                                                </p>
+                                                <p class="i2">
+                                                    {$v.game_intro}
+                                                </p>
+                                                
+                                                手游
+                                                <!--<div class="i3">-->
+                                                    <!--<a href="{:url('Mgame/play', array('gid' => $v['game_id']))}" target="_blank" class="btn-hp">手游</a>-->
+                                                    <!--<a href="{:url('gift/index', array('gid' => $v.game_id))}" class="btn-lb">礼包</a>-->
+                                                <!--</div>-->
+                                            </div>
+                                            <a href="{:url('Mgame/play', array('gid' => $v['game_id']))}" target="_blank" target="_blank" class="btn-go">
+                                                <p class="start_game_p">
+                                                    开始游戏
+                                                </p>
+                                            </a>
+                                        </li>
+                                    
+                                    {else/}
+                                        <li>
+                                            <a href="/g/{$v['game_code']}" target="_blank"  style="float: left;">
+                                                <img src="{$v.game_head|get_picture_url}" alt="{$v.game_name}" style="width: 100px; height: 100px;"/>
+                                            </a>
+
+                                            <div class="info">
+                                                <p class="i1">
+                                                    <a href="/g/{$v['game_code']}" target="_blank">{$v['game_name']}</a><em>{$v.category_name}</em>
+                                                </p>
+                                                <p class="i2">
+                                                    最近玩过：
+                                                    <a href="{:url('play/index', array('game_code' => $v['game_code'], 'sid' => $v['cp_server_id']))}" target="_blank">{$v['server_name']}</a>
+                                                </p>
+                                                <div class="i3">
+                                                    <a href="/g/{$v['game_code']}" target="_blank" class="btn-hp">官网</a>
+                                                    <!--<a href="#" target="_blank" class="btn-bbs">论坛</a>-->
+                                                    <a href="{:url('gift/index', array('gid' => $v.game_id))}" class="btn-lb">礼包</a>
+                                                </div>
+                                            </div>
+                                            <a href="{:url('play/index', array('game_code' => $v['game_code'], 'sid' => $v['cp_server_id']))}" target="_blank" class="btn-go">
+                                                <p class="start_game_p">
+                                                    开始游戏
+                                                </p>
+                                                <!--<em>人气新服</em>-->
+                                            </a>
+                                        </li>
+                                {/eq}
+
                             {/volist}
                         {/empty}
                     </ul>

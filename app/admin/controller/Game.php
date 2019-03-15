@@ -60,6 +60,17 @@ class Game extends AdminBase
         
         return $this->fetch('game_list');
     }
+    
+    /**
+     * 手游列表
+     */
+    public function mgameList()
+    {
+        
+        $this->assign('list', $this->logicGame->getMgameList());
+        
+        return $this->fetch('mgame_list');
+    }
 
     /**
      * 游戏编辑

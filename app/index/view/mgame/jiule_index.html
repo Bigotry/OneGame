@@ -1,0 +1,58 @@
+<!-- 游戏中心样式 -->
+<link href="__STATIC__/module/index/platform/css/h5game.css" type="text/css" rel="stylesheet">
+
+<div class="w1240">
+	<!-- 游戏列表 -->
+	<div class="games">
+		<!--<div class="til">游戏列表</div>-->
+                
+		<div class="games_box">
+			<div class="til_game">
+                            
+                            <a {empty name=":input('cid')"} class="cur" {/empty} href="{:url('mgame/index')}">全部游戏</a>
+
+                            {volist name="game_category" id="v"}
+                                <a {eq name=":input('cid')" value="$v.id"} class="cur" {/eq} href="{:url('mgame/index', array('cid' => $v.id))}">{$v.category_name}</a>
+                            {/volist}
+                            
+			</div>
+
+                    {empty name="data"}
+                        <div style="text-align: center; font-size: 20px; padding: 30px;">
+                            aOh! 暂时还没有数据~
+                        </div>
+                    {else /}
+                        <ul class="game_eg" style="display: block;">
+                            {volist name="data" id="v" key="k"}
+                                <li>
+                                    <span class="game_pic">
+                                        <img src="{$v.game_head}" alt="{$v.game_name}">
+                                        
+                                        <div class="subscript">
+                                            {eq name="v['game_type']" value="1"}
+                                                安卓
+                                                {else/}
+                                                H5
+                                            {/eq}
+                                        </div>
+                                        
+                                    </span>
+                                    <h4 title="{$v.game_name}">{$v.game_name}</h4>
+                                    <p title="{$v.game_intro}">{$v.game_intro}</p>
+                                    
+                                        {eq name="v['game_type']" value="1"}
+                                            <a href="{:url('mgame/download',array('id' => $v.id))}" class="btn_game">安卓下载</a>
+                                            {else/}
+                                            <a href="{:url('mgame/play',array('gid' => $v.game_id))}" class="btn_game">点击开玩</a>
+                                        {/eq}
+                                </li>
+                            {/volist}
+                        </ul>
+                    {/empty}
+                    
+                    <div class="clear"></div>
+                </div>
+                <table style="margin:0 auto;"> <td> {$data->render()} </td> </table>
+                
+	</div>
+</div>

@@ -53,7 +53,7 @@ background:-moz-linear-gradient(transparent,#f7f7f7);background:linear-gradient(
 .user_txt em{color:#f26522;}
 .user_btns a{width:43px; height:17px; float:left; display:block; margin:5px 10px 0 0; text-align:center; line-height:17px; color:#fff; 
 background:#f26522; border-radius:2px;}
-.user_btns a:hover{background:#009aff;}
+.user_btns a:hover{background:#ff7318;}
 .user_vip{width:260px; height:18px; background:url(../images/login/icon.png) no-repeat; background-position:0 -169px; margin-top:10px; position:relative;}
 .vip{width:48px; height:14px; background:url(../images/login/icon.png) no-repeat; background-position:0 -439px; position:absolute; top:2px; left:2px;}
 .vip1{background-position:0 -421px;}
@@ -79,7 +79,7 @@ background:#f26522; border-radius:2px;}
 .lately ul li img{width:14px; height:14px; border:1px solid #f1d6cd; margin-top:4px;}
 .lately ul li a{width:70px; margin:0 5px; overflow:hidden; color:#6c6c6c;height: 22px;}
 .lately ul li a.s_btn{width:67px; height:22px; display:block; background:#f26522; border-radius:2px; text-align:center; line-height:22px; color:#fff; margin-left:5px;}
-.lately ul li a.s_btn:hover{background:#009aff;}
+.lately ul li a.s_btn:hover{background:#ff7318;}
 
 
 /*独代大作*/

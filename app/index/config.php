@@ -34,8 +34,8 @@ return [
         'play/index',
         'center/pay',
         'center/index',
-        'h5/index',
-        'h5/play',
+        'mgame/index',
+        'mgame/play',
     ],
     
     // 单页文章配置

@@ -16,6 +16,17 @@
             
           <div class="col-md-6">
             <div class="form-group">
+              <label>游戏类型</label>
+              <select name="type" class="form-control" onchange="selsctType(this)">
+                    <option value="0">页游</option>
+                    <option value="1">手游</option>
+                </select>
+            </div>
+          </div>
+            
+            
+          <div class="col-md-6">
+            <div class="form-group">
               <label>礼包名称</label>
               <input class="form-control" name="gift_name" placeholder="请输入礼包名称" value="{$info['gift_name']|default=''}" type="text">
             </div>
@@ -45,3 +56,8 @@
       </div>
 
 </form>
+
+<script type="text/javascript">
+    
+    ob.setValue("type", {$info.type|default=0});
+</script>

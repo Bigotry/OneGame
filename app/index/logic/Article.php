@@ -52,7 +52,8 @@ class Article extends IndexBase
     public function getArticleList($param = [])
     {
         
-        $where[DATA_STATUS_NAME]      = ['neq', DATA_DELETE];
+        $where[DATA_STATUS_NAME]        = ['neq', DATA_DELETE];
+        $where['type']                  = 0;
         
         !empty($param['cid']) && $where['category_id'] = $param['cid'];
         

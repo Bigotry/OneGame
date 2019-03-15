@@ -33,6 +33,19 @@ class Analyze extends AdminBase
     }
     
     /**
+     * 游戏注册记录
+     */
+    public function mregisterList()
+    {
+        
+        $this->assign('list', $this->logicAnalyze->getMregisterList($this->param));
+        
+        $this->assign('game_list', $this->logicGame->getMgameList([], 'g.*,c.category_name', 'g.sort desc', false));
+
+        return $this->fetch('m_register_list');
+    }
+    
+    /**
      * 每日汇总记录
      */
     public function everydayList()
@@ -52,6 +65,25 @@ class Analyze extends AdminBase
     }
     
     /**
+     * 每日汇总记录
+     */
+    public function meverydayList()
+    {
+        
+        $data = $this->logicAnalyze->getMeverydayList($this->param);
+        
+        if (is_string($data)) {
+            
+            $this->error($data);
+        } else {
+            
+            $this->assign('list', $data);
+
+            return $this->fetch('m_everyday_list');
+        }
+    }
+    
+    /**
      * 游戏汇总
      */
     public function gameList()
@@ -60,6 +92,17 @@ class Analyze extends AdminBase
         $this->assign('list', $this->logicAnalyze->getGameList($this->param));
         
         return $this->fetch('game_list');
+    }
+    
+    /**
+     * 游戏汇总
+     */
+    public function mgameList()
+    {
+        
+        $this->assign('list', $this->logicAnalyze->getMgameList($this->param));
+        
+        return $this->fetch('m_game_list');
     }
     
     /**
@@ -85,6 +128,17 @@ class Analyze extends AdminBase
     }
     
     /**
+     * 公会汇总
+     */
+    public function mconferenceList()
+    {
+        
+        $this->assign('list', $this->logicAnalyze->getMconferenceList($this->param));
+        
+        return $this->fetch('m_conference_list');
+    }
+    
+    /**
      * 员工统计
      */
     public function employeeList()
@@ -93,6 +147,17 @@ class Analyze extends AdminBase
         $this->assign('list', $this->logicAnalyze->getEmployeeList($this->param));
         
         return $this->fetch('employee_list');
+    }
+    
+    /**
+     * 员工统计
+     */
+    public function memployeeList()
+    {
+        
+        $this->assign('list', $this->logicAnalyze->getMemployeeList($this->param));
+        
+        return $this->fetch('m_employee_list');
     }
     
     /**

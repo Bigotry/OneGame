@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <script src="__STATIC__/module/index/channel/js/jquery-1.8.3.min.js"></script>
+    <script src="__STATIC__/module/common/toastr/toastr.min.js"></script>
+    <link href="__STATIC__/module/common/toastr/toastr.min.css" rel="stylesheet" type="text/css"/>
+    <title>OneGame手游快速注册</title>
+</head>
+<body>
+<div class="content">
+
+      <div class="reg_tit"><b>3</b>秒快速注册，立即游戏！</div>
+      <form action="{:url('login/channelRegisterHandle')}" method="post" class="register-form">
+        <ul class="reg_ul">
+          <li>
+            <label>用户帐号：</label>
+            <input class="txt_css ckname" type="text" id="register-username" name="username">
+           <p class="tips_p">6~18个字符，以字母开头</p>
+          </li>
+          <li>
+            <label>输入密码：</label>
+            <input class="txt_css" type="password"  maxlength="20" name="password">
+            <p class="tips_p">密码长度6~20个字符</p>
+          </li>
+        </ul>
+        <div class="b_btn">
+          <input type="button" tabindex="15" value="进入游戏" name="" class="sub_css register-form-sub">
+        </div>
+        <!--<div class="other_line"> 其他帐号登录：<a href="#" class="qqbtn"></a><a href="#" class="wecbtn"></a> </div>-->
+      </form>
+</div>
+
+<script type="text/javascript">
+    
+    
+/**
+ * 操纵toastor的便捷类
+ * @type {{success: success, error: error, info: info, warning: warning}}
+ */
+var toast = {
+    /**
+     * 成功提示
+     * @param text 内容
+     * @param title 标题
+     */
+    success: function (text, title) {
+    	
+    	$(".toast").remove();
+    	
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "positionClass": "toast-top-center",
+            "onclick": null,
+            "showDuration": "1000",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+        toastr.success(text, title);
+    },
+    /**
+     * 失败提示
+     * @param text 内容
+     * @param title 标题
+     */
+    error: function (text, title) {
+    	
+    	$(".toast").remove();
+    	
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "positionClass": "toast-top-center",
+            "onclick": null,
+            "showDuration": "1000",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+        toastr.error(text, title);
+    },
+    /**
+     * 信息提示
+     * @param text 内容
+     * @param title 标题
+     */
+    info: function (text, title) {
+    	
+    	$(".toast").remove();
+    	
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "positionClass": "toast-top-center",
+            "onclick": null,
+            "showDuration": "1000",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+        toastr.info(text, title);
+    },
+    /**
+     * 警告提示
+     * @param text 内容
+     * @param title 标题
+     */
+    warning: function (text, title) {
+
+    	$(".toast").remove();
+    	
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "positionClass": "toast-top-center",
+            "onclick": null,
+            "showDuration": "1000",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+        toastr.warning(text, title);
+    }
+};
+
+    
+/**
+ * 提示或提示并跳转
+ */
+var obalert = function (data) {
+    	
+    data.code ? toast.success(data.msg) : toast.error(data.msg);
+
+    if(data.url){
+
+        setTimeout(function(){
+
+            location.href = data.url;
+        },1500);
+    }
+    
+    if(data.code && !data.url){
+
+        setTimeout(function(){
+
+            location.reload();
+        },1500);
+    }
+};
+    
+    
+    $(function() {
+        $("div").bind("contextmenu", function(){
+            return false;
+        })
+        $("div").mousedown(function(e) {
+            console.log(e.which);
+            if (3 == e.which) {
+               $("#regbox,#mskbg").fadeIn()
+            } else if (1 == e.which) {
+                $("#regbox,#mskbg").fadeIn()
+            }
+        });
+        
+        
+        
+    });
+    
+
+
+    //注册
+    $(".register-form-sub").click(function(){
+
+        $('.fakeloader').show();
+        
+        var self = $('.register-form');
+        $.post(self.attr("action"), self.serialize(), success, "json");
+        return false;
+
+        function success(data){
+
+            setTimeout(function(){ $('.fakeloader').hide(); }, 500);
+            
+            obalert(data);
+        }
+    });
+    
+    //回车
+    $("input").keyup(function(e){
+        if(e.keyCode === 13){
+            $(".register-form-sub").click();
+            return false;
+        }
+    });
+</script>
+    
+</body>
+</html>

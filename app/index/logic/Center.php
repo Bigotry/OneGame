@@ -11,6 +11,8 @@
 
 namespace app\index\logic;
 
+use think\Db;
+
 /**
  * 个人中心逻辑
  */
@@ -23,21 +25,75 @@ class Center extends IndexBase
     public function getMyGameData($member_id = 0)
     {
         
-        $map['p.member_id'] = $member_id;
+        $where['member_id'] = $member_id;
         
-        $this->modelWgPlayer->alias('p');
+        $list = $this->modelWgPlayer->getList($where, true, 'login_time desc', 4);
         
-        $join = [
-                    [SYS_DB_PREFIX . 'wg_game ga', 'p.game_id = ga.id'],
-                    [SYS_DB_PREFIX . 'wg_category gc', 'ga.game_category_id = gc.id'],
-                    [SYS_DB_PREFIX . 'wg_server s', 'p.server_id = s.id'],
-                ];
+        foreach ($list as &$v)
+        {
+            
+            if (empty($v['type'])) {
+                
+                $wg_game_info       = Db::name('wg_game')->where(['id' => $v['game_id']])->field(true)->find();
+                $wg_server_info     = Db::name('wg_server')->where(['id' => $v['server_id']])->field(true)->find();
+                $wg_category_info   = Db::name('wg_category')->where(['id' => $wg_game_info['game_category_id']])->field(true)->find();
+                
+                $v['game_id']       = $wg_game_info['id'];
+                $v['game_logo']     = $wg_game_info['game_logo'];
+                $v['game_head']     = $wg_game_info['game_head'];
+                $v['game_cover']    = $wg_game_info['game_cover'];
+                $v['game_name']     = $wg_game_info['game_name'];
+                $v['game_code']     = $wg_game_info['game_code'];
+                $v['server_name']   = $wg_server_info['server_name'];
+                $v['cp_server_id']  = $wg_server_info['cp_server_id'];
+                $v['category_name'] = $wg_category_info['category_name'];
+                
+            } else {
+                
+                $mg_game_info = Db::name('mg_game')->where(['id' => $v['game_id']])->field(true)->find();
+                
+                $wg_category_info   = Db::name('wg_category')->where(['id' => $mg_game_info['game_category_id']])->field(true)->find();
+                
+                $v['game_name']     = $mg_game_info['game_name'];
+                $v['game_head']     = $mg_game_info['game_head'];
+                $v['game_id']       = $mg_game_info['game_id'];
+                $v['category_name'] = $wg_category_info['category_name'];
+                $v['game_cover']    = $mg_game_info['game_cover'];
+                $v['game_intro']    = $mg_game_info['game_intro'];
+            }
+        }
         
-        $field = 'p.*,ga.id as game_id,ga.game_name,ga.game_cover,ga.game_code,s.cp_server_id,s.server_name,gc.category_name';
         
-        $order = 'p.login_time desc';
+        return $list;
         
-        return  $this->modelWgPlayer->getList($map, $field, $order, 4, $join);
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+//        $map['p.member_id'] = $member_id;
+//        
+//        $this->modelWgPlayer->alias('p');
+//        
+//        $join = [
+//                    [SYS_DB_PREFIX . 'wg_game ga', 'p.game_id = ga.id'],
+//                    [SYS_DB_PREFIX . 'wg_category gc', 'ga.game_category_id = gc.id'],
+//                    [SYS_DB_PREFIX . 'wg_server s', 'p.server_id = s.id'],
+//                ];
+//        
+//        $field = 'p.*,ga.id as game_id,ga.game_name,ga.game_cover,ga.game_code,s.cp_server_id,s.server_name,gc.category_name';
+//        
+//        $order = 'p.login_time desc';
+//        
+//        return  $this->modelWgPlayer->getList($map, $field, $order, 4, $join);
     }
     
     /**

@@ -88,6 +88,23 @@ class Game extends AdminBase
     }
     
     /**
+     * 手游列表
+     */
+    public function getMgameList($where = [], $field = 'g.*,c.category_name', $order = 'g.create_time desc', $paginate = 0)
+    {
+        
+        $this->modelMgGame->alias('g');
+        
+        $join = [
+                    [SYS_DB_PREFIX . 'wg_category c', 'c.id = g.game_category_id'],
+                ];
+        
+        $where['g.' . DATA_STATUS_NAME] = ['neq', DATA_DELETE];
+        
+        return $this->modelMgGame->getList($where, $field, $order, $paginate, $join);
+    }
+    
+    /**
      * 获取游戏信息
      */
     public function getGameInfo($where = [], $field = true)

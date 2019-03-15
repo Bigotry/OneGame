@@ -52,7 +52,7 @@ class Game extends IndexBase
         
         $where[DATA_STATUS_NAME]      = ['neq', DATA_DELETE];
         
-        return $this->modelWgCategory->getList($where, 'id,category_name', 'id desc', false);
+        return $this->modelWgCategory->getList($where, 'id,category_name', 'id asc', false);
     }
     
     /**

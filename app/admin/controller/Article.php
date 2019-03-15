@@ -67,6 +67,7 @@ class Article extends AdminBase
         IS_POST && $this->jump($this->logicArticle->articleEdit($this->param));
         
         $this->assign('article_category_list', $this->logicArticle->getArticleCategoryList([], 'id,name', '', false));
+        
         $this->assign('game_list', $this->logicGame->getGameList([], 'g.*,c.category_name', 'g.sort desc', false));
     }
     

@@ -14,7 +14,7 @@ namespace app\index\controller;
 /**
  * 手游控制器
  */
-class H5 extends IndexBase
+class Mgame extends IndexBase
 {
     
     // 游戏中心首页
@@ -23,23 +23,11 @@ class H5 extends IndexBase
         
         set_url();
         
-        $this->setTitle('OneGame - H5手游');
+        $this->setTitle('OneGame - 手游');
         
-        $data = $this->logicH5->gameList($this->param);
+        $this->assign('data', $this->logicMgame->getGameList($this->param));
         
-        $page = empty($this->param['page']) ? 1 : $this->param['page'];
-        
-        if (empty($data['game_data']['items']) && $page != 1) {
-            
-            $type = empty($this->param['type']) ? '' : $this->param['type'];
-            
-            return $this->redirect('h5/index', ['page' => $page-1, 'type' => $type]);
-        }
-        
-        $this->assign('game_list_data', $data['game_data']);
-        $this->assign('prev_url', $data['prev_url']);
-        $this->assign('next_url', $data['next_url']);
-        $this->assign('page_number', $data['page_number']);
+        $this->assign('game_category', $this->logicGame->getGameCategory());
         
         return $this->fetch('jiule_index');
     }
@@ -52,10 +40,21 @@ class H5 extends IndexBase
         
         !is_login() && $this->redirect('login/login');
         
-        $this->setTitle('OneGame - H5手游');
+        $this->setTitle('OneGame - 手游');
         
-        $this->assign('play_url', $this->logicH5->play($gid));
+        $this->assign('play_url', $this->logicMgame->play($gid));
         
         return $this->fetch('jiule_play');
+    }
+    
+    // 安装包下载
+    public function download($id = 0)
+    {
+        
+        set_url();
+        
+        !is_login() && $this->redirect('login/login');
+        
+        $this->logicMgame->download($id);
     }
 }

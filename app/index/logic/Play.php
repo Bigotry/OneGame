@@ -142,12 +142,13 @@ class Play extends IndexBase
     /**
      * 保存玩家信息
      */
-    public function savePlayer($mid = 0, $game_info = [], $server_info = [])
+    public function savePlayer($mid = 0, $game_info = [], $server_info = [], $type = 0)
     {
         
         $data['member_id']  = $mid;
         $data['game_id']    = $game_info['id'];
-        $data['server_id']  = $server_info['id'];
+        
+        !empty($server_info) && $data['server_id']  = $server_info['id'];
         
         $player_info = $this->modelWgPlayer->getInfo($data);
         
@@ -159,6 +160,7 @@ class Play extends IndexBase
             $data['create_date']    = date("Y-m-d");
             $data['create_month']   = date("Y-m");
             $data['create_time']    = time();
+            $data['type']           = $type;
             
             $pid = Db::name('wg_player')->insertGetId($data);
         } else {
@@ -201,6 +203,7 @@ class Play extends IndexBase
                 $b_map['create_time'] = TIME_NOW;
                 $b_map['update_time'] = TIME_NOW;
                 $b_map['is_check']    = 1;
+                $b_map['type']        = $player_info['type'];
                 Db::name('wg_bind')->insert($b_map);
             }
             

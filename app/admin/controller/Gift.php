@@ -38,7 +38,7 @@ class Gift extends AdminBase
         
         !empty($this->param['id']) && $this->assign('info', $this->logicGift->getGiftInfo(['id' => $this->param['id']]));
         
-        $this->assign('game_list', $this->logicGame->getGameList([], 'g.*,c.category_name', 'g.sort desc', false));
+        $this->assign('game_list', get_game_all());
         
         return $this->fetch('gift_edit');
     }

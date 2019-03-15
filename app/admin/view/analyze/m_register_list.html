@@ -1,0 +1,62 @@
+<div class="box">
+  <div class="box-header ">
+    
+    <div class="box-tools ">
+        
+        <div class="input-group input-group-sm search-form" style="width: 400px;">
+            
+             <select class="form-control search-input" name="game_id"  style="width: 160px;">
+                 <option value="0">不限游戏</option>
+                {volist name='game_list' id='vo'}
+                    <option value="{$vo['id']}" {if condition="input('game_id') == $vo['id']"} selected="selected" {/if} >{$vo['game_name']}</option>
+                {/volist}
+             </select>
+ 
+           <input name="search_data" class="pull-right search-input" value="{:input('search_data')}" placeholder="用户名" type="text">
+           <div class="input-group-btn">
+             <button type="button" id="search" url="{:url('mregisterList')}" class="btn btn-default"><i class="fa fa-search"></i></button>
+           </div>
+        </div>
+    </div>
+    <br/>
+  </div>
+    
+  <div class="box-body table-responsive">
+    <table  class="table table-bordered table-hover">
+      <thead>
+        <tr>
+            <th>用户名</th>
+            <th>游戏</th>
+            <th>公会</th>
+            <th>员工</th>
+            <th>登录IP</th>
+            <th>创建时间</th>
+        </tr>
+      </thead>
+      
+      {notempty name="list['list']"}
+        <tbody>
+            {volist name="list['list']" id='vo'}
+                <tr>
+                  <td>{$vo.username}</td>
+                  <td>{$vo.game_name}</td>
+                  <td>{$vo.conference_name}</td>
+                  <td>{$vo.c_username}</td>
+                  <td>{$vo.login_ip} - {:get_position($vo.login_ip)}</td>
+                  <td>{$vo.create_time}</td>
+                </tr>
+            {/volist}
+        </tbody>
+        {else/}
+        <tbody><tr class="odd"><td colspan="6" class="text-center" valign="top">{:config('empty_list_describe')}</td></tr></tbody>
+      {/notempty}
+    </table>
+  </div>
+
+  {notempty name="list['render']"}
+  <div class="box-footer clearfix text-center">
+      {$list['render']->render()}
+  </div>
+  {/notempty}
+
+</div>

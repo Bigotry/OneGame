@@ -24,9 +24,19 @@
                 <tr>
                   <td>{$vo.conference_name}</td>
                   <td>{$vo.username}</td>
-                  <td>{$vo.game_name}</td>
+                  <td>
+                      {eq name='vo.type' value='0'}
+                        页游-{$vo.game_name}
+                      {/eq}
+                      {eq name='vo.type' value='1'}
+                        手游-{$vo.game_name}
+                      {/eq}
+                  </td>
                   <td>{$vo.code}</td>
-                  <td><a target="_blank" href="{$Think.const.DOMAIN}/channel/{$vo.code}.html">{$Think.const.DOMAIN}/channel/{$vo.code}.html</a></td>
+                  <td>
+                        {eq name='vo.type' value='0'}<a target="_blank" href="{$Think.const.DOMAIN}/channel/{$vo.code}.html">{$Think.const.DOMAIN}/channel/{$vo.code}.html</a>{/eq}
+                        {eq name='vo.type' value='1'}<a target="_blank" href="{$Think.const.DOMAIN}/mchannel/{$vo.code}.html">{$Think.const.DOMAIN}/mchannel/{$vo.code}.html</a>{/eq}
+                  </td>
                   <td>{$vo.create_time}</td>
                 </tr>
             {/volist}

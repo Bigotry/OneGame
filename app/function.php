@@ -351,3 +351,40 @@ function get_position($ip)
     
     return $position;
 }
+
+// 批量生成手游推广码
+function create_mgame_code($conference_id = 0, $member_id = 0)
+{
+    
+    $list = Db::name('mg_game')->field(true)->select();
+    
+    $data_all = [];
+    
+    foreach ($list as $v)
+    {
+        $data = [];
+        
+        $data['game_id']        = $v['id'];
+        $data['member_id']      = $member_id;
+        $data['conference_id']  = $conference_id;
+        $data['code']           = rand_code(10);
+        $data['type']           = 1;
+        $data['update_time']    = time();
+        $data['create_time']    = time();
+        $data['status']         = 1;
+        
+        $data_all[] = $data;
+    }
+    
+    return Db::name('wg_code')->insertAll($data_all);
+}
+
+// 获取手游与页游合并数组
+function get_game_all()
+{
+    
+    $mg_game_list = Db::name('mg_game')->field('id,game_name')->select();
+    $wg_game_list = Db::name('wg_game')->field('id,game_name')->select();
+    
+    return array_merge($wg_game_list, $mg_game_list);
+}

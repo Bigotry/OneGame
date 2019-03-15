@@ -9,7 +9,7 @@
         
       <li {if condition="($controller == 'Index') AND ($action == 'index')"}  class="on" {/if} > <a href="{:url('index/index')}">首页</a> </li>
       <li {if condition="($controller == 'Game') AND ($action == 'index')"}  class="on" {/if} > <a href="{:url('game/index')}">网页游戏</a> </li>
-      <li {if condition="($controller == 'H5') AND ($action == 'index')"}  class="on" {/if} > <a href="{:url('h5/index')}">手机游戏</a> </li>
+      <li {if condition="($controller == 'Mgame') AND ($action == 'index')"}  class="on" {/if} > <a href="{:url('mgame/index')}">手机游戏</a> </li>
       <li {if condition="(($controller == 'Gift') AND ($action == 'index') OR ($controller == 'Gift') AND ($action == 'details'))"}  class="on" {/if} > <a href="{:url('gift/index')}">游戏礼包</a> </li>
       <li {if condition="(($controller == 'Article') AND ($action == 'index') OR ($controller == 'Article') AND ($action == 'details'))"}  class="on" {/if} > <a href="{:url('article/index')}">新闻资讯</a> </li>
       <li {if condition="(($controller == 'Center') AND ($action == 'index') OR ($controller == 'Center') AND ($action == 'changepassword') OR ($controller == 'Center') AND ($action == 'gift') )"}  class="on" {/if} > <a href="{:url('center/index')}">用户中心</a> </li>

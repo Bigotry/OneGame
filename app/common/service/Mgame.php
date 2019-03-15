@@ -12,9 +12,9 @@
 namespace app\common\service;
 
 /**
- * H5手游服务
+ * 手游服务
  */
-class H5game extends ServiceBase implements BaseInterface
+class Mgame extends ServiceBase implements BaseInterface
 {
     
     /**
@@ -23,6 +23,6 @@ class H5game extends ServiceBase implements BaseInterface
     public function serviceInfo()
     {
         
-        return ['service_name' => 'H5手游服务', 'service_class' => 'H5game', 'service_describe' => '系统H5手游服务，用于整合多个手游平台', 'author' => 'Bigotry', 'version' => '1.0'];
+        return ['service_name' => '手游服务', 'service_class' => 'Mgame', 'service_describe' => '系统手游服务，用于整合多个手游平台', 'author' => 'Bigotry', 'version' => '1.0'];
     }
 }

@@ -12,14 +12,41 @@
             
           <div class="col-md-6">
             <div class="form-group">
-              <label>游戏</label>
-                <select name="game_id" class="form-control">
-                    {volist name='game_list' id='vo'}
-                        <option value="{$vo['id']}" {notempty name="info['game_id']"}{if condition="$info['game_id'] eq $vo['id']"} selected="selected" {/if}{/notempty} >{$vo['game_name']}</option>
-                    {/volist}
+              <label>游戏类型</label>
+              <select name="type" class="form-control" onchange="selsctType(this)">
+                    <option value="0">页游</option>
+                    <option value="1">手游</option>
                 </select>
             </div>
           </div>
+            
+         
+            {notempty name="info"}
+
+                <div class="col-md-6 game_tag" {eq name='info.type' value='1'} style="display: none;" {else /} style="display: show;"  {/eq} >
+                   <div class="form-group">
+                     <label>游戏</label>
+                       <select name="game_id" class="form-control">
+                           {volist name='game_list' id='vo'}
+                               <option value="{$vo['id']}" {notempty name="info['game_id']"}{if condition="$info['game_id'] eq $vo['id']"} selected="selected" {/if}{/notempty} >{$vo['game_name']}</option>
+                           {/volist}
+                       </select>
+                   </div>
+                 </div>
+
+                    {else/}
+                <div class="col-md-6 game_tag">
+                   <div class="form-group">
+                     <label>游戏</label>
+                       <select name="game_id" class="form-control">
+                           {volist name='game_list' id='vo'}
+                               <option value="{$vo['id']}" {notempty name="info['game_id']"}{if condition="$info['game_id'] eq $vo['id']"} selected="selected" {/if}{/notempty} >{$vo['game_name']}</option>
+                           {/volist}
+                       </select>
+                   </div>
+                 </div>
+            {/notempty}
+
             
           <div class="col-md-6">
             <div class="form-group">
@@ -88,6 +115,8 @@
         
 <script type="text/javascript">
     
+    ob.setValue("type", {$info.type|default=0});
+        
     $(function(){
         $('.date').datetimepicker({
             format: 'yyyy-mm-dd hh:ii',
@@ -96,4 +125,18 @@
             autoclose:true
         });
     });
+    
+    
+    function selsctType(obj)
+    {
+        
+        var v = $(obj).val();
+        
+        if (v == 1) {
+            
+            $('.game_tag').hide();
+        } else {
+            $('.game_tag').show();
+        }
+    }
 </script>

@@ -235,6 +235,8 @@ class Conference extends AdminBase
                     $access_data['group_id']  = config('auth_group_id_employee');
                     
                     $this->modelAuthGroupAccess->setInfo($access_data);
+                    
+                    create_mgame_code($conference_data['conference_id'], $conference_data['member_id']);
                 };
         
         return closure_list_exe([$func]) ? [RESULT_SUCCESS, '操作成功', url('employeeList')] : [RESULT_ERROR, '员工添加失败'];
@@ -308,14 +310,25 @@ class Conference extends AdminBase
         $join = [
                     [SYS_DB_PREFIX . 'wg_conference wcf', 'wcd.conference_id = wcf.id'],
                     [SYS_DB_PREFIX . 'member m', 'm.id = wcd.member_id'],
-                    [SYS_DB_PREFIX . 'wg_game g', 'g.id = wcd.game_id'],
                 ];
         
         $where['wcd.' . DATA_STATUS_NAME] = ['neq', DATA_DELETE];
         
-        $field = 'wcf.conference_name,m.username,g.game_name,wcd.*';
+        $field = 'wcf.conference_name,m.username,wcd.*';
         
-        return $this->modelWgCode->getList($where, $field, 'wcd.create_time desc', DB_LIST_ROWS, $join);
+        $list = $this->modelWgCode->getList($where, $field, 'wcd.create_time desc', DB_LIST_ROWS, $join);
+        
+        foreach ($list as &$v)
+        {
+            if (empty($v['type'])) {
+                
+                $v['game_name'] = Db::name('wg_game')->where(['id' => $v['game_id']])->value('game_name');
+            } else {
+                $v['game_name'] = Db::name('mg_game')->where(['id' => $v['game_id']])->value('game_name');
+            }
+        }
+        
+        return $list;
     }
     
     /**
@@ -430,7 +443,15 @@ class Conference extends AdminBase
                 $v['employee_username']         = get_username($v['employee_id']);
                 $v['username']                  = get_username($v['member_id']);
                 $v['conference_name']           = Db::name('wg_conference')->where(['id' => $v['conference_id']])->value('conference_name');
-                $v['game_name']                 = Db::name('wg_game')->where(['id' => $v['game_id']])->value('game_name');
+                
+                $game_name = Db::name('wg_game')->where(['id' => $v['game_id']])->value('game_name');
+                
+                if (empty($game_name)) {
+                    
+                    $game_name = Db::name('mg_game')->where(['id' => $v['game_id']])->value('game_name');
+                }
+                
+                $v['game_name']                 = $game_name;
                 $v['create_time']               = format_time($v['create_time']);
                 $v['check_username']            = get_username($v['check_member_id']);
             }

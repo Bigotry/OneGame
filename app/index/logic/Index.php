@@ -11,6 +11,8 @@
 
 namespace app\index\logic;
 
+use think\Db;
+
 /**
  * 首页逻辑
  */
@@ -71,6 +73,7 @@ class Index extends IndexBase
                 ];
         
         $where['a.' . DATA_STATUS_NAME] = ['neq', DATA_DELETE];
+        $where['a.type']                = 0;
         
         $field = 'a.id,a.name,c.name as category_name';
         
@@ -181,19 +184,33 @@ class Index extends IndexBase
             return [];
         }
         
-        $this->modelWgPlayer->alias('wp');
+        $where['member_id'] = $member_id;
         
-        $join = [
-                    [SYS_DB_PREFIX . 'wg_game ga', 'ga.id = wp.game_id'],
-                    [SYS_DB_PREFIX . 'wg_server ws', 'ws.id = wp.server_id'],
-                ];
+        $list = $this->modelWgPlayer->getList($where, 'id,game_id,server_id,member_id,type', 'login_time desc', false, [], null, 7);
         
-        $where['wp.' . DATA_STATUS_NAME] = ['neq', DATA_DELETE];
-        $where['wp.member_id'] = $member_id;
-        
-        $field = 'wp.id,ga.game_logo,ga.game_head,ga.game_name,ga.game_code,ws.server_name,ws.cp_server_id';
-        
-        $list = $this->modelWgPlayer->getList($where, $field, 'wp.update_time desc', false, $join, null, 7);
+        foreach ($list as &$v)
+        {
+            
+            if (empty($v['type'])) {
+                
+                $wg_game_info = Db::name('wg_game')->where(['id' => $v['game_id']])->field(true)->find();
+                $wg_server_info = Db::name('wg_server')->where(['id' => $v['server_id']])->field(true)->find();
+                
+                $v['game_logo']     = $wg_game_info['game_logo'];
+                $v['game_head']     = $wg_game_info['game_head'];
+                $v['game_name']     = $wg_game_info['game_name'];
+                $v['game_code']     = $wg_game_info['game_code'];
+                $v['server_name']   = $wg_server_info['server_name'];
+                $v['cp_server_id']  = $wg_server_info['cp_server_id'];
+                
+            } else {
+                
+                $mg_game_info = Db::name('mg_game')->where(['id' => $v['game_id']])->field(true)->find();
+                $v['game_name']  = $mg_game_info['game_name'];
+                $v['game_head']  = $mg_game_info['game_head'];
+                $v['game_id']    = $mg_game_info['game_id'];
+            }
+        }
         
         return $list;
     }
@@ -288,5 +305,17 @@ class Index extends IndexBase
         $game_info = $this->modelWgGame->getInfo(['id' => $code_info['game_id']]);
         
         return $game_info;
+    }
+    
+    
+    /**
+     * 更新手游信息
+     */
+    public function updateMobileGame()
+    {
+        
+        $driver = SYS_DRIVER_DIR_NAME . ucfirst('Jiule');
+        
+        return $this->serviceMgame->$driver->gameList();
     }
 }

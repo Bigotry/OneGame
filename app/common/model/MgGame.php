@@ -9,16 +9,12 @@
 // | Repository | https://gitee.com/Bigotry/OneBase                      |
 // +---------------------------------------------------------------------+
 
-/**
- * 路由文件
- */
+namespace app\common\model;
 
-return [
-    
-    'g/:game_code'      => 'website/index',
-    'channel/:code'     => 'index/channel',
-    'mchannel/:code'    => 'index/mchannel',
-    'paytop'            => 'index/paytop',
-    'client/:game_code' => 'client/index',
-    'center/pay'        => 'center/pay'
-];
+/**
+ * 手游模型
+ */
+class MgGame extends ModelBase
+{
+
+}

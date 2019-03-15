@@ -9,12 +9,12 @@
 // | Repository | https://gitee.com/Bigotry/OneBase                      |
 // +---------------------------------------------------------------------+
 
-namespace app\common\service\h5game;
+namespace app\common\service\mgame;
 
 use app\common\service\BaseInterface;
 
 /**
- * H5手游服务驱动
+ * 手游服务驱动
  */
 interface Driver extends BaseInterface
 {
@@ -37,11 +37,11 @@ interface Driver extends BaseInterface
     /**
      * 手游开始
      */
-    public function play($gid);
+    public function play($id);
     
     /**
      * 手游列表
      */
-    public function gameList($param);
+    public function gameList();
     
 }

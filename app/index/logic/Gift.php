@@ -172,7 +172,8 @@ class Gift extends IndexBase
         
         $join = [ [SYS_DB_PREFIX . 'wg_game ga', 'ga.id = gi.game_id'] ];
         
-        $where['gi.' . DATA_STATUS_NAME] = ['neq', DATA_DELETE];
+        $where['gi.' . DATA_STATUS_NAME]    = ['neq', DATA_DELETE];
+        $where['gi.type']                   = 0;
         
         $field = 'gi.id,gi.gift_name,gi.gift_describe,gi.create_time,ga.game_logo,ga.game_head,ga.game_code';
         

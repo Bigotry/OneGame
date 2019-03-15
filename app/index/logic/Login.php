@@ -163,7 +163,10 @@ class Login extends IndexBase
         
         $code_info = $this->modelWgCode->getInfo($where);
         
-        $game_info = $this->modelWgGame->getInfo(['id' => $code_info['game_id']]);
+        if (empty($code_info['type'])) {
+            
+            $game_info = $this->modelWgGame->getInfo(['id' => $code_info['game_id']]);
+        }
         
         $param[TIME_UT_NAME]        = TIME_NOW;
         $param['ip']                = request()->ip();
@@ -201,9 +204,16 @@ class Login extends IndexBase
         
         session('channel_sid', null);
         
-        if (empty($channel_sid)) {
+        if (empty($channel_sid) && empty($code_info['type'])) {
             
             return [RESULT_SUCCESS, '注册成功', url('play/index',['game_code' => $game_info['game_code']])];
+        }
+        
+        if (!empty($code_info['type'])) {
+            
+            $game_id = \think\Db::name('mg_game')->where(['id' => $code_info['game_id']])->value('game_id');
+            
+            return [RESULT_SUCCESS, '注册成功', url('mgame/play',['gid' => $game_id])];
         }
         
         return [RESULT_SUCCESS, '注册成功', url('play/index',['game_code' => $game_info['game_code'], 'sid' => $channel_sid])];

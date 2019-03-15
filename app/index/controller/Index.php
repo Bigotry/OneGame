@@ -30,7 +30,7 @@ class Index extends IndexBase
         return $this->fetch('index');
     }
     
-    // 游戏推广渠道页面
+    // 页游推广渠道页面
     public function channel($code = '')
     {
         
@@ -63,6 +63,25 @@ class Index extends IndexBase
         }
     }
     
+    // 手游推广渠道页面
+    public function mchannel($code = '')
+    {
+        
+        $this->view->engine->layout(false);
+        
+        if  (!empty($code)) {
+            
+            session('register_code', $code);
+
+            cookie('register_code', $code);
+            
+            return $this->fetch('mchannel');
+        } else {
+            
+            $this->error('推广号码不存在');
+        }
+    }
+    
     /**
      * 获取服务器选项
      */
@@ -79,5 +98,14 @@ class Index extends IndexBase
     {
         
         exit($this->logicIndex->getRoleOption($game_id, $server_id));
+    }
+    
+    /**
+     * 更新手游信息
+     */
+    public function updateMobileGame()
+    {
+        
+        exit($this->logicIndex->updateMobileGame());
     }
 }
