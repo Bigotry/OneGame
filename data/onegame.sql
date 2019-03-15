@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2019-03-15 20:40:46
+Date: 2019-03-15 21:08:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -481,7 +481,7 @@ CREATE TABLE `ob_member` (
 -- ----------------------------
 -- Records of ob_member
 -- ----------------------------
-INSERT INTO `ob_member` VALUES ('1', 'admin', 'admin', '7f41a2ad81a36b60bf3d59ad4e247435', '1', '3162875@qq.com', '18555550710', '1552651876', '0', '1', '1', '0', '1', '127.0.0.1', '0', '');
+INSERT INTO `ob_member` VALUES ('1', 'admin', 'admin', '7f41a2ad81a36b60bf3d59ad4e247435', '1', '3162875@qq.com', '18555550710', '1552654663', '0', '1', '1', '0', '1', '127.0.0.1', '0', '');
 INSERT INTO `ob_member` VALUES ('2', 'qq123456', 'qq123456', '7f41a2ad81a36b60bf3d59ad4e247435', '1', '', '', '1552466207', '1552466207', '1', '1', '0', '0', '127.0.0.1', '0', '');
 INSERT INTO `ob_member` VALUES ('3', 'www11111', 'www11111', '7f41a2ad81a36b60bf3d59ad4e247435', '1', '', '', '1552469013', '1552466393', '1', '1', '0', '0', '127.0.0.1', '0', '');
 INSERT INTO `ob_member` VALUES ('5', 'zhangke', 'zhangke', '7f41a2ad81a36b60bf3d59ad4e247435', '1', '', '', '1552650072', '0', '1', '1', '0', '1', '127.0.0.1', '0', '');
@@ -1354,8 +1354,6 @@ CREATE TABLE `ob_wg_player` (
   `game_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '游戏ID',
   `server_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '服务器ID',
   `member_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '会员ID',
-  `extend` text COLLATE utf8_unicode_ci NOT NULL COMMENT '扩展字段（json）',
-  `version` int(10) unsigned NOT NULL DEFAULT '1' COMMENT '扩展版本',
   `login_ip` char(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '登录IP',
   `login_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '登录时间',
   `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
@@ -1375,19 +1373,20 @@ CREATE TABLE `ob_wg_player` (
   KEY `index_create_date` (`create_date`),
   KEY `index_login_ip` (`login_ip`),
   KEY `index_create_month` (`create_month`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='玩家表';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='玩家表';
 
 -- ----------------------------
 -- Records of ob_wg_player
 -- ----------------------------
-INSERT INTO `ob_wg_player` VALUES ('1', '16', '0', '17', '', '1', '127.0.0.1', '1552633996', '1552633996', '0', '', 'MUHTx8tV7H', '2', '10', '2019-03-15', '2019-03', '1', '1');
-INSERT INTO `ob_wg_player` VALUES ('2', '16', '0', '18', '', '1', '127.0.0.1', '1552649854', '1552634008', '0', '', 'MUHTx8tV7H', '2', '10', '2019-03-15', '2019-03', '1', '1');
-INSERT INTO `ob_wg_player` VALUES ('3', '96', '0', '18', '', '1', '127.0.0.1', '1552649860', '1552648090', '0', '', 'voq7xaGpp0', '2', '10', '2019-03-15', '2019-03', '1', '1');
-INSERT INTO `ob_wg_player` VALUES ('4', '71', '0', '18', '', '1', '127.0.0.1', '1552649977', '1552649873', '0', '', '', '0', '0', '2019-03-15', '2019-03', '1', '1');
-INSERT INTO `ob_wg_player` VALUES ('5', '87', '0', '18', '', '1', '127.0.0.1', '1552649985', '1552649985', '0', '', '', '0', '0', '2019-03-15', '2019-03', '1', '1');
-INSERT INTO `ob_wg_player` VALUES ('6', '67', '0', '5', '', '1', '127.0.0.1', '1552651459', '1552650077', '0', '', '', '0', '0', '2019-03-15', '2019-03', '1', '1');
-INSERT INTO `ob_wg_player` VALUES ('7', '1', '0', '5', '', '1', '127.0.0.1', '1552650968', '1552650077', '0', '', '', '0', '0', '2019-03-15', '2019-03', '0', '1');
-INSERT INTO `ob_wg_player` VALUES ('8', '97', '0', '1', '', '1', '127.0.0.1', '1552653170', '1552653170', '0', '', '', '0', '0', '2019-03-15', '2019-03', '1', '1');
+INSERT INTO `ob_wg_player` VALUES ('1', '16', '0', '17', '127.0.0.1', '1552633996', '1552633996', '0', '', 'MUHTx8tV7H', '2', '10', '2019-03-15', '2019-03', '1', '1');
+INSERT INTO `ob_wg_player` VALUES ('2', '16', '0', '18', '127.0.0.1', '1552649854', '1552634008', '0', '', 'MUHTx8tV7H', '2', '10', '2019-03-15', '2019-03', '1', '1');
+INSERT INTO `ob_wg_player` VALUES ('3', '96', '0', '18', '127.0.0.1', '1552649860', '1552648090', '0', '', 'voq7xaGpp0', '2', '10', '2019-03-15', '2019-03', '1', '1');
+INSERT INTO `ob_wg_player` VALUES ('4', '71', '0', '18', '127.0.0.1', '1552649977', '1552649873', '0', '', '', '0', '0', '2019-03-15', '2019-03', '1', '1');
+INSERT INTO `ob_wg_player` VALUES ('5', '87', '0', '18', '127.0.0.1', '1552649985', '1552649985', '0', '', '', '0', '0', '2019-03-15', '2019-03', '1', '1');
+INSERT INTO `ob_wg_player` VALUES ('6', '67', '0', '5', '127.0.0.1', '1552651459', '1552650077', '0', '', '', '0', '0', '2019-03-15', '2019-03', '1', '1');
+INSERT INTO `ob_wg_player` VALUES ('7', '1', '0', '5', '127.0.0.1', '1552650968', '1552650077', '0', '', '', '0', '0', '2019-03-15', '2019-03', '0', '1');
+INSERT INTO `ob_wg_player` VALUES ('8', '97', '0', '1', '127.0.0.1', '1552653170', '1552653170', '0', '', '', '0', '0', '2019-03-15', '2019-03', '1', '1');
+INSERT INTO `ob_wg_player` VALUES ('9', '96', '0', '1', '127.0.0.1', '1552654668', '1552654668', '0', '', '', '0', '0', '2019-03-15', '2019-03', '1', '1');
 
 -- ----------------------------
 -- Table structure for `ob_wg_role`
