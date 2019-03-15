@@ -85,7 +85,7 @@
                                         {eq name="v['type']" value="1"}
                                             <img src="{$v.game_head}">
                                             <a href="{:url('Mgame/play', array('gid' => $v['game_id']))}" target="_blank">{$v.game_name}</a>
-                                            <a href="{:url('Mgame/play', array('gid' => $v['game_id']))}" target="_blank">混服</a>
+                                            <a href="{:url('Mgame/play', array('gid' => $v['game_id']))}" target="_blank"></a>
                                             <a href="{:url('Mgame/play', array('gid' => $v['game_id']))}" target="_blank" class="s_btn">开始游戏</a>
                                             {else/}
                                             <img src="{$v.game_head|get_picture_url}">
