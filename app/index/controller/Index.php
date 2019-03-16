@@ -77,6 +77,11 @@ class Index extends IndexBase
             
             $game_info = $this->logicIndex->getGameByCode($code, DATA_NORMAL);
             
+            if (is_login()) {
+                
+                return $this->redirect('mgame/play', ['gid' => $game_info['game_id']]);
+            }
+            
             $this->assign('game_info', $game_info);
             
             return $this->fetch('mchannel');
