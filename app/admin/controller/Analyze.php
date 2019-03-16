@@ -70,7 +70,7 @@ class Analyze extends AdminBase
     public function meverydayList()
     {
         
-        $data = $this->logicAnalyze->getMeverydayList($this->param);
+        $data = $this->logicAnalyze->getEverydayList($this->param, DATA_NORMAL);
         
         if (is_string($data)) {
             
@@ -100,7 +100,7 @@ class Analyze extends AdminBase
     public function mgameList()
     {
         
-        $this->assign('list', $this->logicAnalyze->getMgameList($this->param));
+        $this->assign('list', $this->logicAnalyze->getGameList($this->param, DATA_NORMAL));
         
         return $this->fetch('m_game_list');
     }
@@ -133,7 +133,7 @@ class Analyze extends AdminBase
     public function mconferenceList()
     {
         
-        $this->assign('list', $this->logicAnalyze->getMconferenceList($this->param));
+        $this->assign('list', $this->logicAnalyze->getConferenceList($this->param, DATA_NORMAL));
         
         return $this->fetch('m_conference_list');
     }
@@ -155,7 +155,7 @@ class Analyze extends AdminBase
     public function memployeeList()
     {
         
-        $this->assign('list', $this->logicAnalyze->getMemployeeList($this->param));
+        $this->assign('list', $this->logicAnalyze->getEmployeeList($this->param, DATA_NORMAL));
         
         return $this->fetch('m_employee_list');
     }
