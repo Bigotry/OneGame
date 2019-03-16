@@ -13,6 +13,9 @@ html,body{
 </style>
 </head>
 <body>
+    <script language="javascript">
+       history.pushState(null, null, document.URL); window.addEventListener('popstate', function () { history.pushState(null, null, document.URL); });
+    </script>
     <iframe height="100%" width="100%" src="{$play_url}" frameborder="0" scrolling="no">
 </body>
 </html>
