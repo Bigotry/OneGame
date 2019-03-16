@@ -44,6 +44,12 @@ class Mgame extends IndexBase
         
         $this->assign('play_url', $this->logicMgame->play($gid));
         
+        if (IS_MOBILE) {
+            
+            $this->view->engine->layout(false);
+            
+            return $this->fetch('h5_jiule_play');
+        }
         return $this->fetch('jiule_play');
     }
     

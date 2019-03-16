@@ -29,13 +29,19 @@
                         页游-{$vo.game_name}
                       {/eq}
                       {eq name='vo.type' value='1'}
-                        手游-{$vo.game_name}
+                        手游-{notempty name="vo.download_url"}APP{else/}H5{/notempty}-{$vo.game_name}
                       {/eq}
                   </td>
                   <td>{$vo.code}</td>
                   <td>
                         {eq name='vo.type' value='0'}<a target="_blank" href="{$Think.const.DOMAIN}/channel/{$vo.code}.html">{$Think.const.DOMAIN}/channel/{$vo.code}.html</a>{/eq}
-                        {eq name='vo.type' value='1'}<a target="_blank" href="{$Think.const.DOMAIN}/mchannel/{$vo.code}.html">{$Think.const.DOMAIN}/mchannel/{$vo.code}.html</a>{/eq}
+                        {eq name='vo.type' value='1'}
+                            {notempty name="vo.download_url"}
+                                  <a target="_blank" href="{$vo.download_url}">下载安装包</a>
+                              {else/}
+                                  <a target="_blank" href="{$Think.const.DOMAIN}/mchannel/{$vo.code}.html">{$Think.const.DOMAIN}/mchannel/{$vo.code}.html</a>
+                            {/notempty}
+                        {/eq}
                   </td>
                   <td>{$vo.create_time}</td>
                 </tr>

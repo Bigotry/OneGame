@@ -1,217 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <script src="__STATIC__/module/index/channel/js/jquery-1.8.3.min.js"></script>
-    <script src="__STATIC__/module/common/toastr/toastr.min.js"></script>
-    <link href="__STATIC__/module/common/toastr/toastr.min.css" rel="stylesheet" type="text/css"/>
-    <title>OneGame手游快速注册</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{$game_info['game_name']}游戏登录-OneGame</title>
+    <meta http-equiv="keywords" content="OneGame|{$game_info['game_name']}|{$game_info['game_intro']}" />
+    <meta name="description" content="OneGame{$game_info['game_name']}{$game_info['game_intro']}" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link href="__STATIC__/module/admin/ext/adminlte/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="__STATIC__/module/admin/ext/adminlte/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="__STATIC__/module/common/toastr/m_toastr.min.css">
+    <link rel="stylesheet" href="__STATIC__/module/admin/ext/btnloading/dist/ladda-themeless.min.css">
+    <link rel="stylesheet" href="__STATIC__/module/admin/css/onebase.css">
+    <script type="text/javascript" src="__STATIC__/module/common/jquery/jquery-2.2.3.min.js"></script>
+    <script src="__STATIC__/module/admin/ext/adminlte/bootstrap/js/bootstrap.min.js"></script>
 </head>
-<body>
-<div class="content">
+<body style="background-image: url({$game_info['game_cover']}); background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;">
+    <div class="admin-login-box" style="opacity:0.95; width:250px; margin:0px auto;  right:0px; left:0px;">
+    <div class="login-box-body" style="border-radius:15px; border:2px solid #f26522;">
+      <div class="login-logo">
+        <a href="" class="login-logo-a"  style="color:#f26522 !important; font-size:20px;"><b>{$game_info['game_name']}</b></a>
+    </div>
+      
+    <form action="{:url('login/channelRegisterHandle')}" method="post" class="admin-login-form">
+      <div class="form-group has-feedback">
+          <input type="text" name="username" class="form-control" placeholder="请输入您的用户名" onfocus="this.style.border='1px solid #f26522';" >
+           <span class="glyphicon glyphicon-user form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+           <input type="password" name="password" class="form-control" placeholder="请输入您的密码" onfocus="this.style.border='1px solid #f26522';">
+           <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
 
-      <div class="reg_tit"><b>3</b>秒快速注册，立即游戏！</div>
-      <form action="{:url('login/channelRegisterHandle')}" method="post" class="register-form">
-        <ul class="reg_ul">
-          <li>
-            <label>用户帐号：</label>
-            <input class="txt_css ckname" type="text" id="register-username" name="username">
-           <p class="tips_p">6~18个字符，以字母开头</p>
-          </li>
-          <li>
-            <label>输入密码：</label>
-            <input class="txt_css" type="password"  maxlength="20" name="password">
-            <p class="tips_p">密码长度6~20个字符</p>
-          </li>
-        </ul>
-        <div class="b_btn">
-          <input type="button" tabindex="15" value="进入游戏" name="" class="sub_css register-form-sub">
-        </div>
-        <!--<div class="other_line"> 其他帐号登录：<a href="#" class="qqbtn"></a><a href="#" class="wecbtn"></a> </div>-->
-      </form>
-</div>
-
-<script type="text/javascript">
-    
-    
-/**
- * 操纵toastor的便捷类
- * @type {{success: success, error: error, info: info, warning: warning}}
- */
-var toast = {
-    /**
-     * 成功提示
-     * @param text 内容
-     * @param title 标题
-     */
-    success: function (text, title) {
-    	
-    	$(".toast").remove();
-    	
-        toastr.options = {
-            "closeButton": true,
-            "debug": false,
-            "positionClass": "toast-top-center",
-            "onclick": null,
-            "showDuration": "1000",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        };
-        toastr.success(text, title);
-    },
-    /**
-     * 失败提示
-     * @param text 内容
-     * @param title 标题
-     */
-    error: function (text, title) {
-    	
-    	$(".toast").remove();
-    	
-        toastr.options = {
-            "closeButton": true,
-            "debug": false,
-            "positionClass": "toast-top-center",
-            "onclick": null,
-            "showDuration": "1000",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        };
-        toastr.error(text, title);
-    },
-    /**
-     * 信息提示
-     * @param text 内容
-     * @param title 标题
-     */
-    info: function (text, title) {
-    	
-    	$(".toast").remove();
-    	
-        toastr.options = {
-            "closeButton": true,
-            "debug": false,
-            "positionClass": "toast-top-center",
-            "onclick": null,
-            "showDuration": "1000",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        };
-        toastr.info(text, title);
-    },
-    /**
-     * 警告提示
-     * @param text 内容
-     * @param title 标题
-     */
-    warning: function (text, title) {
-
-    	$(".toast").remove();
-    	
-        toastr.options = {
-            "closeButton": true,
-            "debug": false,
-            "positionClass": "toast-top-center",
-            "onclick": null,
-            "showDuration": "1000",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        };
-        toastr.warning(text, title);
-    }
-};
-
-    
-/**
- * 提示或提示并跳转
- */
-var obalert = function (data) {
-    	
-    data.code ? toast.success(data.msg) : toast.error(data.msg);
-
-    if(data.url){
-
-        setTimeout(function(){
-
-            location.href = data.url;
-        },1500);
-    }
-    
-    if(data.code && !data.url){
-
-        setTimeout(function(){
-
-            location.reload();
-        },1500);
-    }
-};
-    
-    
-    $(function() {
-        $("div").bind("contextmenu", function(){
-            return false;
-        })
-        $("div").mousedown(function(e) {
-            console.log(e.which);
-            if (3 == e.which) {
-               $("#regbox,#mskbg").fadeIn()
-            } else if (1 == e.which) {
-                $("#regbox,#mskbg").fadeIn()
-            }
-        });
-        
-        
-        
-    });
-    
-
-
-    //注册
-    $(".register-form-sub").click(function(){
-
-        $('.fakeloader').show();
-        
-        var self = $('.register-form');
-        $.post(self.attr("action"), self.serialize(), success, "json");
-        return false;
-
-        function success(data){
-
-            setTimeout(function(){ $('.fakeloader').hide(); }, 500);
+        <div class="social-auth-links text-center">
             
-            obalert(data);
-        }
-    });
-    
-    //回车
-    $("input").keyup(function(e){
-        if(e.keyCode === 13){
-            $(".register-form-sub").click();
-            return false;
-        }
-    });
-</script>
-    
+          <button  type="submit" class="btn btn-block btn-facebook ladda-button login-submit-button" data-style="slide-up"  style="background-color:#f26522;">
+              <span class="ladda-label">开始游戏</span>
+          </button>
+        </div>
+    </form>
+  </div>
+</div>
+<script src="__STATIC__/module/common/toastr/toastr.min.js"></script>
+<script src="__STATIC__/module/admin/ext/btnloading/dist/spin.min.js"></script>
+<script src="__STATIC__/module/admin/ext/btnloading/dist/ladda.min.js"></script>
+<script src="__STATIC__/module/admin/ext/adminlte/plugins/iCheck/icheck.min.js"></script>
+<script src="__STATIC__/module/admin/js/onebase.js"></script>
+</body>
+</html>
 </body>
 </html>

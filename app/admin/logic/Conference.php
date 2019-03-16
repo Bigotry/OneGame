@@ -324,7 +324,16 @@ class Conference extends AdminBase
                 
                 $v['game_name'] = Db::name('wg_game')->where(['id' => $v['game_id']])->value('game_name');
             } else {
-                $v['game_name'] = Db::name('mg_game')->where(['id' => $v['game_id']])->value('game_name');
+                
+                $game_info = Db::name('mg_game')->where(['id' => $v['game_id']])->field('id,game_name,game_type,download_url')->find();
+                
+                $v['game_name'] = $game_info['game_name'];
+                
+                if (!empty($game_info['game_type'])) {
+                    
+                    $v['download_url'] = $game_info['download_url'];
+                }
+                
             }
         }
         

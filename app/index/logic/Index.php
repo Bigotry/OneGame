@@ -290,7 +290,7 @@ class Index extends IndexBase
     /**
      * 通过code获取游戏信息
      */
-    public function getGameByCode($code = '')
+    public function getGameByCode($code = '', $type = 0)
     {
         
         $where['code'] = $code;
@@ -302,11 +302,10 @@ class Index extends IndexBase
             throw_response_exception('CODE不存在', 'html');
         }
         
-        $game_info = $this->modelWgGame->getInfo(['id' => $code_info['game_id']]);
+        $game_info = empty($type) ? $this->modelWgGame->getInfo(['id' => $code_info['game_id']]) : $this->modelMgGame->getInfo(['id' => $code_info['game_id']]);
         
         return $game_info;
     }
-    
     
     /**
      * 更新手游信息

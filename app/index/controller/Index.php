@@ -75,6 +75,10 @@ class Index extends IndexBase
 
             cookie('register_code', $code);
             
+            $game_info = $this->logicIndex->getGameByCode($code, DATA_NORMAL);
+            
+            $this->assign('game_info', $game_info);
+            
             return $this->fetch('mchannel');
         } else {
             
