@@ -90,7 +90,7 @@ class Game extends AdminBase
     /**
      * 手游列表
      */
-    public function getMgameList($where = [], $field = 'g.*,c.category_name', $order = 'g.create_time desc', $paginate = 0)
+    public function getMgameList($where = [], $field = 'g.*,c.category_name', $order = 'g.is_recommend desc,g.is_hot desc,g.create_time desc', $paginate = 0)
     {
         
         $this->modelMgGame->alias('g');

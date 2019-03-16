@@ -40,7 +40,7 @@ class Analyze extends AdminBase
         
         $this->assign('list', $this->logicAnalyze->getMregisterList($this->param));
         
-        $this->assign('game_list', $this->logicGame->getMgameList([], 'g.*,c.category_name', 'g.sort desc', false));
+        $this->assign('game_list', $this->logicGame->getMgameList([], 'g.*,c.category_name', 'g.is_recommend desc,g.is_hot desc,g.create_time desc', false));
 
         return $this->fetch('m_register_list');
     }

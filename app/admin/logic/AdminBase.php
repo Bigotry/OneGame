@@ -279,4 +279,24 @@ class AdminBase extends LogicBase
         
         return $result ? [RESULT_SUCCESS, '操作成功'] : [RESULT_ERROR, $obj->getError()];
     }
+    
+    /**
+     * 快捷操作
+     */
+    public function speedySetValue($model = '', $id = 0, $field = '', $value = 0)
+    {
+        
+        if (empty($model) || empty($field)) {
+           
+            return [RESULT_ERROR, '非法操作'];
+        }
+        
+        $model_str = LAYER_MODEL_NAME . $model;
+        
+        $obj = $this->$model_str;
+        
+        $result = $obj->setFieldValue(['id' => (int)$id], $field, $value);
+        
+        return $result ? [RESULT_SUCCESS, '操作成功'] : [RESULT_ERROR, $obj->getError()];
+    }
 }

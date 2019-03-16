@@ -67,7 +67,11 @@ class Game extends AdminBase
     public function mgameList()
     {
         
-        $this->assign('list', $this->logicGame->getMgameList());
+        $where = [];
+        
+        !empty($this->param['search_data']) && $where['g.game_name'] = ['like', '%'.$this->param['search_data'].'%'];
+        
+        $this->assign('list', $this->logicGame->getMgameList($where));
         
         return $this->fetch('mgame_list');
     }
@@ -129,5 +133,14 @@ class Game extends AdminBase
     {
         
         $this->jump($this->logicGame->serverDel(['id' => $id]));
+    }
+    
+    /**
+     * 快捷设置
+     */
+    public function speedySetValue($model = '', $id = 0, $field = '', $value = 0)
+    {
+        
+        $this->jump($this->logicAdminBase->speedySetValue($model, $id, $field, $value));
     }
 }

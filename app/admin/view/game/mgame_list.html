@@ -1,5 +1,18 @@
 <div class="box">
+  <div class="box-header">
     
+    <a class="btn game_update" href="javascript:;" url="{:url('index/index/updateMobileGame')}">一键更新</a>
+    
+    <div class="box-tools ">
+        <div class="input-group input-group-sm search-form">
+            <input name="search_data" class="pull-right search-input" value="{:input('search_data')}" placeholder="游戏名称" type="text">
+            <div class="input-group-btn">
+              <button type="button" id="search" url="{:url('mgameList')}" class="btn btn-default"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </div>
+    <br/>
+  </div>
   <div class="box-body table-responsive">
     <table  class="table table-bordered table-hover">
       <thead>
@@ -26,8 +39,20 @@
                   <td>{$vo.category_name}</td>
                   <td>{$vo.game_name}</td>
                   <td><img class="admin-list-img-size" src="{$vo.game_head}"/></td>
-                  <td>{$vo.is_recommend|whether_text}</td>
-                  <td>{$vo.is_hot|whether_text}</td>
+                  <td>
+                      {eq name='vo.is_recommend' value='1'}
+                            <a class="ajax-get" href="{:url('speedySetValue', array('model' => 'MgGame', 'id' => $vo['id'], 'field' => 'is_recommend' , 'value' => 0))}">是</a>
+                         {else/}
+                            <a class="ajax-get" href="{:url('speedySetValue', array('model' => 'MgGame', 'id' => $vo['id'], 'field' => 'is_recommend' , 'value' => 1))}">否</a>
+                      {/eq}
+                  </td>
+                  <td>
+                      {eq name='vo.is_hot' value='1'}
+                            <a class="ajax-get" href="{:url('speedySetValue', array('model' => 'MgGame', 'id' => $vo['id'], 'field' => 'is_hot' , 'value' => 0))}">是</a>
+                         {else/}
+                            <a class="ajax-get" href="{:url('speedySetValue', array('model' => 'MgGame', 'id' => $vo['id'], 'field' => 'is_hot' , 'value' => 1))}">否</a>
+                      {/eq}
+                  </td>
                   <td>{$vo.sort}</td>
                   <td>{$vo.create_time}</td>
   
@@ -45,3 +70,19 @@
   </div>
 
 </div>
+
+<script>
+    
+    $(".game_update").click(function(){
+        
+        var t = $(this);
+        
+        t.hide();
+        
+        $.ajax({ url: t.attr('url'), success: function(){
+                
+            toast.success('更新成功');
+            t.show();
+        }});
+    });
+</script>

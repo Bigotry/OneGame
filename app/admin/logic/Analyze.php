@@ -526,7 +526,7 @@ class Analyze extends AdminBase
         
         $map['create_date'] = ['in', $range_date_arr];
         
-        $game_list = $this->modelMgGame->getList([], 'id,game_name', 'sort desc');
+        $game_list = $this->modelMgGame->getList([], 'id,game_name', 'is_recommend desc,is_hot desc,create_time desc');
         
         foreach ($game_list as &$info)
         {

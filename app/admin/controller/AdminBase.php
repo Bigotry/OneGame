@@ -166,4 +166,5 @@ class AdminBase extends ControllerBase
         
         return $this->logicAdminBase->filter($content, $this->authMenuUrlList);
     }
+
 }
