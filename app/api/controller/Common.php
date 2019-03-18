@@ -27,20 +27,20 @@ class Common extends ApiBase
     }
     
     /**
+     * 注册接口
+     */
+    public function register()
+    {
+        
+        return $this->apiReturn($this->logicCommon->register($this->param));
+    }
+    
+    /**
      * 修改密码接口
      */
     public function changePassword()
     {
         
         return $this->apiReturn($this->logicCommon->changePassword($this->param));
-    }
-    
-    /**
-     * 友情链接
-     */
-    public function getBlogrollList()
-    {
-        
-        return $this->apiReturn($this->logicCommon->getBlogrollList($this->param));
     }
 }

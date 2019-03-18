@@ -19,4 +19,8 @@ class Common
     public static $usernameOrPasswordEmpty  = [API_CODE_NAME => 1010002, API_MSG_NAME => '用户名或密码不能为空'];
     
     public static $registerFail             = [API_CODE_NAME => 1010003, API_MSG_NAME => '注册失败'];
+    
+    public static $usernameInexistence      = [API_CODE_NAME => 1010004, API_MSG_NAME => '用户名不存在'];
+    
+    public static $usernameExist            = [API_CODE_NAME => 1010005, API_MSG_NAME => '用户名已存在'];
 }

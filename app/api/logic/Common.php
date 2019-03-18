@@ -34,21 +34,10 @@ class Common extends ApiBase
             return CommonError::$usernameOrPasswordEmpty;
         }
         
-        begin:
-        
         $member = $this->logicMember->getMemberInfo(['username' => $data['username']]);
 
-        // 若不存在用户则注册
-        if (empty($member))
-        {
-            $register_result = $this->register($data);
-            
-            if (!$register_result) {
-                
-                return CommonError::$registerFail;
-            }
-            
-            goto begin;
+        if (empty($member)) {
+            return CommonError::$usernameInexistence;
         }
         
         if (data_md5_key($data['password']) !== $member['password']) {
@@ -60,9 +49,40 @@ class Common extends ApiBase
     }
     
     /**
+     * 注册接口
+     */
+    public function register($data = [])
+    {
+      
+        $validate_result = $this->validateMember->scene('login')->check($data);
+        
+        if (!$validate_result) {
+            
+            return CommonError::$usernameOrPasswordEmpty;
+        }
+        
+        $member = $this->logicMember->getMemberInfo(['username' => $data['username']]);
+
+        if (empty($member))
+        {
+            $register_result = $this->registerMember($data);
+            
+            if (!$register_result) {
+                
+                return CommonError::$registerFail;
+            }
+        } else {
+            
+            return CommonError::$usernameExist;
+        }
+        
+        return $this->login($data);
+    }
+    
+    /**
      * 注册方法
      */
-    public function register($data)
+    public function registerMember($data)
     {
         
         $data['nickname']  = $data['username'];
@@ -79,7 +99,7 @@ class Common extends ApiBase
         
         $key = API_KEY . JWT_KEY;
         
-        $jwt_data = ['member_id' => $member['id'], 'nickname' => $member['nickname'], 'username' => $member['username'], 'create_time' => $member['create_time']];
+        $jwt_data = ['member_id' => $member['id'], 'nickname' => $member['nickname'], 'username' => $member['username']];
         
         $token = [
             "iss"   => "OneBase JWT",         // 签发者
