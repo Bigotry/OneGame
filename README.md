@@ -13,6 +13,7 @@
 2. 将源码放入web目录下并配置数据库连接\app\database.php。
 3. 配置访问域名与URL重写，配置教程可参考OneBase开发手册。
 4. 安装完成即可访问，后台默认账号admin，密码111111。
+
 [在线演示](http://onegame.yuan-jian.com)  http://onegame.yuan-jian.com
 
 
