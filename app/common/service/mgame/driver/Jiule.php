@@ -130,4 +130,64 @@ class Jiule extends Mgame implements Driver
         }
         
     }
+    
+    /**
+     * 更新礼包信息
+     */
+    public function updateGift()
+    {
+        
+        $data = exec_get_request("http://h5.zyttx.com/api/giftList?pn=1&pagesize=10000");
+        
+        $game_data = json_decode($data, true);
+        
+        foreach ($game_data['gift'] as $v)
+        {
+            
+            $update_data = [];
+            
+            $update_data['game_name'] = $v['game_name'];
+            
+            $game_id = Db::name('mg_game')->where($update_data)->value('game_id', 0);
+            
+            $update_data['game_id']             = $game_id;
+            $update_data['gift_name']           = $v['name'];
+
+            $mg_gift_info = Db::name('mg_gift')->where($update_data)->field(true)->find();
+            
+            $update_data['brief']               = $v['howget'];
+            $update_data['number']              = $v['nums'];
+            $update_data['use_number']          = $v['used'];
+            $update_data['gift_id']             = $v['gift_id'];
+            $update_data['logo']                = $v['logo'];
+
+            $update_data['gift_describe']       = '';
+            
+            if (!empty($v['content'])) {
+                foreach ($v['content'] as $kk => $vv)
+                {
+                    if ($kk > 0) {
+                        
+                        $update_data['gift_describe'] .= ' | ';
+                    }
+                    $update_data['gift_describe'] .= "名称：".$vv['name'] . '，数量：'.$vv['nums'];
+                }
+            }
+            
+            if (empty($mg_gift_info)) {
+                
+                $update_data['status']             = 1;
+                $update_data['update_time']        = time();
+                $update_data['create_time']        = time();
+                
+                Db::name('mg_gift')->insert($update_data);
+            } else {
+                
+                $update_data['id'] = $mg_gift_info['id'];
+                
+                Db::name('mg_gift')->update($update_data);
+            }
+        }
+    }
+    
 }

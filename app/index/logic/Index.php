@@ -317,4 +317,15 @@ class Index extends IndexBase
         
         return $this->serviceMgame->$driver->gameList();
     }
+    
+    /**
+     * 更新礼包信息
+     */
+    public function updateGift()
+    {
+        
+        $driver = SYS_DRIVER_DIR_NAME . ucfirst('Jiule');
+        
+        return $this->serviceMgame->$driver->updateGift();
+    }
 }
