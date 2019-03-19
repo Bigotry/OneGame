@@ -9,6 +9,7 @@
 namespace app\api\logic;
 
 
+use app\index\logic\Play;
 use think\Db;
 use think\Request;
 
@@ -35,7 +36,7 @@ class Mobile extends ApiBase
     public function getIndexGameList()
     {
         $gameList = Db::name('mg_game')
-            ->field('id as game_id,game_name as name,game_intro,game_head as img,download_url as url')
+            ->field('game_id,game_name as name,game_intro,game_head as img,download_url as url')
             ->where('status', '<>', DATA_DELETE)
             //->where('is_recommend', 1)
             ->select();
@@ -68,6 +69,7 @@ class Mobile extends ApiBase
         $group_id = $request->param('group_id');
 
         $query = Db::name('mg_game')
+            ->field('game_id,game_name as name,game_intro,game_head as img,download_url as url')
             ->where('status', '<>', DATA_DELETE);
 
         if (!empty($group_id)) {
@@ -75,5 +77,30 @@ class Mobile extends ApiBase
         }
 
         return $query->select();
+    }
+
+    /**
+     * 获取游戏提供商url
+     * @author Joe <QQ 137294789>
+     * @param Request $request in game_id
+     * @return mixed
+     */
+    public function play($request)
+    {
+        $game_id = $request->param('game_id');
+        $member_id = $request->param('member_id');
+
+
+        $driver = SYS_DRIVER_DIR_NAME . ucfirst('Jiule');
+        $play = new Play();
+        $game_info = $this->modelMgGame->getInfo(['game_id' => $game_id]);
+
+
+        $player_info = $play->savePlayer($member_id, $game_info, [], 1);
+
+        $play->checkBinding($player_info);
+
+        $url = $this->serviceMgame->$driver->play($game_id);
+        return ['url'=>$url];
     }
 }
