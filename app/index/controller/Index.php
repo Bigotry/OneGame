@@ -117,4 +117,14 @@ class Index extends IndexBase
         
         exit($this->logicIndex->updateMobileGame());
     }
+    
+    
+    /**
+     * 更新礼包信息
+     */
+    public function updateGift()
+    {
+        
+        exit($this->logicIndex->updateGift());
+    }
 }
