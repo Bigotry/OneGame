@@ -16,6 +16,8 @@
 
 [在线演示](http://onegame.yuan-jian.com)  http://onegame.yuan-jian.com
 
+[OneBase开发手册](http://document.onebase.org)  http://document.onebase.org
+
 
 #### 效果图
 
