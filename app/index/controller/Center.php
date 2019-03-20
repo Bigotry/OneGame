@@ -83,6 +83,17 @@ class Center extends CenterBase
         return $this->fetch('gift_list');
     }
     
+    // 礼包
+    public function mobileGift()
+    {
+        
+        $this->assign('list', $this->logicCenter->getMyMobileGift(is_login()));
+        
+        $this->setTitle('我的礼包');
+        
+        return $this->fetch('gift_list');
+    }
+    
     /**
      * 充值中心
      */
