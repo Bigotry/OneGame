@@ -127,4 +127,13 @@ class Index extends IndexBase
         
         exit($this->logicIndex->updateGift());
     }
+    
+    /**
+     * 礼包领取测试
+     */
+    public function getGiftTest()
+    {
+        
+        exit($this->logicIndex->getGiftTest());
+    }
 }

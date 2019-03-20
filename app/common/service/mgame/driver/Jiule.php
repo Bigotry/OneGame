@@ -146,10 +146,9 @@ class Jiule extends Mgame implements Driver
             
             $update_data = [];
             
-            $update_data['game_name'] = $v['game_name'];
+            $game_id = Db::name('mg_game')->where(['game_id' => $v['game_id']])->value('id', 0);
             
-            $game_id = Db::name('mg_game')->where($update_data)->value('game_id', 0);
-            
+            $update_data['game_name']           = $v['game_name'];
             $update_data['game_id']             = $game_id;
             $update_data['gift_name']           = $v['name'];
 
@@ -188,6 +187,34 @@ class Jiule extends Mgame implements Driver
                 Db::name('mg_gift')->update($update_data);
             }
         }
+    }
+    
+    /**
+     * 领取礼包信息
+     */
+    public function getGift($member_id = 0, $gift_id = 0)
+    {
+        
+        $username = 'bbs_1336_' . $member_id;
+        
+        $gid = Db::name('mg_gift')->where(['id' => $gift_id])->value('gift_id', 0);
+        
+        $data = exec_get_request("http://h5.zyttx.com/api/bbsgetGift?user_name=$username&gift_id=$gid");
+        
+        $game_data = json_decode($data, true);
+        
+        if (!empty($game_data['cdkey'])) {
+            
+            $add_data = [];
+            $add_data['gift_id']        = $gift_id;
+            $add_data['member_id']      = $member_id;
+            $add_data['key']            = $game_data['cdkey'];
+            $add_data['create_time']    = time();
+            
+            return Db::name('mg_gift_log')->insertGetId($add_data);
+        }
+      
+        return false;
     }
     
 }
