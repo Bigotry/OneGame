@@ -211,7 +211,12 @@ class Jiule extends Mgame implements Driver
             $add_data['key']            = $game_data['cdkey'];
             $add_data['create_time']    = time();
             
-            return Db::name('mg_gift_log')->insertGetId($add_data);
+            $r = Db::name('mg_gift_log')->insertGetId($add_data);
+            
+            if ($r) {
+                
+                return $game_data['cdkey'];
+            }
         }
       
         return false;
