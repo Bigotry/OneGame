@@ -27,6 +27,66 @@ class Mobile extends ApiBase
     }
 
     /**
+     * 个人中心中的我的游戏记录
+     * @author Joe <QQ 137294789>
+     * @param Request $request
+     * @return mixed
+     */
+    public function myGameList(Request $request)
+    {
+        return $this->apiReturn(
+
+            $this->logicMobile->myGameList($request)
+
+        );
+    }
+
+    /**
+     * 下载游戏
+     * @author Joe <QQ 137294789>
+     * @param Request $request in game_id
+     * @return mixed
+     */
+    public function downGame(Request $request)
+    {
+        return $this->apiReturn(
+
+            $this->logicMobile->downGame($request)
+
+        );
+    }
+
+    /**
+     * 领取游戏礼包
+     * @author Joe <QQ 137294789>
+     * @param Request $request in member_id 用户ID
+     * @return mixed
+     */
+    public function getGift(Request $request)
+    {
+        return $this->apiReturn(
+
+            $this->logicMobile->getMobileGift($request)
+
+        );
+    }
+
+    /**
+     * 获取礼包列表
+     * @author Joe <QQ 137294789>
+     * @param Request $request in  page&rows &group_id分组ID
+     * @return mixed
+     */
+    public function getGiftList(Request $request)
+    {
+        return $this->apiReturn(
+
+            $this->logicMobile->getGiftList($request)
+
+        );
+    }
+
+    /**
      * 手机主页页面
      * @author Joe <QQ 137294789>
      * @return mixed
@@ -69,7 +129,12 @@ class Mobile extends ApiBase
         );
     }
 
-
+    /**
+     * 游戏开始
+     * @author Joe <QQ 137294789>
+     * @param Request $request in [game_id & member_id]
+     * @return mixed
+     */
     public function gamePaly(Request $request)
     {
         return $this->apiReturn(
