@@ -67,16 +67,16 @@ class Mobile extends ApiBase
     public function getGameList($request)
     {
         $group_id = $request->param('group_id');
-
+        $page = $request->param('page');
+        $rows = $request->param('rows');
         $query = Db::name('mg_game')
             ->field('game_id,game_name as name,game_intro,game_head as img,download_url as url')
             ->where('status', '<>', DATA_DELETE);
-
         if (!empty($group_id)) {
             $query->where('game_category_id', $group_id);
         }
-
-        return $query->select();
+        $list = $query->page($page,$rows)->select();
+        return ['list'=>$list];
     }
 
     /**

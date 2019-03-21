@@ -296,7 +296,7 @@ function get_os()
 function get_access_token()
 {
 
-    return md5('OneBase' . date("Ymd") . API_KEY);
+    return md5('OneBase' . API_KEY);
 }
 
 /**
