@@ -1,0 +1,17 @@
+<div class="title">
+    <i></i>
+    <h1>
+        礼包中心
+    </h1>
+    <div class="til_game">
+        <a {if condition="input('game_type') == ''"}  class="cur" {/if} href="{:url('gift/index')}">页游</a>
+        <a {if condition="(input('game_type') == 0) and (input('game_type') != '')"}  class="cur" {/if} href="{:url('gift/h5',array('game_type'=>0))}">H5</a>
+        <a {if condition="input('game_type') == 1"}  class="cur" {/if} href="{:url('gift/android',array('game_type'=>1))}">安卓</a>
+    </div>
+
+</div>
+
+<div class="soso search-form">
+    <input type="text" class="search-input" name="keyword" value="{:input('keyword')}" placeholder="请输入礼包名称关键字">
+    <input class="so_btn" type="button" href="javascript:;" id="search" url="{:request()->baseUrl()}">
+</div>

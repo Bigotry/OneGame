@@ -11,17 +11,17 @@
 
         <div class="game_kinds">
             <div class="game_flag">
-                <h4>游戏选择：</h4>
+                <h4>游戏分类：</h4>
                 <div class="flags" id="type">
 
-                    <a {empty name=":input('gid')"} class="on" {/empty} href="{:url('gift/index')}">全部游戏</a>
+                    <a {empty name=":input('cid')"} class="on" {/empty} href="{:url('gift/h5', array('game_type' => input('game_type')))}">全部分类</a>
 
-                    {volist name="data['game_list']" id="v"}
-                        <a {eq name=":input('gid')" value="$v.id"} class="on" {/eq} href="{:url('gift/index', array('gid' => $v.id))}">{$v.game_name}</a>
+                    {volist name="game_category" id="v"}
+                        <a {eq name=":input('cid')" value="$v.id"} class="on" {/eq} href="{:url('gift/h5', array('cid' => $v.id, 'game_type' => input('game_type')))}">{$v.category_name}</a>
                     {/volist}
                 </div>
             </div>
-            {empty name="data['game_list']"}
+            {empty name="game_category"}
                 <div style="text-align: center; padding: 20px; background-color: #fff; margin-top: 20px;">
                     <h2>aOh! 暂时还没有数据~</h2>
                 </div>
@@ -32,18 +32,18 @@
         <div class="container">
             <div class="card_l">
                 <div class="card_list">
-                    {notempty name="data['gift_list']"}
-                        {volist name="data['gift_list']" id="v"}
+                    {notempty name="gift_list"}
+                        {volist name="gift_list" id="v"}
                             <div class="card-one">
                                 <div class="pic">
                                     <a href="{:url('gift/details', array('id' => $v['id']))}">
-                                        <img src="{$v.game_head|get_picture_url}">
+                                        <img src="{$v.logo}">
                                     </a>
                                 </div>
                                 <div class="mn">
                                     <div class="title">
                                         <a href="{:url('gift/details', array('id' => $v['id']))}">
-                                            <h3>{$v.gift_name}</h3>
+                                            <h3>{$v.game_name} - {$v.gift_name}</h3>
                                         </a>
                                         <span class="type"></span>
                                     </div>
@@ -51,8 +51,19 @@
                                         <p>{$v.gift_describe}</p>
                                     </div>
                                     <div class="a-bar">
-                                        <a class="org" href="/g/{$v['game_code']}" target="_blank">官网</a>
-                                        <a class="start" target="_blank" href="{:url('play/index', array('game_code' => $v['game_code']))}">开始游戏</a>
+                                        <a class="org" href="javascript:;">官网</a>
+                                        
+                                        
+                                        {empty name=":input('game_type')"}
+                                        
+                                            <a class="start" target="_blank" href="{:url('mgame/play',array('gid' => $v.old_game_id))}">开始游戏</a>
+                                            
+                                            {else/}
+                                            
+                                            <a class="start" href="{:url('mgame/download',array('id' => $v.game_id))}">下载安装包</a>
+                                            
+                                        {/empty}
+                                        
                                     </div>
                                 </div>
                                 <div class="fr">
@@ -60,13 +71,12 @@
                                         <a class="noactive" href="javascript:;">礼包已领完</a>
                                         <p class="remain">剩余:<em>0</em></p>
                                     {else /}
-                                        <a href="{:url('gift/details', array('id' => $v['id']))}">领取礼包</a>
+                                        <a href="{:url('gift/mobileDetails', array('id' => $v['id']))}">领取礼包</a>
                                         <p class="remain">剩余:<em>{$v.number}</em></p>
                                     {/empty}
                                 </div>
                             </div>
                         {/volist}
-                        
                         
                         {else /}
                             <div style="text-align: center; padding: 20px; background-color: #fff; margin-top: 20px;">
@@ -77,7 +87,7 @@
                 </div>
             </div>
             
-            <table style="margin:0 auto;"> <td> {$data['gift_list']->render()} </td> </table>
+            <table style="margin:0 auto;"> <td> {$gift_list->render()} </td> </table>
         </div>
     </div>
     <!--内容结束-->

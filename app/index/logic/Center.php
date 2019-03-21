@@ -65,35 +65,6 @@ class Center extends IndexBase
         
         
         return $list;
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-//        $map['p.member_id'] = $member_id;
-//        
-//        $this->modelWgPlayer->alias('p');
-//        
-//        $join = [
-//                    [SYS_DB_PREFIX . 'wg_game ga', 'p.game_id = ga.id'],
-//                    [SYS_DB_PREFIX . 'wg_category gc', 'ga.game_category_id = gc.id'],
-//                    [SYS_DB_PREFIX . 'wg_server s', 'p.server_id = s.id'],
-//                ];
-//        
-//        $field = 'p.*,ga.id as game_id,ga.game_name,ga.game_cover,ga.game_code,s.cp_server_id,s.server_name,gc.category_name';
-//        
-//        $order = 'p.login_time desc';
-//        
-//        return  $this->modelWgPlayer->getList($map, $field, $order, 4, $join);
     }
     
     /**
@@ -116,6 +87,28 @@ class Center extends IndexBase
         $order = 'gk.get_time desc';
         
         return $this->modelWgGiftKey->getList($map, $field, $order, 10, $join);
+    }
+    
+    /**
+     * 我的礼包
+     */
+    public function getMyMobileGift($member_id = 0)
+    {
+        
+        $map['ml.member_id'] = $member_id;
+        
+        $this->modelMgGiftLog->alias('ml');
+        
+        $join = [
+                    [SYS_DB_PREFIX . 'mg_gift gi', 'ml.gift_id = gi.id'],
+                    [SYS_DB_PREFIX . 'mg_game ga', 'gi.game_id = ga.id'],
+                ];
+        
+        $field = 'ml.*,gi.gift_name,ga.game_name,ml.create_time as get_time';
+        
+        $order = 'ml.create_time desc';
+        
+        return $this->modelMgGiftLog->getList($map, $field, $order, 10, $join);
     }
     
     /**

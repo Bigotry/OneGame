@@ -46,6 +46,21 @@ class Gift extends IndexBase
     }
     
     /**
+     * 获取手游礼包详情数据
+     */
+    public function getMobileGiftDetailsData($param = [])
+    {
+        
+        $data['gift_info']  = $this->getMobileGiftInfo($param);
+        
+        $data['game_info']  = $this->modelMgGame->getInfo(['id' => $data['gift_info']['game_id']]);
+        
+        $data['other_gift'] = $this->getMobileOtherGift($param, $data['gift_info']['game_id']);
+        
+        return $data;
+    }
+    
+    /**
      * 其他礼包
      */
     public function getOtherGift($param = [], $game_id = 0)
@@ -77,6 +92,28 @@ class Gift extends IndexBase
                 $v['inventory_number'] = $inventory_number;
             }
         }
+        
+        return $other_list;
+    }
+    
+    /**
+     * 其他礼包
+     */
+    public function getMobileOtherGift($param = [], $game_id = 0)
+    {
+        
+        $this->modelMgGift->alias('gi');
+        
+        $join = [
+                    [SYS_DB_PREFIX . 'mg_game ga', 'gi.game_id = ga.id'],
+                ];
+        
+        $where['gi.' . DATA_STATUS_NAME] = ['neq', DATA_DELETE];
+        
+        $where['gi.id']         = ['neq', $param['id']];
+        $where['gi.game_id']    = $game_id;
+        
+        $other_list = $this->modelMgGift->getList($where, 'gi.*,ga.game_head', 'gi.create_time desc', false, $join, null, 8);
         
         return $other_list;
     }
@@ -117,6 +154,41 @@ class Gift extends IndexBase
     }
     
     /**
+     * 手游礼包信息
+     */
+    public function getMobileGiftInfo($param = [])
+    {
+        
+        $gift_info = $this->modelMgGift->getInfo(['id' => $param['id']]);
+        
+        if (empty($gift_info)) {
+
+            throw_response_exception('礼包不存在', 'html');
+        }
+        
+        $gift_map['is_get']  = DATA_DISABLE;
+        $gift_map['gift_id'] = $param['id'];
+        
+        $inventory_number       = $gift_info['number'];
+        $all_inventory_number   = $gift_info['number'] + $gift_info['use_number'];
+        
+        if (empty($inventory_number) || empty($all_inventory_number)) {
+            
+            $inventory_number = 0;
+            $percent = 0;
+            
+        } else {
+            
+            $percent = ceil(($inventory_number/$all_inventory_number)*100);
+        }
+        
+        $gift_info['inventory_number'] = $inventory_number;
+        $gift_info['percent'] = $percent;
+        
+        return $gift_info;
+    }
+    
+    /**
      * 游戏列表
      */
     public function getGameList()
@@ -125,6 +197,17 @@ class Gift extends IndexBase
         $where[DATA_STATUS_NAME]      = ['neq', DATA_DELETE];
         
         return $this->modelWgGame->getList($where, 'id,game_name', 'sort desc,create_time desc', false);
+    }
+    
+    /**
+     * 手机游戏列表
+     */
+    public function getMobileGameList($where = [])
+    {
+        
+        $where[DATA_STATUS_NAME]      = ['neq', DATA_DELETE];
+        
+        return $this->modelMgGame->getList($where, 'id,game_name', 'is_recommend desc,is_hot desc,create_time desc', false);
     }
     
     /**
@@ -163,6 +246,38 @@ class Gift extends IndexBase
     }
     
     /**
+     * 领取手机礼包
+     */
+    public function getMobileGift($param = [], $mid = 0)
+    {
+        
+        $member_id = empty($mid) ? is_login() : $mid;
+        
+        if (empty($member_id)) { return [RESULT_ERROR, '请先登录后再领取']; }
+        
+        $key_where['id']  = $param['id'];
+        
+        $info = $this->modelMgGift->getInfo($key_where);
+        
+        if (empty($info['number'])) { return [RESULT_ERROR, '礼包已经领完啦'];}
+        
+        $exist_map['gift_id']   = $param['id'];
+        $exist_map['member_id'] = $member_id;
+        
+        $exist_info = $this->modelMgGiftLog->getInfo($exist_map);
+        
+        if (!empty($exist_info)) { return [RESULT_ERROR, '您已经领取过此礼包啦'];}
+        
+        $driver = SYS_DRIVER_DIR_NAME . ucfirst('Jiule');
+        
+        $result =  $this->serviceMgame->$driver->getGift($member_id, $param['id']);
+        
+        if (false == $result) { return [RESULT_ERROR, '系统繁忙，请稍后再试']; }
+        
+        return [RESULT_SUCCESS, $result];
+    }
+    
+    /**
      * 礼包列表
      */
     public function getGiftList($param = [])
@@ -196,6 +311,35 @@ class Gift extends IndexBase
                 $info['id'] != $number_info['gift_id'] ?: $info['number'] = $number_info['number'];
             }
         }
+        
+        return $list;
+    }
+    
+    /**
+     * 手游礼包列表
+     */
+    public function getMobileGiftList($param = [])
+    {
+        
+        $this->modelMgGift->alias('gi');
+        
+        $join = [ [SYS_DB_PREFIX . 'mg_game ga', 'ga.id = gi.game_id'] ];
+        
+        $where['gi.' . DATA_STATUS_NAME]    = ['neq', DATA_DELETE];
+        
+        $field = 'gi.*,ga.game_id as old_game_id,ga.game_category_id';
+        
+        $where['gi.game_id'] = ['neq', 0];
+        
+        !empty($param['cid'])         && $where['ga.game_category_id']          = (int)$param['cid'];
+        !empty($param['keyword'])     && $where['gi.game_name|gi.gift_name']    = ['like','%'.(string)$param['keyword'].'%'];
+        
+        if (!empty($param['game_type']) || $param['game_type'] == 0) {
+            
+            $where['ga.game_type'] = (int)$param['game_type'];
+        }
+        
+        $list = $this->modelMgGift->getList($where, $field, 'gi.create_time desc', 5, $join);
         
         return $list;
     }
